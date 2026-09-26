@@ -30,3 +30,7 @@
 .macro-widget fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
 .macro-widget legend { font-weight: 600; margin-bottom: 0.35rem; }
 .macro-widget label { display: block; padding: 0.15rem 0; }
+
+/* Photos in chapters */
+.sl-markdown-content figure img { border-radius: 8px; height: auto; }
+.sl-markdown-content figcaption { color: var(--sl-color-gray-3); font-size: 0.85rem; margin-top: 0.4rem; }
