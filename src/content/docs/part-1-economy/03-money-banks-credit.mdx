@@ -1,0 +1,91 @@
+---
+title: Money, banks & credit
+description: Where money comes from, why credit drives the economy, and why credit booms end in busts.
+draft: true
+sidebar:
+  order: 3
+---
+import CreditCycleSim from '../../../components/widgets/CreditCycleSim.tsx';
+import Quiz from '../../../components/Quiz.tsx';
+
+## Why this matters
+
+In the early 2000s, getting a mortgage in America became remarkably easy. Lenders stopped checking incomes carefully, borrowers took on loans they could only afford if house prices kept rising, and US household debt climbed from about $7 trillion in 2003 to a peak of about $12.7 trillion in late 2008 ([New York Fed data](https://www.newyorkfed.org/microeconomics/hhdc); [peak figure](https://www.newyorkfed.org/newsevents/news/research/2018/rp181116)).
+
+Then house prices stopped rising. Borrowers defaulted, banks that had lent to them (and bet on those loans) ran into trouble, and the result was the worst financial crisis since the 1930s ([source](https://en.wikipedia.org/wiki/2007%E2%80%932008_financial_crisis)).
+
+The 2008 crisis wasn't caused by a shortage of anything real. The houses, the factories and the workers were all still there. It was caused by **credit**: too much of it, then suddenly not enough. To understand macro, you need to understand how money and credit really work, and why credit moves in booms and busts.
+
+## What money actually is
+
+Ask most people where money comes from and they'll say "the government prints it". That's only a small part of the story.
+
+The cash in your wallet is a tiny share of the money in a modern economy. Most money is **bank deposits**: the numbers in your checking and savings accounts. And most of *those* are created by ordinary commercial banks, not by the government.
+
+Here's how. When a bank makes you a $300,000 mortgage, it doesn't hand over $300,000 it had sitting in a vault. It simply credits the seller's bank account with $300,000 of brand-new deposits. The loan creates the money. As the Bank of England put it in a famous 2014 paper, commercial banks create money "whenever they make loans" ([Bank of England](https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy)). The reverse is also true: when loans are repaid, that money disappears.
+
+So the **[money supply](/Macro-Investing-Textbook/glossary/#money-supply)**, the total amount of money in the economy, grows when banks lend more and shrinks when people pay debt down. That's why lending is so powerful: it doesn't just move money around, it creates spending power out of thin air.
+
+## Credit: spending tomorrow's income today
+
+**[Credit](/Macro-Investing-Textbook/glossary/#credit)** is borrowing: money you get now in exchange for a promise to pay it back later, with extra. That extra is the **[interest rate](/Macro-Investing-Textbook/glossary/#interest-rate)**, the price of borrowing, expressed as a percentage per year.
+
+Credit is not bad. It lets a young family buy a home decades before they could save the full price, and lets a company build a factory before it has the profits to pay for it. Economies with healthy credit grow faster than they could on savings alone.
+
+But credit has a catch that's easy to miss: **borrowing lets you spend more than you earn today, but it forces you to spend less than you earn later**, when you pay it back. Every loan is a bit of future income spent now.
+
+The number that captures this is the **[debt service ratio](/Macro-Investing-Textbook/glossary/#debt-service-ratio)**: the share of income that goes to debt repayments, interest plus principal. If your income is $5,000 a month and your loan payments are $1,500, your debt service ratio is 30%. When that ratio gets too high, something has to give.
+
+## The credit cycle
+
+Because borrowing today means repaying tomorrow, credit tends to move in a cycle:
+
+1. **Easy lending.** Interest rates are low and lenders are relaxed. Borrowing is cheap and easy, so people and businesses borrow more.
+2. **The boom.** All that borrowed money gets spent. Businesses do well, asset prices (like houses) rise, and rising prices make lenders even more comfortable lending. It feels like it can go on forever.
+3. **The squeeze.** Debt grows faster than incomes, so repayments eat a larger and larger share of income. The debt service ratio climbs.
+4. **The bust.** Eventually some borrowers can't pay. Defaults rise, lenders get scared and tighten up, and spending falls because people are paying debt down instead of borrowing more.
+5. **[Deleveraging](/Macro-Investing-Textbook/glossary/#deleveraging).** Debt shrinks relative to income, through repayment, defaults and sometimes inflation, until borrowers are healthy enough to start the cycle again.
+
+Ray Dalio of Bridgewater, one of the world's largest macro funds, argues this debt cycle is one of the main forces driving economies, alongside productivity growth. His free 30-minute animated explainer, *How the Economic Machine Works*, is one of the best introductions to the idea ([source](https://www.economicprinciples.org/)).
+
+## Try it
+
+The simulator below is a simplified model of a credit cycle. Borrowers start with debt equal to their income. Each quarter, their debt grows faster when interest rates are low and lending standards are loose. When repayments pass 35% of income, the boom turns to bust: debt shrinks through defaults and repayment, and income falls in a recession.
+
+<CreditCycleSim client:visible />
+
+Try these:
+
+1. **Find settings that never bust.** What combination of interest rate and lending standards keeps repayments manageable for all 15 years?
+2. **Keep lending loose and raise the interest rate.** What happens to how *fast* debt builds up?
+3. **Keep the rate low and loosen lending standards step by step.** How much sooner does the bust arrive?
+
+This is a teaching model, not a forecast, but the shape is real: the looser the lending, the faster the boom, and the sooner the bust.
+
+## Real-world example: the 2008 credit bust
+
+Let's walk the US housing boom through the five stages.
+
+- **Easy lending.** After the 2001 recession, US interest rates were cut to low levels, and mortgage lenders loosened standards dramatically, including loans with little or no proof of income ([source](https://en.wikipedia.org/wiki/2007%E2%80%932008_financial_crisis)).
+- **The boom.** Easy mortgages pushed house prices up, and rising prices made lending look safe. Household debt surged ([New York Fed](https://www.newyorkfed.org/microeconomics/hhdc)).
+- **The squeeze.** As rates rose from 2004 and cheap "teaser" rates on many mortgages reset higher, repayments jumped for millions of borrowers.
+- **The bust.** Defaults spread, house prices fell, and banks holding mortgage-linked investments took huge losses. Lehman Brothers failed in September 2008 ([source](https://en.wikipedia.org/wiki/Bankruptcy_of_Lehman_Brothers)).
+- **Deleveraging.** For years afterwards, US households paid debt down and banks lent cautiously. It's a big reason the recovery after 2009 was slow.
+
+Macro investors who understood the credit cycle, like John Paulson (whom you met in Chapter 1), saw the squeeze coming and positioned for the bust.
+
+## Key takeaways
+
+- Most money is **bank deposits**, and banks **create new money when they lend**. Repaying loans destroys it.
+- **Credit** lets people spend future income today, which means spending less later.
+- The **debt service ratio** (repayments as a share of income) is the pressure gauge of a credit cycle.
+- Credit moves in a cycle: **easy lending → boom → squeeze → bust → deleveraging**. The looser the lending, the bigger the boom and the harder the bust.
+
+## Quiz
+
+<Quiz client:visible slug="03-money-banks-credit" questions={[
+  { q: 'When a bank makes a loan, what happens to the money supply?', choices: ['It rises: the loan creates a new deposit', 'It falls', 'Nothing: banks only lend out existing savings'], answer: 0, why: 'Commercial banks create new deposits when they lend, as the Bank of England explains.' },
+  { q: 'What does the debt service ratio measure?', choices: ['Total debt divided by GDP', 'The share of income spent on debt repayments', 'The number of loans a bank makes'], answer: 1, why: 'It is repayments (interest + principal) as a share of income, which is what squeezes borrowers.' },
+  { q: 'In the simulator, what makes a bust arrive sooner?', choices: ['Tighter lending standards', 'Looser lending standards', 'Nothing changes the timing'], answer: 1, why: 'Loose standards let debt grow faster than income, so repayments hit the limit sooner.' },
+  { q: 'What is deleveraging?', choices: ['Borrowing more to invest', 'Paying down or defaulting on debt so debt falls relative to income', 'A central bank printing money'], answer: 1, why: 'Deleveraging is the bust phase, when debt shrinks relative to income.' },
+]} />
