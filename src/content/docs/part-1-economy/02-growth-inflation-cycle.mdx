@@ -1,0 +1,104 @@
+---
+title: Growth, inflation & the business cycle
+description: How to read the three numbers every macro investor watches, GDP, inflation and unemployment.
+draft: true
+sidebar:
+  order: 2
+---
+import EconomyExplorer from '../../../components/widgets/EconomyExplorer.tsx';
+import Quiz from '../../../components/Quiz.tsx';
+import gdp from '../../../data/GDPC1.json';
+import cpi from '../../../data/CPIAUCSL.json';
+import unrate from '../../../data/UNRATE.json';
+import usrec from '../../../data/USREC.json';
+
+## Why this matters
+
+In June 2022, prices paid by American consumers were about 9% higher than a year earlier. That was the fastest rise since November 1981 ([BLS CPI](https://www.bls.gov/cpi/); you can see it in the chart below). Almost nobody under 50 had lived through inflation like it as an adult.
+
+That one number reshaped every market. The Federal Reserve raised interest rates at the fastest pace in decades, mortgage rates roughly doubled, and stocks and bonds fell together. If you'd understood what the inflation number was telling you, much of what happened next in 2022 made sense.
+
+Macro investors spend their lives watching a handful of numbers like this one. This chapter teaches you the three most important: **growth, inflation and unemployment**, plus the rhythm that ties them together, the **business cycle**.
+
+## GDP: the size of the economy
+
+**[GDP (Gross Domestic Product)](/Macro-Investing-Textbook/glossary/#gdp-gross-domestic-product)** is the total value of everything a country produces in a period: every haircut, car, software subscription and loaf of bread. In the US it's published every quarter by the Bureau of Economic Analysis ([BEA](https://www.bea.gov/data/gdp/gross-domestic-product)).
+
+Nobody cares much about the *level* of GDP. What matters is how fast it's **growing**. An economy growing 3% a year is creating jobs and profits; one shrinking 2% is laying people off.
+
+There's a catch. If prices rise 5% and the economy produces exactly the same stuff, GDP measured in dollars still goes up 5%. That's not real growth, just higher prices. So economists split GDP into two versions (**[nominal vs real](/Macro-Investing-Textbook/glossary/#nominal-vs-real)**):
+
+- **Nominal GDP** is measured in today's dollars, inflation included.
+- **Real GDP** strips out price changes, so it only rises when the economy actually produces *more*.
+
+When people say "the economy grew 2%", they almost always mean real GDP.
+
+When real GDP shrinks for a sustained period and the damage spreads across jobs, incomes and spending, that's a **[recession](/Macro-Investing-Textbook/glossary/#recession)**. In the US, recessions are officially dated by a committee at the National Bureau of Economic Research ([NBER](https://www.nber.org/research/business-cycle-dating)). It often announces them months after they've started, because it waits for the data to be clear.
+
+## Inflation: the price of everything
+
+**[Inflation](/Macro-Investing-Textbook/glossary/#inflation)** is the rate at which prices in general are rising. If inflation is 3%, the same basket of groceries, rent and petrol that cost $100 last year costs $103 today.
+
+The most-watched measure in the US is the **[CPI (Consumer Price Index)](/Macro-Investing-Textbook/glossary/#cpi-consumer-price-index)**, published monthly by the Bureau of Labor Statistics ([BLS](https://www.bls.gov/cpi/)). It tracks the price of a typical household's shopping basket. "CPI inflation" is simply how much that basket's price has changed over the last 12 months.
+
+A little inflation is normal, and even healthy. Most central banks aim for about 2% a year. Problems start when inflation gets high or unpredictable:
+
+- **Your savings shrink.** Cash in a bank account earning 1% loses value when prices rise 8%.
+- **Planning gets hard.** Businesses can't set prices or wages with confidence.
+- **Central banks step in.** To cool inflation, they raise interest rates, which slows the whole economy. That's what happened in 2022, and it's why investors watch inflation so closely.
+
+## Jobs: the unemployment rate
+
+The **[unemployment rate](/Macro-Investing-Textbook/glossary/#unemployment-rate)** is the share of people who want a job and are actively looking for one but don't have one. It's published monthly by the BLS.
+
+Unemployment is the most *human* of the three numbers, and it moves in a telling way: it tends to rise fast in recessions and fall slowly in recoveries. Companies fire quickly when demand collapses, but hire cautiously when it returns.
+
+## The business cycle
+
+Economies don't grow in a straight line. They move through a repeating pattern called the **[business cycle](/Macro-Investing-Textbook/glossary/#business-cycle)**:
+
+1. **Expansion.** Growth is positive, unemployment falls, companies hire and invest. Inflation usually starts low and creeps up as the economy heats up.
+2. **Peak.** The economy runs hot. Unemployment is low, inflation is often rising, and central banks may start raising rates to cool things down.
+3. **Contraction (recession).** Growth turns negative, unemployment jumps, and inflation usually falls as demand weakens.
+4. **Trough.** The bottom. Central banks have usually cut rates, and the stage is set for the next expansion.
+
+No two cycles are the same length. Some expansions last more than a decade; the 2020 recession lasted two months ([NBER](https://www.nber.org/research/business-cycle-dating)). But the *pattern* is remarkably consistent, and a huge part of macro investing is working out where in the cycle you are and what comes next.
+
+## Try it
+
+Here is real US data for all three measures, with recessions shaded. Growth and inflation are shown as the change over the previous 12 months.
+
+<EconomyExplorer client:visible gdp={gdp} cpi={cpi} unrate={unrate} usrec={usrec} />
+
+Things to look for:
+
+1. **Turn on unemployment and look at each shaded band.** What does unemployment do during every recession, and how quickly does it come back down afterwards?
+2. **Switch to "All" and find the 1970s and early 1980s.** How does inflation back then compare with 2022?
+3. **Look at growth around each recession.** Does GDP growth always turn negative, and does it recover faster or slower than unemployment?
+
+## Real-world example: the 2020 COVID recession
+
+The COVID shock is the business cycle compressed into a few months, and it shows all three numbers moving at once.
+
+- **Growth.** As the economy shut down in spring 2020, real GDP in the second quarter was about 7% lower than a year earlier (see the chart). It's one of the sharpest drops in the data.
+- **Unemployment.** The unemployment rate jumped from 3.5% in February 2020 to 14.8% in April, the highest in the chart's history. Then it fell faster than in any previous recovery, as businesses reopened.
+- **Inflation.** At first, inflation *fell*, because nobody was spending. Then, as the economy reopened with supply chains still broken and government support flowing, inflation climbed to about 9% by mid-2022.
+- **Official dates.** The NBER dated the recession from February to April 2020: two months, the shortest US recession on record ([NBER](https://www.nber.org/research/business-cycle-dating)).
+
+The lesson for investors: each number told a different part of the story at a different time. Growth and jobs collapsed first; inflation turned up much later, and that delayed inflation drove markets in 2022.
+
+## Key takeaways
+
+- **Real GDP growth** tells you whether the economy is producing more; **nominal** figures include price rises.
+- **Inflation** (usually measured by **CPI**) is how fast prices are rising. Central banks target about 2%, and fight it with higher interest rates when it runs hot.
+- **Unemployment** rises fast in recessions and falls slowly in recoveries.
+- The economy moves through a **business cycle** of expansion, peak, contraction and trough, and each phase favours different investments.
+
+## Quiz
+
+<Quiz client:visible slug="02-growth-inflation-cycle" questions={[
+  { q: 'Why do economists use real rather than nominal GDP to measure growth?', choices: ['Real GDP removes the effect of rising prices', 'Real GDP includes the stock market', 'Nominal GDP is only published once a decade'], answer: 0, why: 'Real GDP strips out inflation, so growth reflects more stuff produced, not higher prices.' },
+  { q: 'CPI inflation of 3% means…', choices: ['Prices are 3% higher than a year ago', 'The economy grew 3%', '3% of people are unemployed'], answer: 0, why: 'CPI inflation is the year-over-year change in a basket of consumer prices.' },
+  { q: 'During a recession, the unemployment rate usually…', choices: ['Falls', 'Rises', 'Stays exactly the same'], answer: 1, why: 'Firms cut jobs when demand falls, so unemployment rises.' },
+  { q: 'Who officially dates US recessions?', choices: ['The Federal Reserve', 'The National Bureau of Economic Research (NBER)', 'The stock exchange'], answer: 1, why: 'The NBER’s Business Cycle Dating Committee sets official peak and trough dates.' },
+]} />
