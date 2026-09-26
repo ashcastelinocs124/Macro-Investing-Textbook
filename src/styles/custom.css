@@ -34,3 +34,26 @@
 /* Photos in chapters */
 .sl-markdown-content figure img { border-radius: 8px; height: auto; }
 .sl-markdown-content figcaption { color: var(--sl-color-gray-3); font-size: 0.85rem; margin-top: 0.4rem; }
+
+/* Background: "Midnight navy" (dark) / cool off-white (light). */
+:root {
+	--sl-color-black: #0b1120;
+	--sl-color-bg: #0b1120;
+	--sl-color-bg-nav: #111a2e;
+	--sl-color-bg-sidebar: #0e1627;
+	--sl-color-gray-6: #111a2e;
+	--sl-color-gray-5: #26344f;
+	--sl-color-hairline: #18233a;
+	--sl-color-hairline-light: #26344f;
+}
+:root[data-theme='light'] {
+	--sl-color-black: #f8fafc;
+	--sl-color-bg: #f8fafc;
+	--sl-color-bg-nav: #eef2f8;
+	--sl-color-bg-sidebar: #f1f5f9;
+	--sl-color-gray-6: #e2e8f0;
+	--sl-color-gray-7: #eef2f8;
+	--sl-color-gray-5: #cbd5e1;
+	--sl-color-hairline: #e2e8f0;
+	--sl-color-hairline-light: #cbd5e1;
+}
