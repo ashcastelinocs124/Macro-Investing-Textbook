@@ -10,6 +10,7 @@ Each chapter pairs plain-English explanations with an interactive piece, such as
 
 | Part | Chapters |
 |---|---|
+| Start here | What is an investment? (and who invests) |
 | I · How the economy works | What is global macro? · Growth, inflation & the business cycle · Money, banks & credit |
 | II · Policy makers | Central banks & monetary policy · Fiscal policy & government debt |
 | III · The asset classes | Rates & the yield curve · Currencies · Commodities · Equities & credit |

@@ -14,6 +14,7 @@ export default defineConfig({
 			customCss: ['@fontsource-variable/inter', './src/styles/custom.css'],
 			plugins: [starlightLinksValidator()],
 			sidebar: [
+				{ label: 'Start here', items: [{ autogenerate: { directory: 'start-here' } }] },
 				{ label: 'Part I · How the economy works', items: [{ autogenerate: { directory: 'part-1-economy' } }] },
 				{ label: 'Part II · Policy makers', items: [{ autogenerate: { directory: 'part-2-policy' } }] },
 				{ label: 'Part III · The asset classes', items: [{ autogenerate: { directory: 'part-3-assets' } }] },
