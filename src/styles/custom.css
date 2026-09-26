@@ -1,0 +1,32 @@
+/* Look A: Starlight defaults + indigo accent + Inter. */
+:root {
+	--sl-font: 'Inter Variable', system-ui, sans-serif;
+	--sl-color-accent-low: #1e1b4b;
+	--sl-color-accent: #6366f1;
+	--sl-color-accent-high: #c7d2fe;
+}
+:root[data-theme='light'] {
+	--sl-color-accent-low: #e0e7ff;
+	--sl-color-accent: #4f46e5;
+	--sl-color-accent-high: #312e81;
+}
+
+/* Shared frame for charts, quizzes and widgets (they opt out of prose styles with .not-content). */
+.macro-widget {
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 10px;
+	padding: 1rem 1.25rem;
+	margin-block: 1.5rem;
+	background: var(--sl-color-bg);
+}
+.macro-widget h2, .macro-widget h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.macro-widget .sub { color: var(--sl-color-gray-3); font-size: 0.85rem; margin: 0 0 0.75rem; }
+.macro-widget .asof { color: var(--sl-color-gray-3); font-size: 0.75rem; margin-top: 0.5rem; display: block; }
+.macro-widget button[aria-pressed='true'] { background: var(--sl-color-accent); color: var(--sl-color-white); }
+.macro-widget button { border: 1px solid var(--sl-color-gray-5); border-radius: 6px; padding: 0.25rem 0.6rem; background: transparent; color: inherit; cursor: pointer; }
+.macro-widget input[type='range'] { accent-color: var(--sl-color-accent); width: 100%; }
+.macro-widget .correct { color: var(--sl-color-green-high); font-weight: 600; }
+.macro-widget .wrong { color: var(--sl-color-red-high); }
+.macro-widget fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
+.macro-widget legend { font-weight: 600; margin-bottom: 0.35rem; }
+.macro-widget label { display: block; padding: 0.15rem 0; }
