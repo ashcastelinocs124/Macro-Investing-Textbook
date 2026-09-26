@@ -1,0 +1,6 @@
+[
+	{ "id": "GDPC1", "title": "Real GDP", "units": "Billions of chained dollars, SAAR", "chapters": [2] },
+	{ "id": "CPIAUCSL", "title": "Consumer Price Index (all urban consumers)", "units": "Index 1982–84 = 100", "chapters": [2] },
+	{ "id": "UNRATE", "title": "Unemployment rate", "units": "%", "chapters": [2] },
+	{ "id": "USREC", "title": "NBER US recession indicator", "units": "1 = recession", "chapters": [2] }
+]
