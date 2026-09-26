@@ -17,8 +17,8 @@ export default function EconomyExplorer({ gdp, cpi, unrate, usrec }: Props) {
 
 	const all = useMemo(
 		() => ({
-			growth: { label: 'Real GDP growth (% y/y)', points: yoy(gdp.points, 4) },
-			inflation: { label: 'CPI inflation (% y/y)', points: yoy(cpi.points, 12) },
+			growth: { label: 'Real GDP growth (% y/y)', points: yoy(gdp.points) },
+			inflation: { label: 'CPI inflation (% y/y)', points: yoy(cpi.points) },
 			unemployment: { label: 'Unemployment rate (%)', points: unrate.points },
 		}),
 		[gdp, cpi, unrate],

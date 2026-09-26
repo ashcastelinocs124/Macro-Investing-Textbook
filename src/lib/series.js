@@ -1,11 +1,11 @@
-/** % change versus the value `periodsPerYear` points earlier. */
-// ponytail: assumes no gaps in the series (true for the FRED series we use); switch to date-matching if a gappy series is added.
-export function yoy(points, periodsPerYear) {
+/** % change versus the value on the same date one year earlier (skips points with no such base). */
+// Matching by date, not position: FRED series can have gaps (e.g. no Oct 2025 CPI, skipped during the shutdown).
+export function yoy(points) {
+	const byDate = new Map(points);
 	const out = [];
-	for (let i = periodsPerYear; i < points.length; i++) {
-		const [date, value] = points[i];
-		const base = points[i - periodsPerYear][1];
-		if (base !== 0) out.push([date, (value / base - 1) * 100]);
+	for (const [date, value] of points) {
+		const base = byDate.get(`${Number(date.slice(0, 4)) - 1}${date.slice(4)}`);
+		if (base) out.push([date, (value / base - 1) * 100]);
 	}
 	return out;
 }
