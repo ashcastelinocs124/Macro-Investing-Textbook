@@ -9,7 +9,7 @@ export default defineConfig({
 	base: '/Macro-Investing-Textbook',
 	integrations: [
 		starlight({
-			title: 'Global Macro, From Scratch',
+			title: 'Global Macro Cookbook',
 			description: 'A free, interactive textbook on how the global economy moves markets.',
 			customCss: ['@fontsource/lato/400.css', '@fontsource/lato/400-italic.css', '@fontsource/lato/700.css', './src/styles/custom.css'],
 			plugins: [starlightLinksValidator()],

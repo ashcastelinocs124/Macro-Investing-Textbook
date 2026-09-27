@@ -1,4 +1,4 @@
-# Global Macro, From Scratch
+# Global Macro Cookbook
 
 A free, interactive web textbook that teaches global macro investing from zero: how growth, inflation, interest rates, currencies and central banks move every market. It's written for curious learners, from complete beginners to people who know basic investing but not macro.
 
