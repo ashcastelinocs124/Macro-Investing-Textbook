@@ -11,7 +11,7 @@ export default defineConfig({
 		starlight({
 			title: 'Global Macro, From Scratch',
 			description: 'A free, interactive textbook on how the global economy moves markets.',
-			customCss: ['@fontsource-variable/inter', './src/styles/custom.css'],
+			customCss: ['@fontsource/lato/400.css', '@fontsource/lato/400-italic.css', '@fontsource/lato/700.css', './src/styles/custom.css'],
 			plugins: [starlightLinksValidator()],
 			sidebar: [
 				{ label: 'Start here', items: [{ autogenerate: { directory: 'start-here' } }] },

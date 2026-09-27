@@ -7,7 +7,8 @@ export type Range = { from: X; to: X; label?: string };
 type Props = { title: string; units: string; lines: Line[]; ranges?: Range[]; source: string; asOf: string; note?: string };
 
 const toX = (x: X) => (typeof x === 'string' ? new Date(x) : x);
-const PALETTE = ['#4f46e5', '#f97316', '#10b981', '#e11d48'];
+// rlvrbook palette: accent teal first, then its domain-map colors.
+const PALETTE = ['#18bc9c', '#d97706', '#2563eb', '#7c3aed'];
 
 export default function Chart({ title, units, lines, ranges = [], source, asOf, note }: Props) {
 	const ref = useRef<HTMLDivElement>(null);

@@ -1,59 +1,113 @@
-/* Look A: Starlight defaults + indigo accent + Inter. */
+/* Look ported from rlvrbook.com (Bootswatch Flatly light / Darkly dark). Spec: docs/superpowers/specs/2026-09-26-rlvrbook-design-transfer.md */
+
+/* Dark (Darkly) */
 :root {
-	--sl-font: 'Inter Variable', system-ui, sans-serif;
-	--sl-color-accent-low: #1e1b4b;
-	--sl-color-accent: #6366f1;
-	--sl-color-accent-high: #c7d2fe;
-}
-:root[data-theme='light'] {
-	--sl-color-accent-low: #e0e7ff;
-	--sl-color-accent: #4f46e5;
-	--sl-color-accent-high: #312e81;
+	--sl-font: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--sl-line-height: 1.65;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #f2f2f2;
+	--sl-color-gray-2: #ececec;
+	--sl-color-gray-3: #bfbfbf;
+	--sl-color-gray-4: #8a8a8a;
+	--sl-color-gray-5: #434343;
+	--sl-color-gray-6: #2d2d2d;
+	--sl-color-black: #222222;
+	--sl-color-bg: #222222;
+	--sl-color-bg-nav: #222222;
+	--sl-color-bg-sidebar: #222222;
+	--sl-color-hairline: #434343;
+	--sl-color-hairline-light: #434343;
+	--sl-color-accent-low: #0b3b30;
+	--sl-color-accent: #00bc8c;
+	--sl-color-accent-high: #1ac398;
+	--macro-link: #00bc8c;
+	--macro-widget-bg: #0f172a;
+	--macro-widget-border: #334155;
+	--macro-sidebar-text: #adadad;
 }
 
-/* Shared frame for charts, quizzes and widgets (they opt out of prose styles with .not-content). */
+/* Light (Flatly) */
+:root[data-theme='light'] {
+	--sl-color-white: #212529;
+	--sl-color-gray-1: #2b3035;
+	--sl-color-gray-2: #212529;
+	--sl-color-gray-3: #5a6570;
+	--sl-color-gray-4: #7b8a8b;
+	--sl-color-gray-5: #dee2e6;
+	--sl-color-gray-6: #eef0f2;
+	--sl-color-gray-7: #f5f6f7;
+	--sl-color-black: #ffffff;
+	--sl-color-bg: #ffffff;
+	--sl-color-bg-nav: #ffffff;
+	--sl-color-bg-sidebar: #ffffff;
+	--sl-color-hairline: #dee2e6;
+	--sl-color-hairline-light: #dee2e6;
+	--sl-color-accent-low: #d1f2eb;
+	--sl-color-accent: #18bc9c;
+	--sl-color-accent-high: #0d6453;
+	--macro-link: #0e7c66; /* source teal #18bc9c fails contrast on white for body text */
+	--macro-widget-bg: #f8fafc;
+	--macro-widget-border: #d0d7de;
+	--macro-sidebar-text: #212529;
+}
+
+/* Typography */
+.sl-markdown-content { font-size: 1.0625rem; }
+.sl-markdown-content a:not(.not-content a) { color: var(--macro-link); }
+h1#_top { font-weight: 700; }
+/* h2 sits in Starlight's anchor wrapper; rule the wrapper so it spans the full column, like rlvrbook. */
+.sl-markdown-content h2 { font-weight: 700; }
+.sl-markdown-content .sl-heading-wrapper.level-h2 {
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid var(--sl-color-hairline-light);
+}
+.site-title { color: var(--sl-color-white); font-weight: 700; }
+.sl-markdown-content h3 { font-weight: 700; }
+.sl-markdown-content blockquote {
+	border-inline-start: 4px solid var(--sl-color-gray-5);
+	color: var(--sl-color-gray-3);
+	background: transparent;
+}
+
+/* Sidebar: plain links, current page in accent (no highlight pill) */
+.sidebar-content .group-label .large { font-weight: 500; color: var(--sl-color-white); }
+.sidebar-content a { color: var(--macro-sidebar-text); font-weight: 500; }
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+	background: transparent;
+	color: var(--sl-color-accent-high);
+	font-weight: 500;
+}
+
+/* Table of contents: thin left rule, active item gets an accent rule */
+starlight-toc nav > ul { border-inline-start: 1px solid var(--sl-color-hairline-light); }
+starlight-toc a { padding-inline-start: 0.75rem; margin-inline-start: -1px; border-inline-start: 1px solid transparent; }
+starlight-toc a[aria-current='true'] { color: var(--sl-color-accent); border-inline-start-color: var(--sl-color-accent); }
+
+/* Shared frame for charts, quizzes and widgets (rlvr "stack widget" panel) */
 .macro-widget {
-	border: 1px solid var(--sl-color-gray-5);
-	border-radius: 10px;
-	padding: 1rem 1.25rem;
-	margin-block: 1.5rem;
-	background: var(--sl-color-bg);
+	border: 1px solid var(--macro-widget-border);
+	border-radius: 12px;
+	padding: 1rem;
+	margin-block: 1rem 1.4rem;
+	background: var(--macro-widget-bg);
 }
 .macro-widget h2, .macro-widget h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
-.macro-widget .sub { color: var(--sl-color-gray-3); font-size: 0.85rem; margin: 0 0 0.75rem; }
+.macro-widget .sub { color: var(--sl-color-gray-3); font-size: 0.88rem; margin: 0 0 0.75rem; }
 .macro-widget .asof { color: var(--sl-color-gray-3); font-size: 0.75rem; margin-top: 0.5rem; display: block; }
-.macro-widget button[aria-pressed='true'] { background: var(--sl-color-accent); color: var(--sl-color-white); }
-.macro-widget button { border: 1px solid var(--sl-color-gray-5); border-radius: 6px; padding: 0.25rem 0.6rem; background: transparent; color: inherit; cursor: pointer; }
+.macro-widget button[aria-pressed='true'] { background: var(--sl-color-accent); border-color: var(--sl-color-accent); color: #fff; }
+.macro-widget button { border: 1px solid var(--macro-widget-border); border-radius: 999px; padding: 0.2rem 0.75rem; background: transparent; color: inherit; cursor: pointer; font-size: 0.9em; }
 .macro-widget input[type='range'] { accent-color: var(--sl-color-accent); width: 100%; }
-.macro-widget .correct { color: var(--sl-color-green-high); font-weight: 600; }
-.macro-widget .wrong { color: var(--sl-color-red-high); }
+.macro-widget .correct { color: #18bc9c; font-weight: 600; }
+.macro-widget .wrong { color: #e74c3c; }
 .macro-widget fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
-.macro-widget legend { font-weight: 600; margin-bottom: 0.35rem; }
+.macro-widget legend { font-weight: 700; margin-bottom: 0.35rem; }
 .macro-widget label { display: block; padding: 0.15rem 0; }
 
 /* Photos in chapters */
 .sl-markdown-content figure img { border-radius: 8px; height: auto; }
 .sl-markdown-content figcaption { color: var(--sl-color-gray-3); font-size: 0.85rem; margin-top: 0.4rem; }
 
-/* Background: "Midnight navy" (dark) / cool off-white (light). */
-:root {
-	--sl-color-black: #0b1120;
-	--sl-color-bg: #0b1120;
-	--sl-color-bg-nav: #111a2e;
-	--sl-color-bg-sidebar: #0e1627;
-	--sl-color-gray-6: #111a2e;
-	--sl-color-gray-5: #26344f;
-	--sl-color-hairline: #18233a;
-	--sl-color-hairline-light: #26344f;
-}
-:root[data-theme='light'] {
-	--sl-color-black: #f8fafc;
-	--sl-color-bg: #f8fafc;
-	--sl-color-bg-nav: #eef2f8;
-	--sl-color-bg-sidebar: #f1f5f9;
-	--sl-color-gray-6: #e2e8f0;
-	--sl-color-gray-7: #eef2f8;
-	--sl-color-gray-5: #cbd5e1;
-	--sl-color-hairline: #e2e8f0;
-	--sl-color-hairline-light: #cbd5e1;
-}
+/* Light mode: white text on #18bc9c is too faint, so primary buttons use the accessible link teal. */
+:root[data-theme='light'] .sl-link-button.primary { background: var(--macro-link); border-color: var(--macro-link); }
