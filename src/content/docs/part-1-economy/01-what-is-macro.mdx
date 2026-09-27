@@ -7,6 +7,11 @@ sidebar:
 ---
 import MacroTradesTimeline from '../../../components/widgets/MacroTradesTimeline.tsx';
 import Quiz from '../../../components/Quiz.tsx';
+import MarketsMap from '../../../components/widgets/MarketsMap.tsx';
+import gs10 from '../../../data/GS10.json';
+import dollar from '../../../data/TWEXBGSMTH.json';
+import oil from '../../../data/MCOILWTICO.json';
+import nasdaq from '../../../data/NASDAQCOM.json';
 import { Image } from 'astro:assets';
 import soros from '../../../assets/george-soros.jpg';
 
@@ -38,6 +43,8 @@ A [global macro](/Macro-Investing-Textbook/glossary/#global-macro) investor can 
 - **Currencies.** Bets that one currency will rise or fall against another, such as the pound against the German mark in 1992.
 - **Commodities.** Oil, gold, copper and wheat, which respond to growth, inflation, wars and weather.
 - **Stock indices.** Not individual companies, but whole markets: "US stocks", "Japanese stocks", "emerging-market stocks".
+
+<MarketsMap rates={gs10} dollar={dollar} oil={oil} stocks={nasdaq} />
 
 Two ideas show up again and again in how macro investors trade.
 

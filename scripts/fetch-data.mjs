@@ -10,7 +10,7 @@ await mkdir(outDir, { recursive: true });
 let failed = 0;
 for (const s of series) {
 	try {
-		const res = await fetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${s.id}`, {
+		const res = await fetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${s.id}${s.query ?? ''}`, {
 			signal: AbortSignal.timeout(30_000),
 		});
 		if (!res.ok) throw new Error(`HTTP ${res.status}`);
