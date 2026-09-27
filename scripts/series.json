@@ -13,5 +13,8 @@
 	{"id": "BAA10YM", "title": "Moody's Baa corporate yield minus 10-year Treasury", "units": "% points", "chapters": [1]},
 	{"id": "CSUSHPINSA", "title": "S&P CoreLogic Case-Shiller US home price index", "units": "Index Jan 2000 = 100", "chapters": [1]},
 	{"id": "FEDFUNDS", "title": "Effective federal funds rate", "units": "%", "chapters": [1]},
-	{"id": "EXJPUS", "title": "Japanese yen per US dollar", "units": "yen per $", "chapters": [1]}
+	{"id": "EXJPUS", "title": "Japanese yen per US dollar", "units": "yen per $", "chapters": [1]},
+	{"id": "CPILFESL", "title": "Core CPI (all items less food and energy)", "units": "Index 1982–84 = 100", "chapters": [2]},
+	{"id": "PCEPI", "title": "PCE price index", "units": "Index 2017 = 100", "chapters": [2]},
+	{"id": "PCEPILFE", "title": "Core PCE price index (excluding food and energy)", "units": "Index 2017 = 100", "chapters": [2]}
 ]
