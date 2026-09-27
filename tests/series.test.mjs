@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { yoy, since, recessionRanges } from '../src/lib/series.js';
+import { yoy, since, recessionRanges, around, withGaps } from '../src/lib/series.js';
 
 const monthly = Array.from({ length: 13 }, (_, i) => [`2020-${String((i % 12) + 1).padStart(2, '0')}-01`, 100 + i * (10 / 12)]);
 monthly[12][0] = '2021-01-01';
@@ -50,4 +50,19 @@ test('yoy matches the same month a year earlier even when a month is missing', (
 test('yoy for quarterly data looks back 4 quarters by date', () => {
 	const pts = [['2020-01-01', 100], ['2020-04-01', 90], ['2021-01-01', 102], ['2021-04-01', 99]];
 	assert.deepEqual(yoy(pts).map(([d, v]) => [d, Math.round(v)]), [['2021-01-01', 2], ['2021-04-01', 10]]);
+});
+
+test('around keeps points within N months either side of a date', () => {
+	const pts = ['2019-12-01', '2020-01-01', '2020-03-01', '2020-05-01', '2020-06-01'].map((d, i) => [d, i]);
+	assert.deepEqual(around(pts, '2020-03-01', 2, 2).map(([d]) => d), ['2020-01-01', '2020-03-01', '2020-05-01']);
+});
+
+test('around crosses year boundaries', () => {
+	const pts = [['2019-11-01', 1], ['2020-02-01', 2]];
+	assert.deepEqual(around(pts, '2020-01-01', 2, 1), pts);
+});
+
+test('withGaps inserts a null for each missing month so charts show a break', () => {
+	const pts = [['2025-09-01', 3], ['2025-11-01', 2.7]];
+	assert.deepEqual(withGaps(pts), [['2025-09-01', 3], ['2025-10-01', null], ['2025-11-01', 2.7]]);
 });

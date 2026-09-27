@@ -6,5 +6,12 @@
 	{"id": "GS10", "title": "10-year US Treasury yield", "units": "%", "chapters": [1]},
 	{"id": "TWEXBGSMTH", "title": "Broad US dollar index", "units": "Index Jan 2006 = 100", "chapters": [1]},
 	{"id": "MCOILWTICO", "title": "WTI crude oil price", "units": "$ per barrel", "chapters": [1]},
-	{"id": "NASDAQCOM", "title": "Nasdaq Composite index (monthly average)", "units": "Index", "chapters": [1], "query": "&fq=Monthly&fam=avg"}
+	{"id": "NASDAQCOM", "title": "Nasdaq Composite index (monthly average)", "units": "Index", "chapters": [1], "query": "&fq=Monthly&fam=avg"},
+	{"id": "EXGEUS", "title": "German marks per US dollar", "units": "DM per $", "chapters": [1]},
+	{"id": "EXUSUK", "title": "US dollars per British pound", "units": "$ per £", "chapters": [1]},
+	{"id": "EXTHUS", "title": "Thai baht per US dollar", "units": "baht per $", "chapters": [1]},
+	{"id": "BAA10YM", "title": "Moody's Baa corporate yield minus 10-year Treasury", "units": "% points", "chapters": [1]},
+	{"id": "CSUSHPINSA", "title": "S&P CoreLogic Case-Shiller US home price index", "units": "Index Jan 2000 = 100", "chapters": [1]},
+	{"id": "FEDFUNDS", "title": "Effective federal funds rate", "units": "%", "chapters": [1]},
+	{"id": "EXJPUS", "title": "Japanese yen per US dollar", "units": "yen per $", "chapters": [1]}
 ]

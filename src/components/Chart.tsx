@@ -4,13 +4,14 @@ import * as Plot from '@observablehq/plot';
 export type X = string | number;
 export type Line = { label: string; points: [X, number][] };
 export type Range = { from: X; to: X; label?: string };
-type Props = { title: string; units: string; lines: Line[]; ranges?: Range[]; source: string; asOf: string; note?: string };
+type Props = { title: string; units: string; lines: Line[]; ranges?: Range[]; source: string; asOf: string; note?: string; framed?: boolean };
 
 const toX = (x: X) => (typeof x === 'string' ? new Date(x) : x);
 // Accent orange first, then rlvrbook's domain-map colors (amber dropped: too close to orange).
 const PALETTE = ['#fd7e14', '#2563eb', '#059669', '#7c3aed'];
 
-export default function Chart({ title, units, lines, ranges = [], source, asOf, note }: Props) {
+// framed={false} drops the panel border, for charts nested inside another widget.
+export default function Chart({ title, units, lines, ranges = [], source, asOf, note, framed = true }: Props) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -48,7 +49,7 @@ export default function Chart({ title, units, lines, ranges = [], source, asOf, 
 	}, [lines, ranges, units]);
 
 	return (
-		<figure className="not-content macro-widget">
+		<figure className={framed ? 'not-content macro-widget' : 'not-content'} style={framed ? undefined : { margin: '1rem 0 0' }}>
 			<h3>{title}</h3>
 			{note && <p className="sub">{note}</p>}
 			<div ref={ref} style={{ minHeight: 320 }} />

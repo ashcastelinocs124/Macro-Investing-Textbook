@@ -28,3 +28,25 @@ export function recessionRanges(points) {
 	if (start !== null) ranges.push({ from: start, to: points.at(-1)[0] });
 	return ranges;
 }
+
+const monthIndex = (date) => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7));
+
+/** Points within `before` months ahead of and `after` months after `date`. */
+export function around(points, date, before, after) {
+	const m = monthIndex(date);
+	return points.filter(([d]) => monthIndex(d) >= m - before && monthIndex(d) <= m + after);
+}
+
+/** Monthly points with [date, null] filled in for missing months (charts draw nulls as a break). */
+export function withGaps(points) {
+	const out = [];
+	for (const [date, value] of points) {
+		const prev = out.at(-1);
+		for (let m = prev ? monthIndex(prev[0]) + 1 : monthIndex(date); m < monthIndex(date); m++) {
+			const y = Math.floor((m - 1) / 12);
+			out.push([`${y}-${String(m - y * 12).padStart(2, '0')}-01`, null]);
+		}
+		out.push([date, value]);
+	}
+	return out;
+}

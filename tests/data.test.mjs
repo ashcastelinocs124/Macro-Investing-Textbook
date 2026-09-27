@@ -28,3 +28,9 @@ for (const f of files) {
 		assert.equal(d.as_of, d.points.at(-1)[0]);
 	});
 }
+
+test('every timeline chart uses a registered series', async () => {
+	const { EVENTS } = await import('../src/lib/timeline-events.js');
+	const ids = new Set(registry.map((s) => s.id));
+	for (const e of EVENTS) for (const id of e.chart?.series ?? []) assert.ok(ids.has(id), `${e.year} uses unregistered series ${id}`);
+});

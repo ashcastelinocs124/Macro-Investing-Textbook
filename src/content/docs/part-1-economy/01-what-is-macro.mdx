@@ -13,6 +13,7 @@ import dollar from '../../../data/TWEXBGSMTH.json';
 import oil from '../../../data/MCOILWTICO.json';
 import nasdaq from '../../../data/NASDAQCOM.json';
 import Chart from '../../../components/Chart.tsx';
+import { timelineCharts } from '../../../lib/timeline-charts.js';
 import { Image } from 'astro:assets';
 import soros from '../../../assets/george-soros.jpg';
 
@@ -68,7 +69,7 @@ Notice that none of these questions is about a single company. They're about pol
 
 Global macro didn't appear out of nowhere. It grew up alongside a series of shocks that tore up the old rules of the financial system. Click through the years below. For each one, notice the *macro lesson*, which comes back again and again later in the book.
 
-<MacroTradesTimeline client:visible />
+<MacroTradesTimeline client:visible charts={timelineCharts} />
 
 A few patterns jump out:
 
