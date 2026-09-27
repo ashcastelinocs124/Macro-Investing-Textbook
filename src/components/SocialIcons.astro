@@ -1,0 +1,111 @@
+---
+// Override of Starlight's SocialIcons: keeps the GitHub icon and adds a "Report issue" dialog.
+// Rendered twice (desktop header + mobile menu footer), so no element ids.
+import Default from '@astrojs/starlight/components/SocialIcons.astro';
+import { chapterOptions } from '../lib/issue-url.js';
+
+const chapters = chapterOptions(Astro.locals.starlightRoute.sidebar);
+---
+
+<Default />
+<report-issue class="sl-flex">
+	<button type="button" class="report-issue-btn">⚑ Report issue</button>
+	<dialog>
+		<form method="dialog">
+			<h2>Report an issue</h2>
+			<p class="sub">Found a typo, a broken chart or something confusing? Tell us where.</p>
+			<label>
+				Chapter
+				<select name="chapter">
+					{chapters.map((c) => (
+						<option value={new URL(c.href, Astro.site).href} selected={c.current}>{c.label}</option>
+					))}
+				</select>
+			</label>
+			<label>
+				What's the problem?
+				<textarea name="problem" required autofocus placeholder="e.g. The core PCE line stops in September 2025. Is October missing?"></textarea>
+			</label>
+			<div class="row">
+				<button type="button" value="cancel" class="cancel">Cancel</button>
+				<button type="submit" class="primary" disabled>Continue on GitHub ↗</button>
+			</div>
+			<p class="note">Opens GitHub with your report filled in. You'll need a free GitHub account to submit it.</p>
+		</form>
+	</dialog>
+</report-issue>
+
+<script>
+	import { issueUrl } from '../lib/issue-url.js';
+
+	class ReportIssue extends HTMLElement {
+		connectedCallback() {
+			const dialog = this.querySelector('dialog')!;
+			const form = this.querySelector('form')!;
+			const submit = form.querySelector<HTMLButtonElement>('.primary')!;
+			const problem = form.elements.namedItem('problem') as HTMLTextAreaElement;
+			const chapter = form.elements.namedItem('chapter') as HTMLSelectElement;
+
+			this.querySelector('.report-issue-btn')!.addEventListener('click', () => dialog.showModal());
+			form.querySelector('.cancel')!.addEventListener('click', () => dialog.close());
+			problem.addEventListener('input', () => (submit.disabled = !problem.value.trim()));
+			form.addEventListener('submit', () => {
+				const opt = chapter.selectedOptions[0];
+				window.open(issueUrl({ chapter: opt.text, page: opt.value, problem: problem.value }), '_blank', 'noopener');
+				form.reset();
+				submit.disabled = true;
+			});
+		}
+	}
+	customElements.define('report-issue', ReportIssue);
+</script>
+
+<style>
+	.report-issue-btn {
+		background: transparent;
+		border: 1px solid var(--sl-color-accent);
+		color: var(--sl-color-accent-high);
+		border-radius: 0.375rem;
+		padding: 0.3rem 0.65rem;
+		font: 700 0.8125rem var(--sl-font);
+		cursor: pointer;
+		white-space: nowrap;
+	}
+	.report-issue-btn:hover { background: var(--sl-color-accent-low); }
+	dialog {
+		margin: auto; /* Starlight's reset zeroes it, which un-centers the modal */
+		width: min(28rem, calc(100vw - 2rem));
+		background: var(--sl-color-bg);
+		color: var(--sl-color-gray-2);
+		border: 1px solid var(--sl-color-hairline);
+		border-radius: 0.5rem;
+		padding: 1.4rem;
+	}
+	dialog::backdrop { background: rgb(0 0 0 / 0.55); }
+	h2 { margin: 0 0 0.25rem; font-size: 1.15rem; color: var(--sl-color-white); }
+	.sub, .note { margin: 0 0 1rem; font-size: 0.8125rem; color: var(--sl-color-gray-3); }
+	.note { margin: 0.75rem 0 0; }
+	label { display: grid; gap: 0.375rem; margin-top: 0.75rem; font-size: 0.8125rem; font-weight: 700; color: var(--sl-color-white); }
+	select, textarea {
+		width: 100%;
+		background: var(--sl-color-black);
+		color: var(--sl-color-white);
+		border: 1px solid var(--sl-color-hairline);
+		border-radius: 0.375rem;
+		padding: 0.5rem;
+		font: 400 0.875rem var(--sl-font);
+	}
+	textarea { min-height: 7rem; resize: vertical; }
+	.row { display: flex; justify-content: flex-end; gap: 0.625rem; margin-top: 1rem; }
+	.row button {
+		border-radius: 0.375rem;
+		padding: 0.45rem 0.9rem;
+		font: 700 0.875rem var(--sl-font);
+		cursor: pointer;
+		border: 1px solid var(--sl-color-hairline);
+		background: transparent;
+		color: var(--sl-color-gray-2);
+	}
+	.row .primary { background: var(--sl-color-accent); border-color: var(--sl-color-accent); color: #1a1a1a; }
+	.row .primary:disabled { opacity: 0.45; cursor: not-allowed; }
+</style>
