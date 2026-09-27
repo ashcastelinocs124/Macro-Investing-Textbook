@@ -33,7 +33,7 @@ export default function GrowthCalculator() {
 					After {years} years: {lines.map((l, i) => `${money(l.points.at(-1)![1])} at ${PROFILES[i].rate}%`).join(' · ')}
 				</p>
 			</div>
-			<Chart title="What your money grows to" units="$" lines={lines} source="Illustrative model" asOf="n/a (simulation)" note="x-axis: years" />
+			<Chart xLabel="Year" title="What your money grows to" units="$" lines={lines} source="Illustrative model" asOf="n/a (simulation)" note="x-axis: years" />
 		</div>
 	);
 }

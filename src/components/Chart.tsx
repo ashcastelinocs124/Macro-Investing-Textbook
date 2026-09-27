@@ -1,17 +1,18 @@
 import { useEffect, useRef } from 'react';
 import * as Plot from '@observablehq/plot';
+import { fmtWhen, fmtValue } from '../lib/format.js';
 
 export type X = string | number;
 export type Line = { label: string; points: [X, number][] };
 export type Range = { from: X; to: X; label?: string };
-type Props = { title: string; units: string; lines: Line[]; ranges?: Range[]; source: string; asOf: string; note?: string; framed?: boolean };
+type Props = { title: string; units: string; lines: Line[]; ranges?: Range[]; source: string; asOf: string; note?: string; framed?: boolean; xLabel?: string };
 
 const toX = (x: X) => (typeof x === 'string' ? new Date(x) : x);
 // Accent orange first, then rlvrbook's domain-map colors (amber dropped: too close to orange).
 const PALETTE = ['#fd7e14', '#2563eb', '#059669', '#7c3aed'];
 
 // framed={false} drops the panel border, for charts nested inside another widget.
-export default function Chart({ title, units, lines, ranges = [], source, asOf, note, framed = true }: Props) {
+export default function Chart({ title, units, lines, ranges = [], source, asOf, note, framed = true, xLabel }: Props) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -27,7 +28,7 @@ export default function Chart({ title, units, lines, ranges = [], source, asOf, 
 				width: el.clientWidth || 640,
 				height: 320,
 				marginLeft: 48,
-				style: { background: 'transparent', color: 'currentColor' },
+				style: { background: 'transparent', color: 'currentColor', fontSize: '12px' },
 				x: { label: null },
 				y: { label: units, grid: true },
 				color: { domain: lines.map((l) => l.label), range: PALETTE, legend: lines.length > 1 },
@@ -37,7 +38,16 @@ export default function Chart({ title, units, lines, ranges = [], source, asOf, 
 					...[0, 1].map((row) =>
 						Plot.text(ranges.filter((r) => r.label).filter((_, i) => i % 2 === row), { x: (r: Range) => toX(r.from), text: 'label', frameAnchor: 'top', textAnchor: 'start', dx: 4, dy: 6 + row * 14 }),
 					),
-					Plot.lineY(data, { x: 'x', y: 'y', stroke: 'series', strokeWidth: 2, tip: true }),
+					Plot.lineY(data, {
+						x: 'x',
+						y: 'y',
+						stroke: 'series',
+						strokeWidth: 2,
+						// One plain-English line per tooltip, e.g. "Sep 2025: 3.02%" (series name first when there are several).
+						title: (d: { series: string; x: Date | number; y: number }) =>
+							`${lines.length > 1 ? `${d.series}\n` : ''}${fmtWhen(d.x, xLabel)}: ${fmtValue(d.y, units)}`,
+						tip: { fontSize: 13 },
+					}),
 				],
 			});
 			el.replaceChildren(plot);
@@ -46,7 +56,7 @@ export default function Chart({ title, units, lines, ranges = [], source, asOf, 
 		const ro = new ResizeObserver(draw);
 		ro.observe(el);
 		return () => ro.disconnect();
-	}, [lines, ranges, units]);
+	}, [lines, ranges, units, xLabel]);
 
 	return (
 		<figure className={framed ? 'not-content macro-widget' : 'not-content'} style={framed ? undefined : { margin: '1rem 0 0' }}>

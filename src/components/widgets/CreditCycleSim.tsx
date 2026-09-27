@@ -35,6 +35,7 @@ export default function CreditCycleSim() {
 				</p>
 			</div>
 			<Chart
+				xLabel="Quarter"
 				title="Debt repayments as a share of income"
 				units="% of income"
 				lines={[{ label: 'Debt service ratio', points: rows.map((r) => [r.q, r.dsr * 100]) }]}

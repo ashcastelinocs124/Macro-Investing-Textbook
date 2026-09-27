@@ -85,7 +85,7 @@ starlight-toc nav > ul { border-inline-start: 1px solid var(--sl-color-hairline-
 starlight-toc a { padding-inline-start: 0.75rem; margin-inline-start: -1px; border-inline-start: 1px solid transparent; }
 starlight-toc a[aria-current='true'] { color: var(--sl-color-accent); border-inline-start-color: var(--sl-color-accent); }
 
-/* Shared frame for charts, quizzes and widgets (rlvr "stack widget" panel) */
+/* Shared frame for charts and widgets (rlvr "stack widget" panel) */
 .macro-widget {
 	border: 1px solid var(--macro-widget-border);
 	border-radius: 12px;
@@ -99,12 +99,10 @@ starlight-toc a[aria-current='true'] { color: var(--sl-color-accent); border-inl
 .macro-widget button[aria-pressed='true'] { background: var(--sl-color-accent); border-color: var(--sl-color-accent); color: #fff; }
 .macro-widget button { border: 1px solid var(--macro-widget-border); border-radius: 999px; padding: 0.2rem 0.75rem; background: transparent; color: inherit; cursor: pointer; font-size: 0.9em; }
 .macro-widget input[type='range'] { accent-color: var(--sl-color-accent); width: 100%; }
-.macro-widget .correct { color: #18bc9c; font-weight: 600; }
-.macro-widget .wrong { color: #e74c3c; }
-.macro-widget fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
-.macro-widget legend { font-weight: 700; margin-bottom: 0.35rem; }
 .macro-widget label { display: block; padding: 0.15rem 0; }
 .macro-widget a { color: var(--macro-link); }
+/* Plot fills chart tooltips with --plot-background (white by default); match the page so tooltip text is readable in dark mode. */
+.not-content svg[class^='plot'] { --plot-background: var(--sl-color-bg); }
 
 /* Photos in chapters */
 .sl-markdown-content figure img { border-radius: 8px; height: auto; }
