@@ -11,6 +11,8 @@ import gdp from '../../../data/GDPC1.json';
 import cpi from '../../../data/CPIAUCSL.json';
 import unrate from '../../../data/UNRATE.json';
 import usrec from '../../../data/USREC.json';
+import TopEconomies from '../../../components/widgets/TopEconomies.tsx';
+import topEconomies from '../../../data/worldbank/top-economies.json';
 
 ## Why this matters
 
@@ -32,6 +34,12 @@ There's a catch. If prices rise 5% and the economy produces exactly the same stu
 - **Real GDP** strips out price changes, so it only rises when the economy actually produces *more*.
 
 When people say "the economy grew 2%", they almost always mean real GDP.
+
+### Who has the biggest economy, and what powers it?
+
+GDP also lets us compare countries. The United States and China are far ahead of everyone else, but their economies run on very different engines. In the US, household spending is about two-thirds of GDP: the economy is **consumer-led**. In China, households spend a much smaller share, and factories, construction and exports do more of the work: it's **production-led**. That difference matters to macro investors. A consumer-led economy is most sensitive to jobs, wages and interest rates on loans; a production-led one is more sensitive to global demand, commodity prices and its currency.
+
+<TopEconomies data={topEconomies} />
 
 When real GDP shrinks for a sustained period and the damage spreads across jobs, incomes and spending, that's a **[recession](/Macro-Investing-Textbook/glossary/#recession)**. In the US, recessions are officially dated by a committee at the National Bureau of Economic Research ([NBER](https://www.nber.org/research/business-cycle-dating)). It often announces them months after they've started, because it waits for the data to be clear.
 

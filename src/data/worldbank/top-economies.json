@@ -1,0 +1,86 @@
+{
+	"source": "World Bank",
+	"as_of": "2025",
+	"rows": [
+		{
+			"iso3": "USA",
+			"country": "United States",
+			"year": 2025,
+			"gdp_usd": 30769700000000,
+			"consumption_pct": 67.9090728780822,
+			"industry_pct": 17.5751653495616
+		},
+		{
+			"iso3": "CHN",
+			"country": "China",
+			"year": 2025,
+			"gdp_usd": 19498039388042.6,
+			"consumption_pct": 39.9704554568611,
+			"industry_pct": 35.6416587106792
+		},
+		{
+			"iso3": "DEU",
+			"country": "Germany",
+			"year": 2025,
+			"gdp_usd": 5050922925047.05,
+			"consumption_pct": 53.1969323767145,
+			"industry_pct": 25.1588063294339
+		},
+		{
+			"iso3": "JPN",
+			"country": "Japan",
+			"year": 2025,
+			"gdp_usd": 4435162999976.94,
+			"consumption_pct": 53.069552493906,
+			"industry_pct": 26.7781043350478
+		},
+		{
+			"iso3": "GBR",
+			"country": "United Kingdom",
+			"year": 2025,
+			"gdp_usd": 4002587541846.01,
+			"consumption_pct": 60.4381581921015,
+			"industry_pct": 16.4889776210162
+		},
+		{
+			"iso3": "IND",
+			"country": "India",
+			"year": 2025,
+			"gdp_usd": 3956067115771.63,
+			"consumption_pct": 56.670997869197,
+			"industry_pct": 25.2049600095376
+		},
+		{
+			"iso3": "FRA",
+			"country": "France",
+			"year": 2025,
+			"gdp_usd": 3366315927447.33,
+			"consumption_pct": 54.1059871032217,
+			"industry_pct": 16.7769964006735
+		},
+		{
+			"iso3": "RUS",
+			"country": "Russian Federation",
+			"year": 2025,
+			"gdp_usd": 2561310169358.74,
+			"consumption_pct": 51.2649002711642,
+			"industry_pct": 29.673447748303
+		},
+		{
+			"iso3": "ITA",
+			"country": "Italy",
+			"year": 2025,
+			"gdp_usd": 2551556954100.35,
+			"consumption_pct": 57.5688159427208,
+			"industry_pct": 22.6402202928573
+		},
+		{
+			"iso3": "CAN",
+			"country": "Canada",
+			"year": 2025,
+			"gdp_usd": 2319899772425.92,
+			"consumption_pct": 55.7825966982841,
+			"industry_pct": 27.3506338523117
+		}
+	]
+}

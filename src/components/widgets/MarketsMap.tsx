@@ -26,7 +26,7 @@ export default function MarketsMap({ rates, dollar, oil, stocks }: Props) {
 	return (
 		<section className="not-content macro-widget">
 			<h3>The four markets macro investors trade</h3>
-			<p className="sub">Real data since 2006. The shaded band is 2022, when one force (rising interest rates) hit all four at once.</p>
+			<p className="sub">Real data since 2006. The shaded band is 2022: interest rates and the dollar jumped, oil spiked after Russia invaded Ukraine, and stocks fell.</p>
 			<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.9rem' }}>
 				{markets.map((m) => {
 					const pts = since(m.snap.points, FROM);
