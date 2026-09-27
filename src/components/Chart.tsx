@@ -32,7 +32,10 @@ export default function Chart({ title, units, lines, ranges = [], source, asOf, 
 				color: { domain: lines.map((l) => l.label), range: PALETTE, legend: lines.length > 1 },
 				marks: [
 					Plot.rectX(ranges, { x1: (r: Range) => toX(r.from), x2: (r: Range) => toX(r.to), fill: 'currentColor', fillOpacity: 0.1 }),
-					Plot.text(ranges.filter((r) => r.label), { x: (r: Range) => toX(r.from), text: 'label', frameAnchor: 'top', textAnchor: 'start', dx: 4, dy: 6 }),
+					// Alternate labels between two rows so neighbouring bands don't overlap.
+					...[0, 1].map((row) =>
+						Plot.text(ranges.filter((r) => r.label).filter((_, i) => i % 2 === row), { x: (r: Range) => toX(r.from), text: 'label', frameAnchor: 'top', textAnchor: 'start', dx: 4, dy: 6 + row * 14 }),
+					),
 					Plot.lineY(data, { x: 'x', y: 'y', stroke: 'series', strokeWidth: 2, tip: true }),
 				],
 			});

@@ -104,6 +104,7 @@ starlight-toc a[aria-current='true'] { color: var(--sl-color-accent); border-inl
 .macro-widget fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
 .macro-widget legend { font-weight: 700; margin-bottom: 0.35rem; }
 .macro-widget label { display: block; padding: 0.15rem 0; }
+.macro-widget a { color: var(--macro-link); }
 
 /* Photos in chapters */
 .sl-markdown-content figure img { border-radius: 8px; height: auto; }

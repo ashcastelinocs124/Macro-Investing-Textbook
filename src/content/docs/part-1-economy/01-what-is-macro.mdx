@@ -12,6 +12,7 @@ import gs10 from '../../../data/GS10.json';
 import dollar from '../../../data/TWEXBGSMTH.json';
 import oil from '../../../data/MCOILWTICO.json';
 import nasdaq from '../../../data/NASDAQCOM.json';
+import Chart from '../../../components/Chart.tsx';
 import { Image } from 'astro:assets';
 import soros from '../../../assets/george-soros.jpg';
 
@@ -74,6 +75,27 @@ A few patterns jump out:
 - **Pegs break.** In 1992 and 1997, governments promised to hold a currency at a fixed level, and markets eventually forced them to stop.
 - **Leverage kills.** LTCM in 1998 was run by some of the smartest people in finance, and it still collapsed because it borrowed too much ([source](https://en.wikipedia.org/wiki/Long-Term_Capital_Management)).
 - **Central banks move everything.** In 2020 and 2022, a handful of decisions by the US Federal Reserve moved every major market on earth.
+
+## Since 2022: a new macro era
+
+The years after 2022 have been a crash course in why macro matters. Four forces have driven markets:
+
+- **The rate shock.** The fastest interest-rate rises in decades broke things, most visibly Silicon Valley Bank in March 2023 ([source](https://en.wikipedia.org/wiki/Collapse_of_Silicon_Valley_Bank)). A year later, a small Bank of Japan rate rise was enough to trigger a violent unwind of the yen carry trade ([BIS](https://www.bis.org/publ/bisbull90.pdf)).
+- **The AI investment boom.** Spending on AI chips and data centers became big enough to matter for the whole economy. Nvidia went from a $1 trillion company in 2023 to the first ever worth $5 trillion in 2025 ([source](https://en.wikipedia.org/wiki/Nvidia)), and the stock market came to ride on one theme.
+- **The return of tariffs.** In April 2025 the US announced its broadest tariffs in generations, shaking growth, inflation and currencies at the same time ([source](https://en.wikipedia.org/wiki/Liberation_Day_tariffs)).
+- **Wars and oil.** Wars reach the rest of the world mainly through energy prices, and the chart below shows when that happened.
+
+<Chart client:visible title="Oil and war since 2020" units="$ per barrel" source="FRED (EIA)" asOf={oil.as_of}
+  note="WTI crude oil, monthly average. Shaded: the month each war began."
+  lines={[{ label: 'WTI crude oil', points: oil.points.filter(([d]) => d >= '2020-01-01') }]}
+  ranges={[
+    { from: '2022-02-01', to: '2022-03-01', label: 'Ukraine' },
+    { from: '2023-10-01', to: '2023-11-01', label: 'Gaza' },
+    { from: '2025-06-01', to: '2025-07-01', label: '12-Day War' },
+    { from: '2026-02-01', to: '2026-03-01', label: 'Iran war' },
+  ]} />
+
+Look closely and a pattern appears. Russia's invasion of Ukraine in 2022 sent oil above $100, because Russia is one of the world's largest energy exporters ([source](https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine)). The Gaza war and the Twelve-Day War barely moved oil for long, because the oil kept flowing. Then in 2026, war with Iran nearly shut the Strait of Hormuz, which carries about a fifth of the world's oil, and prices jumped from about $60 to over $100 a barrel ([source](https://en.wikipedia.org/wiki/2026_Iran_war_fuel_crisis); [EIA](https://www.eia.gov/todayinenergy/detail.php?id=67424)). **Markets don't react to war itself so much as to what it does to supply.**
 
 ## Real-world example: Soros and the pound, step by step
 
