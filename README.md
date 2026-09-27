@@ -4,7 +4,7 @@ A free, interactive web textbook that teaches global macro investing from zero: 
 
 **Live site:** https://ashcastelinocs124.github.io/Macro-Investing-Textbook/
 
-Each chapter pairs plain-English explanations with an interactive piece, such as a real-data chart, a simulator or a timeline, and ends with a short quiz. Charts use real economic data from [FRED](https://fred.stlouisfed.org/), refreshed weekly.
+Each chapter pairs plain-English explanations with an interactive piece, such as a real-data chart, a simulator or a timeline. Charts use real economic data from [FRED](https://fred.stlouisfed.org/), refreshed weekly.
 
 ## What's inside
 
@@ -57,8 +57,8 @@ Every internal link must include the base path, for example `/Macro-Investing-Te
 
 ```
 src/content/docs/     chapters, part overviews, glossary (MDX)
-src/components/       Chart, Quiz, and per-chapter widgets (React)
-src/lib/              pure logic (series math, quiz scoring, credit-cycle model)
+src/components/       Chart and per-chapter widgets (React)
+src/lib/              pure logic (series math, chart formatting, credit-cycle model)
 src/data/             FRED data snapshots (JSON), refreshed weekly
 scripts/              fetch-data.mjs + series.json registry
 tests/                node:test suites

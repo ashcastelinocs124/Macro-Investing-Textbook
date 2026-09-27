@@ -6,7 +6,6 @@ sidebar:
   order: 3
 ---
 import CreditCycleSim from '../../../components/widgets/CreditCycleSim.tsx';
-import Quiz from '../../../components/Quiz.tsx';
 
 ## Why this matters
 
@@ -80,12 +79,3 @@ Macro investors who understood the credit cycle, like John Paulson (whom you met
 - **Credit** lets people spend future income today, which means spending less later.
 - The **debt service ratio** (repayments as a share of income) is the pressure gauge of a credit cycle.
 - Credit moves in a cycle: **easy lending → boom → squeeze → bust → deleveraging**. The looser the lending, the bigger the boom and the harder the bust.
-
-## Quiz
-
-<Quiz client:visible slug="03-money-banks-credit" questions={[
-  { q: 'When a bank makes a loan, what happens to the money supply?', choices: ['It rises: the loan creates a new deposit', 'It falls', 'Nothing: banks only lend out existing savings'], answer: 0, why: 'Commercial banks create new deposits when they lend, as the Bank of England explains.' },
-  { q: 'What does the debt service ratio measure?', choices: ['Total debt divided by GDP', 'The share of income spent on debt repayments', 'The number of loans a bank makes'], answer: 1, why: 'It is repayments (interest + principal) as a share of income, which is what squeezes borrowers.' },
-  { q: 'In the simulator, what makes a bust arrive sooner?', choices: ['Tighter lending standards', 'Looser lending standards', 'Nothing changes the timing'], answer: 1, why: 'Loose standards let debt grow faster than income, so repayments hit the limit sooner.' },
-  { q: 'What is deleveraging?', choices: ['Borrowing more to invest', 'Paying down or defaulting on debt so debt falls relative to income', 'A central bank printing money'], answer: 1, why: 'Deleveraging is the phase that follows the bust, when debt shrinks relative to income.' },
-]} />

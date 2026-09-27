@@ -6,7 +6,6 @@ sidebar:
   order: 1
 ---
 import MacroTradesTimeline from '../../../components/widgets/MacroTradesTimeline.tsx';
-import Quiz from '../../../components/Quiz.tsx';
 import MarketsMap from '../../../components/widgets/MarketsMap.tsx';
 import gs10 from '../../../data/GS10.json';
 import dollar from '../../../data/TWEXBGSMTH.json';
@@ -125,12 +124,3 @@ On 16 September 1992 the peg broke, the pound fell, and the trade became the mos
 - Macro investors mainly trade **interest rates, currencies, commodities and stock indices**, often with **leverage**.
 - The best macro trades are **asymmetric**: small losses if wrong, large gains if right.
 - Every trade starts with the same four questions: **thesis, catalyst, trade, risk**.
-
-## Quiz
-
-<Quiz client:visible slug="01-what-is-macro" questions={[
-  { q: 'What does a global macro investor mainly bet on?', choices: ['Whether one company beats earnings', 'Big economic forces like rates, inflation and currencies', 'Which new product will go viral'], answer: 1, why: 'Macro trades the big picture: economies, policy and the assets priced off them.' },
-  { q: 'On Black Wednesday (1992), what was the UK trying to defend?', choices: ['The price of North Sea oil', 'The pound’s peg inside the European Exchange Rate Mechanism', 'The FTSE 100 stock index'], answer: 1, why: 'The UK was defending the pound’s ERM band, and failed.' },
-  { q: 'What is leverage?', choices: ['Using borrowed money to make a bigger bet than your own capital allows', 'A type of government bond', 'A way to avoid all risk'], answer: 0, why: 'Leverage magnifies both gains and losses, as LTCM learned in 1998.' },
-  { q: 'Which is an “asymmetric bet”?', choices: ['Risk $1 to maybe make $1', 'Risk $1 to maybe make $5', 'Risk $5 to maybe make $1'], answer: 1, why: 'Asymmetric means the potential upside is much bigger than the downside.' },
-]} />

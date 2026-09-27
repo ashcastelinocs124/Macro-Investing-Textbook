@@ -6,7 +6,6 @@ sidebar:
   order: 2
 ---
 import EconomyExplorer from '../../../components/widgets/EconomyExplorer.tsx';
-import Quiz from '../../../components/Quiz.tsx';
 import gdp from '../../../data/GDPC1.json';
 import cpi from '../../../data/CPIAUCSL.json';
 import unrate from '../../../data/UNRATE.json';
@@ -101,12 +100,3 @@ The lesson for investors: each number told a different part of the story at a di
 - **Inflation** (usually measured by **CPI**) is how fast prices are rising. Central banks target about 2%, and fight it with higher interest rates when it runs hot.
 - **Unemployment** rises fast in recessions and falls slowly in recoveries.
 - The economy moves through a **business cycle** of expansion, peak, contraction and trough, and each phase favours different investments.
-
-## Quiz
-
-<Quiz client:visible slug="02-growth-inflation-cycle" questions={[
-  { q: 'Why do economists use real rather than nominal GDP to measure growth?', choices: ['Real GDP removes the effect of rising prices', 'Real GDP includes the stock market', 'Nominal GDP is only published once a decade'], answer: 0, why: 'Real GDP strips out inflation, so growth reflects more stuff produced, not higher prices.' },
-  { q: 'CPI inflation of 3% means…', choices: ['Prices are 3% higher than a year ago', 'The economy grew 3%', '3% of people are unemployed'], answer: 0, why: 'CPI inflation is the year-over-year change in a basket of consumer prices.' },
-  { q: 'During a recession, the unemployment rate usually…', choices: ['Falls', 'Rises', 'Stays exactly the same'], answer: 1, why: 'Firms cut jobs when demand falls, so unemployment rises.' },
-  { q: 'Who officially dates US recessions?', choices: ['The Federal Reserve', 'The National Bureau of Economic Research (NBER)', 'The stock exchange'], answer: 1, why: 'The NBER’s Business Cycle Dating Committee sets official peak and trough dates.' },
-]} />
