@@ -7,8 +7,8 @@ const SHORT: Record<string, string> = { 'Russian Federation': 'Russia', 'Korea, 
 // Uses the same rounded numbers the chart shows, so a displayed "30%" always matches its label.
 const kind = (r: Row) => {
 	const [c, i] = [Math.round(r.consumption_pct), Math.round(r.industry_pct)];
-	return c >= 60 ? { label: 'Consumer-led', color: '#18bc9c' }
-		: i >= 30 || c < 45 ? { label: 'Production-led', color: '#d97706' }
+	return c >= 60 ? { label: 'Consumer-led', color: '#fd7e14' }
+		: i >= 30 || c < 45 ? { label: 'Production-led', color: '#2563eb' }
 		: { label: 'Mixed', color: '#94a3b8' };
 };
 
@@ -36,9 +36,9 @@ export default function TopEconomies({ data }: Props) {
 						const k = kind(r);
 						return [
 							<span key={`${r.iso3}c`} style={{ fontWeight: 600 }}>{SHORT[r.country] ?? r.country}</span>,
-							<Bar key={`${r.iso3}g`} pct={(r.gdp_usd / max) * 100} color="var(--sl-color-accent-high)" text={`$${(r.gdp_usd / 1e12).toFixed(1)}T`} />,
-							<Bar key={`${r.iso3}h`} pct={r.consumption_pct} color="#18bc9c" text={`${Math.round(r.consumption_pct)}%`} />,
-							<Bar key={`${r.iso3}i`} pct={r.industry_pct} color="#d97706" text={`${Math.round(r.industry_pct)}%`} />,
+							<Bar key={`${r.iso3}g`} pct={(r.gdp_usd / max) * 100} color="var(--sl-color-accent)" text={`$${(r.gdp_usd / 1e12).toFixed(1)}T`} />,
+							<Bar key={`${r.iso3}h`} pct={r.consumption_pct} color="#fd7e14" text={`${Math.round(r.consumption_pct)}%`} />,
+							<Bar key={`${r.iso3}i`} pct={r.industry_pct} color="#2563eb" text={`${Math.round(r.industry_pct)}%`} />,
 							<span key={`${r.iso3}k`} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
 								<span style={{ width: 10, height: 10, borderRadius: '50%', background: k.color, flex: 'none' }} />{k.label}
 							</span>,

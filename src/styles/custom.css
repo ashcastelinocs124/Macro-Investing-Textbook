@@ -17,10 +17,10 @@
 	--sl-color-bg-sidebar: #222222;
 	--sl-color-hairline: #434343;
 	--sl-color-hairline-light: #434343;
-	--sl-color-accent-low: #0b3b30;
-	--sl-color-accent: #00bc8c;
-	--sl-color-accent-high: #1ac398;
-	--macro-link: #00bc8c;
+	--sl-color-accent-low: #4a2306;
+	--sl-color-accent: #fd7e14;
+	--sl-color-accent-high: #ff9f4a;
+	--macro-link: #fd8f33;
 	--macro-widget-bg: #0f172a;
 	--macro-widget-border: #334155;
 	--macro-sidebar-text: #adadad;
@@ -42,10 +42,10 @@
 	--sl-color-bg-sidebar: #ffffff;
 	--sl-color-hairline: #dee2e6;
 	--sl-color-hairline-light: #dee2e6;
-	--sl-color-accent-low: #d1f2eb;
-	--sl-color-accent: #18bc9c;
-	--sl-color-accent-high: #0d6453;
-	--macro-link: #0e7c66; /* source teal #18bc9c fails contrast on white for body text */
+	--sl-color-accent-low: #ffedd5;
+	--sl-color-accent: #ea580c;
+	--sl-color-accent-high: #9a3412;
+	--macro-link: #c2410c; /* brighter oranges fail contrast on white for body text */
 	--macro-widget-bg: #f8fafc;
 	--macro-widget-border: #d0d7de;
 	--macro-sidebar-text: #212529;
@@ -109,5 +109,5 @@ starlight-toc a[aria-current='true'] { color: var(--sl-color-accent); border-inl
 .sl-markdown-content figure img { border-radius: 8px; height: auto; }
 .sl-markdown-content figcaption { color: var(--sl-color-gray-3); font-size: 0.85rem; margin-top: 0.4rem; }
 
-/* Light mode: white text on #18bc9c is too faint, so primary buttons use the accessible link teal. */
+/* Light mode: white text on bright orange is too faint, so primary buttons use the accessible link orange. */
 :root[data-theme='light'] .sl-link-button.primary { background: var(--macro-link); border-color: var(--macro-link); }

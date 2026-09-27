@@ -44,7 +44,7 @@ export default function MarketsMap({ rates, dollar, oil, stocks }: Props) {
 							</div>
 							<svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H} preserveAspectRatio="none" role="img" aria-label={`${m.example}, ${pts[0][0].slice(0, 4)} to ${pts.at(-1)![0].slice(0, 4)}`}>
 								<rect x={x('2022-01-01')} y={0} width={x('2023-01-01') - x('2022-01-01')} height={H} fill="currentColor" fillOpacity={0.1} />
-								<path d={d} fill="none" stroke="var(--sl-color-accent-high)" strokeWidth={1.8} vectorEffect="non-scaling-stroke" />
+								<path d={d} fill="none" stroke="var(--sl-color-accent)" strokeWidth={1.8} vectorEffect="non-scaling-stroke" />
 							</svg>
 							<p style={{ margin: '0.4rem 0 0', fontSize: '0.85rem' }}><strong>What it is:</strong> {m.what}</p>
 							<p style={{ margin: '0.2rem 0 0', fontSize: '0.85rem' }}><strong>Moves when:</strong> {m.moves}</p>
