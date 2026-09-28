@@ -68,6 +68,21 @@ The CPI number in the news is **headline** inflation: it includes everything. Ec
 - **[PCE](/Macro-Investing-Textbook/glossary/#pce-personal-consumption-expenditures-price-index)** (the personal consumption expenditures price index) is a second measure of consumer prices, published monthly by the Bureau of Economic Analysis ([BEA](https://www.bea.gov/data/personal-consumption-expenditures-price-index)). It covers a wider range of spending, including things paid for on people's behalf, such as employer-provided health insurance. It also adjusts its weights as people switch between products when prices change. Since 2000, PCE inflation has run on average about 0.4 percentage points below CPI (see the chart).
 - **Core PCE** is PCE without food and energy ([BEA](https://www.bea.gov/data/personal-consumption-expenditures-price-index-excluding-food-and-energy)).
 
+**CPI vs PCE at a glance**
+
+| | CPI | PCE |
+| --- | --- | --- |
+| **Published by** | Bureau of Labor Statistics, monthly | Bureau of Economic Analysis, monthly |
+| **Whose spending** | Out-of-pocket spending by urban households | Spending by and on behalf of all households, including employer health insurance, Medicare and Medicaid |
+| **Where the weights come from** | Surveys of households, updated once a year | Data from businesses, updated every month |
+| **When prices change** | Uses a basket that is fixed for a year, so it is slow to notice people switching to cheaper goods | Shifts its weights as people switch (steak to hamburger), so it catches substitution quickly |
+| **Housing's share** | About 33% | About 16% |
+| **Health care's share** | Smaller: only what people pay themselves | Larger: includes what insurers and government pay |
+| **The Fed's 2% target** | No | Yes, since 2012 |
+| **Typical reading** | About 0.4 points higher on average since 2000 | Usually the lower of the two |
+
+Sources: [BEA](https://www.bea.gov/help/faq/555), [Cleveland Fed](https://www.clevelandfed.org/collections/infographics/2024/infogr-20241205-cpi-versus-pce-price-index), [St. Louis Fed](https://www.stlouisfed.org/publications/regional-economist/2022/sep/making-sense-inflation-measures).
+
 Why juggle four numbers? Because the Federal Reserve's 2% inflation target is defined using **PCE**, not CPI ([Federal Reserve](https://www.federalreserve.gov/faqs/economy_14400.htm)). The core versions help it look through temporary shocks. When investors try to guess the Fed's next move, PCE and core PCE are the numbers that count.
 
 <Chart client:visible title="Four ways to measure inflation" units="%" source="FRED (BLS, BEA)" asOf={[coreCpi.as_of, pce.as_of].sort()[0]}
