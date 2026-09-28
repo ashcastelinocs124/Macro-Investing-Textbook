@@ -1,0 +1,47 @@
+---
+title: Japan
+description: After a bubble burst in 1990, Japan spent decades fighting falling prices, and only recently left zero interest rates behind.
+draft: false
+sidebar:
+  order: 8
+---
+import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
+import Chart from '../../../../components/Chart.tsx';
+import big from '../../../../data/worldbank/big-economies.json';
+import { economyLines } from '../../../../lib/economies.js';
+
+## Why this matters
+
+Japan is a warning that every macro investor studies. In the late 1980s it looked unstoppable. Then its stock and property bubble burst, and the next two decades brought weak growth and falling prices.
+
+Japan is still a big economy, at $4.4 trillion in 2025 ([World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD)).
+
+<EconomyStats data={big} iso3="JPN" />
+
+## What drives it
+
+Japan is **mixed**. Households spend about 53% of GDP ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=JP)). It is home to big exporters such as carmakers and electronics firms. Unemployment has stayed low throughout: it never went above 5.4% in this data (see the chart).
+
+## Who sets interest rates
+
+The **Bank of Japan** (BoJ). In January 2013 it adopted a 2% inflation target, together with the government, to end years of falling prices ([Bank of Japan](https://www.boj.or.jp/en/mopo/outline/target.htm)). From 2016 it even set a negative interest rate, charging banks to hold money with it. It only raised rates above zero again in March 2024, its first hike in 17 years ([CNBC](https://www.cnbc.com/2024/03/19/bank-of-japan-boj-march-2024-policy-decision-mpm-meeting.html)).
+
+## The numbers
+
+<Chart client:visible title="Japan: growth, inflation and jobs since 1990" units="%" xLabel="Year" source="World Bank (unemployment is an ILO modelled estimate)" asOf={big.as_of}
+  note="Yearly figures. Hover for values."
+  lines={economyLines(big.economies.JPN)} />
+
+Look at the inflation line. Prices fell in 15 of the 36 years since 1990. Growth averaged just 0.8% a year from 1992 to 2012. Only since 2022 has inflation stayed above 2%.
+
+## Real-world example: the lost decades
+
+In the late 1980s, Japanese share and land prices soared. The Nikkei stock index peaked at ¥38,915 on the last trading day of 1989, then fell by nearly two-thirds by August 1992 ([IMF](https://www.elibrary.imf.org/view/journals/001/1993/085/article-A001-en.xml)).
+
+Banks were left holding huge amounts of bad loans, so they lent cautiously for years ([IMF](https://www.elibrary.imf.org/downloadpdf/book/9781589061873/9781589061873.pdf)). With weak demand, prices started to fall. Falling prices are dangerous: people delay purchases because things will be cheaper later, and debts become harder to repay. That's why the Bank of Japan spent the 2010s trying, with limited success, to push inflation *up* to 2%.
+
+## Key takeaways
+
+- A burst asset bubble can leave an economy weak for decades, especially when banks are stuck with bad loans.
+- Japan struggled with falling prices, not rising ones, for most of the years after 1990.
+- The Bank of Japan kept rates at or below zero until March 2024. Inflation has stayed above 2% since 2022.

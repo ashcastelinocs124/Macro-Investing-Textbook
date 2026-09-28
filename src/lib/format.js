@@ -1,7 +1,8 @@
 // Plain-English labels for chart tooltips.
 
-/** Dates → "Sep 2025"; model x-values → "Quarter 12" (or just the number). */
+/** Dates → "Sep 2025" (or "2025" for yearly data, xLabel 'Year'); model x-values → "Quarter 12" (or just the number). */
 export function fmtWhen(x, xLabel) {
+	if (x instanceof Date && xLabel === 'Year') return String(x.getUTCFullYear());
 	if (x instanceof Date) return x.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 	return xLabel ? `${xLabel} ${x}` : String(x);
 }

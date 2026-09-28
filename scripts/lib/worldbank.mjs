@@ -26,3 +26,17 @@ export function topEconomies(countries, gdp, consumption, industry, n) {
 		.slice(0, n)
 		.map((r) => ({ iso3: r.iso3, country: r.country, year: r.year, gdp_usd: r.value, consumption_pct: c.get(r.iso3), industry_pct: ind.get(r.iso3) }));
 }
+
+/** Rows of several indicators for a few economies → { iso3: { name, <measure>: [[YYYY-07-01, value]] } }, years ascending. */
+// ponytail: a yearly value is dated mid-year (July 1) so charts centre each point on its year.
+export function economySeries(byMeasure) {
+	const out = {};
+	for (const [measure, rows] of Object.entries(byMeasure)) {
+		for (const r of rows) {
+			const e = (out[r.iso3] ??= { name: r.country });
+			(e[measure] ??= []).push([`${r.year}-07-01`, r.value]);
+		}
+	}
+	for (const e of Object.values(out)) for (const [k, v] of Object.entries(e)) if (k !== 'name') v.sort(([a], [b]) => (a < b ? -1 : 1));
+	return out;
+}

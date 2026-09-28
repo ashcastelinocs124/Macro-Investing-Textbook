@@ -1,0 +1,47 @@
+---
+title: European Union
+description: Twenty-seven countries in one market, twenty-one of them sharing one currency and one interest rate.
+draft: false
+sidebar:
+  order: 7
+---
+import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
+import Chart from '../../../../components/Chart.tsx';
+import big from '../../../../data/worldbank/big-economies.json';
+import { economyLines } from '../../../../lib/economies.js';
+
+## Why this matters
+
+Taken together, the 27 countries of the European Union produced $21.2 trillion in 2025, more than China ([World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD)). But the EU isn't one country. It has one market and, for most members, one currency, while each country keeps its own government and budget. That mix is the key to understanding Europe's crises.
+
+<EconomyStats data={big} iso3="EUU" />
+
+## What drives it
+
+The EU is **mixed**. Households spend about 53% of GDP ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=EU)). Inside that average, countries differ a lot: Germany is a big industrial exporter of cars and machinery, while countries like Spain and Greece lean more on services and tourism.
+
+## Who sets interest rates
+
+The **European Central Bank** (ECB) sets one interest rate for every country that uses the euro. That is 21 of the 27 EU members since Bulgaria joined on 1 January 2026 ([ECB](https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html)). The other six, such as Poland and Sweden, have their own central banks. The ECB aims for 2% inflation and treats undershooting as just as bad as overshooting ([ECB](https://www.ecb.europa.eu/mopo/strategy/pricestab/html/index.en.html)).
+
+The numbers on this page cover all 27 EU countries, not only the euro users.
+
+## The numbers
+
+<Chart client:visible title="European Union: growth, inflation and jobs since 1990" units="%" xLabel="Year" source="World Bank (unemployment is an ILO modelled estimate)" asOf={big.as_of}
+  note="Yearly figures. Hover for values."
+  lines={economyLines(big.economies.EUU)} />
+
+Notice how unemployment rose after 2008 and kept rising until 2013 (11.4%), long after the US had started to recover. Then in 2022, when energy prices soared after Russia invaded Ukraine, inflation jumped to 8.8%. Energy and food caused more than two-thirds of that year's inflation in the euro area ([ECB](https://www.ecb.europa.eu/press/blog/date/2023/html/ecb.blog20230224~3b75362af3.en.html)).
+
+## Real-world example: the euro debt crisis
+
+In 2010, Greece could no longer borrow at affordable rates, and euro countries and the IMF lent it €110 billion in May of that year ([European Commission](https://economy-finance.ec.europa.eu/eu-financial-assistance/euro-area-countries/financial-assistance-greece_en)). Ireland and Portugal soon needed help too. Investors began to fear that the euro itself might break up, and the EU economy shrank again in 2012 (see the chart).
+
+A country that shares a currency can't cut its own interest rate or let its currency fall to regain competitiveness. The turning point came on 26 July 2012, when ECB President Mario Draghi said the ECB was ready to do "whatever it takes to preserve the euro" ([ECB](https://www.ecb.europa.eu/press/key/date/2012/html/sp120726.en.html)). Borrowing costs for the weaker countries began to fall ([ECB research](https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp2249~543dd2fbd3.en.pdf)).
+
+## Key takeaways
+
+- The EU is 27 economies with one market, and 21 of them share the euro and the ECB's single interest rate.
+- One interest rate can't fit every member perfectly, which is why the 2010–2012 debt crisis was so hard to fix.
+- The ECB targets 2% inflation, the same goal as the Fed and the Bank of Japan.

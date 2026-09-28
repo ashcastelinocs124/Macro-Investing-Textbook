@@ -4,6 +4,7 @@ import { fmtWhen, fmtValue } from '../src/lib/format.js';
 
 test('dates read as month and year', () => {
 	assert.equal(fmtWhen(new Date('2025-09-01')), 'Sep 2025');
+	assert.equal(fmtWhen(new Date('2025-07-01'), 'Year'), '2025');
 });
 
 test('model x-values use the axis name', () => {
@@ -26,4 +27,12 @@ test('other units are appended', () => {
 	assert.equal(fmtValue(26494.2, 'index'), '26,494 index');
 	assert.equal(fmtValue(1.3547, '$ per £'), '$1.35 per £');
 	assert.equal(fmtValue(158.85, 'yen per $'), '158.85 yen per $');
+});
+
+test('economy headline numbers carry their own year', async () => {
+	const { headline } = await import('../src/lib/economies.js');
+	const e = { gdp_usd: [['2025-07-01', 4.435e12]], growth: [['2025-07-01', 1.19]], inflation: [['2024-07-01', 2.95]], unemployment: [['2025-07-01', 2.45]] };
+	assert.deepEqual(headline(e).map((s) => `${s.label} ${s.year}: ${s.text}`), [
+		'GDP 2025: $4.4 trillion', 'Real growth 2025: 1.2%', 'Inflation 2024: 3.0%', 'Unemployment 2025: 2.5%',
+	]);
 });

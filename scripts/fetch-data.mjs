@@ -2,7 +2,7 @@
 // A failed series keeps its previous snapshot; the script exits 1 so CI flags it.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { parseFredCsv, toSnapshot } from './lib/fred.mjs';
-import { parseWorldBank, realCountries, topEconomies } from './lib/worldbank.mjs';
+import { parseWorldBank, realCountries, topEconomies, economySeries } from './lib/worldbank.mjs';
 
 const series = JSON.parse(await readFile(new URL('./series.json', import.meta.url), 'utf8'));
 const outDir = new URL('../src/data/', import.meta.url);
@@ -47,6 +47,27 @@ try {
 } catch (err) {
 	failed++;
 	console.error(`FAIL World Bank top economies: ${err.message}`);
+}
+
+// World Bank: yearly growth, inflation and jobs for the five big economies (the "Five big economies" pages).
+try {
+	const ECONOMIES = 'USA;CHN;EUU;JPN;IND';
+	const series = async (id) => parseWorldBank(await wb(`country/${ECONOMIES}/indicator/${id}?date=1990:2100`));
+	const economies = economySeries({
+		gdp_usd: await series('NY.GDP.MKTP.CD'), // GDP, current US$
+		growth: await series('NY.GDP.MKTP.KD.ZG'), // real GDP growth, %
+		inflation: await series('FP.CPI.TOTL.ZG'), // consumer price inflation, %
+		unemployment: await series('SL.UEM.TOTL.ZS'), // unemployment, % (modelled ILO estimate)
+	});
+	if (Object.keys(economies).length !== 5) throw new Error(`only ${Object.keys(economies).join(' ')} returned data`);
+	const as_of = Object.values(economies).flatMap((e) => e.growth.map(([d]) => d.slice(0, 4))).sort().at(-1);
+	const snap = { source: 'World Bank', as_of, economies };
+	await mkdir(new URL('worldbank/', outDir), { recursive: true });
+	await writeFile(new URL('worldbank/big-economies.json', outDir), JSON.stringify(snap, null, '\t') + '\n');
+	console.log(`ok   World Bank big economies (${Object.keys(economies).join(' ')}), as of ${as_of}`);
+} catch (err) {
+	failed++;
+	console.error(`FAIL World Bank big economies: ${err.message}`);
 }
 
 if (failed) {

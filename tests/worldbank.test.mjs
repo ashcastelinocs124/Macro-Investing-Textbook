@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { parseWorldBank, realCountries, topEconomies } from '../scripts/lib/worldbank.mjs';
+import { parseWorldBank, realCountries, topEconomies, economySeries } from '../scripts/lib/worldbank.mjs';
 
 const row = (iso3, country, value, date = '2025') => ({ countryiso3code: iso3, country: { value: country }, date, value });
 
@@ -46,4 +46,16 @@ test('committed top-economies snapshot is complete', () => {
 		assert.ok(r.gdp_usd > 0 && Number.isFinite(r.consumption_pct) && Number.isFinite(r.industry_pct), `incomplete row for ${r.iso3}`);
 	}
 	assert.deepEqual(snap.rows.map((r) => r.gdp_usd), [...snap.rows.map((r) => r.gdp_usd)].sort((a, b) => b - a));
+});
+
+test('economySeries groups rows by economy and measure, dated mid-year and sorted', () => {
+	const rows = (vals) => vals.map(([iso3, year, value]) => ({ iso3, country: iso3 === 'JPN' ? 'Japan' : 'India', year, value }));
+	const out = economySeries({
+		growth: rows([['JPN', 2025, 1.2], ['JPN', 2024, 0.1], ['IND', 2025, 7.6]]),
+		inflation: rows([['JPN', 2025, 3.2]]),
+	});
+	assert.deepEqual(out, {
+		JPN: { name: 'Japan', growth: [['2024-07-01', 0.1], ['2025-07-01', 1.2]], inflation: [['2025-07-01', 3.2]] },
+		IND: { name: 'India', growth: [['2025-07-01', 7.6]] },
+	});
 });

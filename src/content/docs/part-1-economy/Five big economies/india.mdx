@@ -1,0 +1,45 @@
+---
+title: India
+description: The fastest-growing of the big five, with a young workforce and a central bank that tamed high inflation with a 4% target.
+draft: false
+sidebar:
+  order: 9
+---
+import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
+import Chart from '../../../../components/Chart.tsx';
+import big from '../../../../data/worldbank/big-economies.json';
+import { economyLines } from '../../../../lib/economies.js';
+
+## Why this matters
+
+India's economy grew 7.6% in 2025, the fastest of the five big economies (see the chart). At $4.0 trillion ([World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD)), it is still smaller than Japan's, but it has been catching up quickly from a much lower income per person.
+
+<EconomyStats data={big} iso3="IND" />
+
+## What drives it
+
+India leans toward **consumption**. Households spend about 57% of GDP ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=IN)), more than in China, Japan or the EU. Services such as software, finance and trade make up about half of the economy ([World Bank](https://data.worldbank.org/indicator/NV.SRV.TOTL.ZS?locations=IN)).
+
+## Who sets interest rates
+
+The **Reserve Bank of India** (RBI). Since 2016 its job has been defined by an inflation target: 4%, with an acceptable range of 2% to 6% ([PRS India](https://prsindia.org/policy/report-summaries/review-of-monetary-policy-framework-by-rbi)).
+
+## The numbers
+
+<Chart client:visible title="India: growth, inflation and jobs since 1990" units="%" xLabel="Year" source="World Bank (unemployment is an ILO modelled estimate)" asOf={big.as_of}
+  note="Yearly figures. Hover for values."
+  lines={economyLines(big.economies.IND)} />
+
+Growth averaged about 6% a year from 2010 to 2025. The one big dip was 2020, when COVID shrank the economy by 5.8%, followed by a 9.7% rebound in 2021.
+
+## Real-world example: taming inflation with a target
+
+From 2009 to 2013, Indian inflation ran at around 9% to 12% a year (see the chart). High inflation hurts poor households most, because more of their income goes on food and fuel.
+
+In 2016, India changed the law to give the RBI a formal target: 4% inflation, within a 2% to 6% range. Average inflation fell from 6.8% in the four years before the framework to 4.9% after it ([PRS India](https://prsindia.org/policy/report-summaries/review-of-monetary-policy-framework-by-rbi)). A clear, public target helps people and businesses expect lower inflation, which itself helps keep inflation low.
+
+## Key takeaways
+
+- India is the fastest-growing of the five, from a lower starting point.
+- Household spending is a bigger part of its economy than in China, Japan or the EU.
+- Since the RBI's 4% target began in 2016, average inflation has fallen from 6.8% to 4.9%.

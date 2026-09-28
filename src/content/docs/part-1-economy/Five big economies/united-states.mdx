@@ -1,0 +1,47 @@
+---
+title: United States
+description: The world's largest economy runs on consumer spending, and the Federal Reserve sets the price of money for much of the planet.
+draft: false
+sidebar:
+  order: 5
+---
+import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
+import Chart from '../../../../components/Chart.tsx';
+import big from '../../../../data/worldbank/big-economies.json';
+import { economyLines } from '../../../../lib/economies.js';
+
+## Why this matters
+
+The US produces about a quarter of the world's output: $30.8 trillion of the world's $118 trillion in 2025 ([World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD)). The dollar is by far the main currency used to price world trade ([Federal Reserve](https://www.federalreserve.gov/econres/notes/feds-notes/the-international-role-of-the-u-s-dollar-2025-edition-20250718.html)), so when US interest rates move, money moves everywhere. For a macro investor, the US is the economy you watch first.
+
+This page and the next four look at the five biggest economies the same way: what drives each one, who sets its interest rates, the numbers, and one episode that shaped it.
+
+<EconomyStats data={big} iso3="USA" />
+
+## What drives it
+
+The US is **consumer-led**. Household spending makes up about 68% of GDP, the highest share of the five ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=US)). That's why US retail sales, jobs and wages matter so much: when American households feel confident and employed, they spend, and the whole economy grows.
+
+## Who sets interest rates
+
+The **Federal Reserve** (the Fed). Congress gave it two goals, known as the dual mandate: maximum employment and stable prices ([Federal Reserve](https://www.federalreserve.gov/faqs/what-economic-goals-does-federal-reserve-seek-to-achieve-through-monetary-policy.htm)). It defines stable prices as 2% inflation, measured with [PCE](/Macro-Investing-Textbook/glossary/#pce-personal-consumption-expenditures-price-index) ([Federal Reserve](https://www.federalreserve.gov/faqs/economy_14400.htm)).
+
+## The numbers
+
+<Chart client:visible title="United States: growth, inflation and jobs since 1990" units="%" xLabel="Year" source="World Bank (unemployment is an ILO modelled estimate)" asOf={big.as_of}
+  note="Yearly figures. Hover for values."
+  lines={economyLines(big.economies.USA)} />
+
+Growth dipped below zero only three times since 1990, and two of those dips were deep: 2009 (the financial crisis) and 2020 (COVID). Inflation mostly stayed between 1% and 4%, until it jumped to 8% in 2022.
+
+## Real-world example: the 2008 financial crisis
+
+A boom in risky mortgages ended with house prices falling and banks failing. The US was in [recession](/Macro-Investing-Textbook/glossary/#recession) from December 2007 to June 2009 ([NBER](https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions)). The economy shrank by 2.6% in 2009 (see the chart), and unemployment peaked at 10% in October 2009 ([FRED](https://fred.stlouisfed.org/series/UNRATE)).
+
+The Fed cut its main interest rate to between 0% and 0.25% in December 2008, as low as it could go ([Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/monetary20081216b.htm)). It stayed there for seven years, until December 2015 ([Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/monetary20151216a.htm)). The chapter [Money, banks & credit](/Macro-Investing-Textbook/part-1-economy/03-money-banks-credit/) explains how the credit boom got so big.
+
+## Key takeaways
+
+- The US is the largest economy and runs on household spending (about 68% of GDP).
+- The Fed has two goals, maximum employment and 2% inflation, and its decisions ripple around the world.
+- The 2008 crisis shows how a credit bust can turn into a deep recession.

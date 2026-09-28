@@ -1,0 +1,45 @@
+---
+title: China
+description: The world's second-largest economy grew by building and exporting, and is now working through a long property slump.
+draft: false
+sidebar:
+  order: 6
+---
+import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
+import Chart from '../../../../components/Chart.tsx';
+import big from '../../../../data/worldbank/big-economies.json';
+import { economyLines } from '../../../../lib/economies.js';
+
+## Why this matters
+
+China's economy grew about 10% a year on average from 1990 to 2010 (see the chart), an extraordinary pace for such a large economy. It is now the world's second-largest national economy, at $19.5 trillion in 2025 ([World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD)). Because it builds so much, it buys huge amounts of raw materials, so when China slows, the countries that sell them feel it.
+
+<EconomyStats data={big} iso3="CHN" />
+
+## What drives it
+
+China is **production-led**. Households spend only about 40% of GDP, the lowest share of the five ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=CN)). Instead, growth has come from investment (factories, roads, apartments) and from exports. That model works while there is useful building left to do. It struggles once too much has been built.
+
+## Who sets interest rates
+
+The **People's Bank of China** (PBoC). By law it sets monetary policy "under the leadership of the State Council", China's cabinet ([PBoC law](https://www.registrationchina.com/articles/law/law-of-the-peoples-republic-of-china-on-the-peoples-bank-of-china/)), so it follows the government's economic goals. Each March the government sets targets for the year. For 2025 it aimed for growth of "around 5%" and inflation of "around 2%" ([Chinese government](https://english.www.gov.cn/news/202503/05/content_WS67c7ad77c6d0868f4e8f0568.html)).
+
+## The numbers
+
+<Chart client:visible title="China: growth, inflation and jobs since 1990" units="%" xLabel="Year" source="World Bank (unemployment is an ILO modelled estimate)" asOf={big.as_of}
+  note="Yearly figures. Hover for values."
+  lines={economyLines(big.economies.CHN)} />
+
+Two things stand out. Inflation hit 24% in 1994, when the economy overheated. And since 2023 it has been close to zero (0.1% in 2025), far below the government's goal. Prices that barely rise are a sign that demand is weak.
+
+## Real-world example: the property slump
+
+Between 2010 and 2020, home prices in China's 70 biggest cities rose nearly 60%. Since 2021 they have been falling ([GAM Investments](https://www.gam.com/en/our-thinking/investment-opinions/china-housing-market-downturn-and-its-impact)). The turning point was Evergrande, the world's most indebted property developer, which missed bond payments and was declared in default in December 2021 ([CNBC](https://www.cnbc.com/2021/12/10/evergrande-slides-into-default-while-some-ratings-agencies-keep-quiet.html)).
+
+Homes make up about 70% of urban households' assets, so falling prices made families feel poorer: they spent less and saved more ([GAM Investments](https://www.gam.com/en/our-thinking/investment-opinions/china-housing-market-downturn-and-its-impact)). That is a big reason why growth slowed and prices stopped rising.
+
+## Key takeaways
+
+- China grew by investing and exporting. Households spend only about 40% of GDP.
+- The central bank works under the government and follows the goals it sets every March.
+- The property slump since 2021 has pushed inflation close to zero, the opposite problem to the US and Europe.
