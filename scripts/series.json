@@ -16,5 +16,8 @@
 	{"id": "EXJPUS", "title": "Japanese yen per US dollar", "units": "yen per $", "chapters": [1]},
 	{"id": "CPILFESL", "title": "Core CPI (all items less food and energy)", "units": "Index 1982–84 = 100", "chapters": [2]},
 	{"id": "PCEPI", "title": "PCE price index", "units": "Index 2017 = 100", "chapters": [2]},
-	{"id": "PCEPILFE", "title": "Core PCE price index (excluding food and energy)", "units": "Index 2017 = 100", "chapters": [2]}
+	{"id": "PCEPILFE", "title": "Core PCE price index (excluding food and energy)", "units": "Index 2017 = 100", "chapters": [2]},
+	{"id": "T10Y3M", "title": "10-year Treasury minus 3-month Treasury (monthly average)", "units": "% points", "chapters": [2], "query": "&fq=Monthly&fam=avg"},
+	{"id": "PAYEMS", "title": "Nonfarm payroll employment", "units": "Thousands of persons", "chapters": [2]},
+	{"id": "UEMPMEAN", "title": "Average weeks unemployed", "units": "Weeks", "chapters": [2]}
 ]

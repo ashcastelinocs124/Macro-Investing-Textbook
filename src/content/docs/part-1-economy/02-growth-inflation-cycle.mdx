@@ -1,5 +1,5 @@
 ---
-title: Growth, inflation & the business cycle
+title: Economic indicators
 description: How to read the three numbers every macro investor watches, GDP, inflation and unemployment.
 draft: false
 sidebar:
@@ -11,13 +11,18 @@ import cpi from '../../../data/CPIAUCSL.json';
 import unrate from '../../../data/UNRATE.json';
 import usrec from '../../../data/USREC.json';
 import TopEconomies from '../../../components/widgets/TopEconomies.tsx';
-import BusinessCycle from '../../../components/widgets/BusinessCycle.tsx';
 import topEconomies from '../../../data/worldbank/top-economies.json';
 import Chart from '../../../components/Chart.tsx';
 import coreCpi from '../../../data/CPILFESL.json';
 import pce from '../../../data/PCEPI.json';
 import corePce from '../../../data/PCEPILFE.json';
-import { yoy, since } from '../../../lib/series.js';
+import t10y3m from '../../../data/T10Y3M.json';
+import payems from '../../../data/PAYEMS.json';
+import uempmean from '../../../data/UEMPMEAN.json';
+import { yoy, since, recessionRanges } from '../../../lib/series.js';
+
+export const FROM = '1985-01-01';
+export const recessions = recessionRanges(since(usrec.points, FROM));
 
 ## Why this matters
 
@@ -25,7 +30,7 @@ In June 2022, prices paid by American consumers were about 9% higher than a year
 
 That one number reshaped every market. The Federal Reserve raised interest rates at the fastest pace in decades, mortgage rates roughly doubled, and stocks and bonds fell together. If you'd understood what the inflation number was telling you, much of what happened next in 2022 made sense.
 
-Macro investors spend their lives watching a handful of numbers like this one. This chapter teaches you the three most important: **growth, inflation and unemployment**, plus the rhythm that ties them together, the **business cycle**.
+Macro investors spend their lives watching a handful of numbers like this one. This chapter teaches you the three most important: **growth, inflation and unemployment**. The [next chapter](/Macro-Investing-Textbook/part-1-economy/business-cycle/) shows the rhythm that ties them together, the **business cycle**.
 
 ## GDP: the size of the economy
 
@@ -102,18 +107,40 @@ The **[unemployment rate](/Macro-Investing-Textbook/glossary/#unemployment-rate)
 
 Unemployment is the most *human* of the three numbers, and it moves in a telling way: it tends to rise fast in recessions and fall slowly in recoveries. Companies fire quickly when demand collapses, but hire cautiously when it returns.
 
-## The business cycle
+## Leading, coincident and lagging indicators
 
-Economies don't grow in a straight line. They move through a repeating pattern called the **[business cycle](/Macro-Investing-Textbook/glossary/#business-cycle)**:
+Not every number tells you about the same moment. Economists sort indicators by *when* they turn, compared with the economy as a whole ([Business Conditions Digest](https://fraser.stlouisfed.org/title/business-conditions-digest-43/august-1974-7336/fulltext)):
 
-1. **Expansion.** Growth is positive, unemployment falls, companies hire and invest. Inflation usually starts low and creeps up as the economy heats up.
-2. **Peak.** The economy runs hot. Unemployment is low, inflation is often rising, and central banks may start raising rates to cool things down.
-3. **Contraction (recession).** Growth turns negative, unemployment jumps, and inflation usually falls as demand weakens.
-4. **Trough.** The bottom. Central banks have usually cut rates, and the stage is set for the next expansion.
+- **Leading** indicators turn *before* the economy does. They hint at where it is heading.
+- **Coincident** indicators turn *at the same time*. They tell you where it is now.
+- **Lagging** indicators turn *after*. They confirm what has already happened.
 
-<BusinessCycle />
+The Conference Board, a business research group, publishes an index of each type for the US ([leading and coincident](https://www.conference-board.org/topics/us-leading-indicators); [lagging](https://www.conference-board.org/pdf_free/press/US%20LEI%20Technical%20Notes%20Dec%202025.pdf)). Here is what goes into them:
 
-No two cycles are the same length. Some expansions last more than a decade; the 2020 recession lasted two months ([NBER](https://www.nber.org/research/business-cycle-dating)). But the *pattern* is remarkably consistent, and a huge part of macro investing is working out where in the cycle you are and what comes next.
+| | What it tells you | Examples | How investors use it |
+| --- | --- | --- | --- |
+| **Leading** | Where the economy is heading | Stock prices, building permits, new factory orders, weekly jobless claims, the gap between long- and short-term interest rates | Early warning of a turn. Markets price the future, so these matter most for trading. |
+| **Coincident** | Where the economy is now | Payroll jobs, industrial production, personal income, manufacturing and trade sales | Confirming whether the economy is expanding or shrinking right now |
+| **Lagging** | Where the economy has been | How long people stay unemployed, services inflation, the interest rate banks charge, business loans outstanding | Confirming that a turn really happened. Too slow to trade on, but central banks watch some of them closely. |
+
+Here is one example of each, with recessions shaded.
+
+<Chart client:visible title="Leading: the yield curve (10-year minus 3-month Treasury rate)" units="% points" source="FRED (Federal Reserve, NBER)" asOf={t10y3m.as_of}
+  note="Below zero means short-term rates are above long-term rates: an 'inverted' yield curve."
+  lines={[{ label: '10-year minus 3-month', points: since(t10y3m.points, FROM) }]} ranges={recessions} />
+
+When short-term interest rates rise above long-term ones, the yield curve is said to be *inverted*. It inverted 9 to 17 months before each of the four US recessions since 1985 (see the chart), which is why the New York Fed uses it to estimate the chance of a recession a year ahead ([New York Fed](https://www.newyorkfed.org/research/capital_markets/ycfaq)). But no indicator is perfect. The curve stayed inverted from late 2022 to mid-2025, the longest stretch in this data, and as of August 2026 no recession had followed.
+
+<Chart client:visible title="Coincident: payroll jobs, change over a year" units="%" source="FRED (BLS, NBER)" asOf={payems.as_of}
+  lines={[{ label: 'Nonfarm payroll jobs (% y/y)', points: since(yoy(payems.points), FROM) }]} ranges={recessions} />
+
+The number of jobs moves *with* the economy. In every recession in the chart, job growth turned negative during the shaded band itself.
+
+<Chart client:visible title="Lagging: how long people stay unemployed" units="weeks" source="FRED (BLS, NBER)" asOf={uempmean.as_of}
+  note="Average number of weeks that unemployed people have been out of work."
+  lines={[{ label: 'Average weeks unemployed', points: since(uempmean.points, FROM) }]} ranges={recessions} />
+
+This one peaks long *after* each recession ends: in 1994, 2004, 2011 and 2021, between one and three years after the shaded bands (see the chart). People who lose their jobs in a recession can take years to find new ones, even once the economy is growing again.
 
 ## Try it
 
@@ -129,7 +156,7 @@ Things to look for:
 
 ## Real-world example: the 2020 COVID recession
 
-The COVID shock is the business cycle compressed into a few months, and it shows all three numbers moving at once.
+The COVID shock is the [business cycle](/Macro-Investing-Textbook/part-1-economy/business-cycle/) compressed into a few months, and it shows all three numbers moving at once.
 
 - **Growth.** As the economy shut down in spring 2020, real GDP in the second quarter was about 7% lower than a year earlier (see the chart). It's one of the sharpest drops in the data.
 - **Unemployment.** The unemployment rate jumped from 3.5% in February 2020 to 14.8% in April, the highest in the chart's history. Then it fell faster than in any previous recovery, as businesses reopened.
@@ -143,4 +170,4 @@ The lesson for investors: each number told a different part of the story at a di
 - **Real GDP growth** tells you whether the economy is producing more; **nominal** figures include price rises.
 - **Inflation** (usually measured by **CPI**) is how fast prices are rising. Central banks target about 2%, and fight it with higher interest rates when it runs hot.
 - **Unemployment** rises fast in recessions and falls slowly in recoveries.
-- The economy moves through a **business cycle** of expansion, peak, contraction and trough, and each phase favours different investments.
+- **Leading** indicators (like the yield curve) turn before the economy, **coincident** ones (like payroll jobs) move with it, and **lagging** ones (like how long people stay unemployed) turn after it.
