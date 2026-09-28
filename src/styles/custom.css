@@ -51,6 +51,9 @@
 	--macro-sidebar-text: #212529;
 }
 
+/* Layout: Starlight's 45rem column left a wide empty gutter beside the sidebar; use that space. */
+:root { --sl-content-width: 55rem; }
+
 /* Typography */
 .sl-markdown-content { font-size: 1.0625rem; }
 .sl-markdown-content a:not(.not-content a) { color: var(--macro-link); }
