@@ -11,6 +11,7 @@ import cpi from '../../../data/CPIAUCSL.json';
 import unrate from '../../../data/UNRATE.json';
 import usrec from '../../../data/USREC.json';
 import TopEconomies from '../../../components/widgets/TopEconomies.tsx';
+import BusinessCycle from '../../../components/widgets/BusinessCycle.tsx';
 import topEconomies from '../../../data/worldbank/top-economies.json';
 import Chart from '../../../components/Chart.tsx';
 import coreCpi from '../../../data/CPILFESL.json';
@@ -94,6 +95,8 @@ Economies don't grow in a straight line. They move through a repeating pattern c
 2. **Peak.** The economy runs hot. Unemployment is low, inflation is often rising, and central banks may start raising rates to cool things down.
 3. **Contraction (recession).** Growth turns negative, unemployment jumps, and inflation usually falls as demand weakens.
 4. **Trough.** The bottom. Central banks have usually cut rates, and the stage is set for the next expansion.
+
+<BusinessCycle />
 
 No two cycles are the same length. Some expansions last more than a decade; the 2020 recession lasted two months ([NBER](https://www.nber.org/research/business-cycle-dating)). But the *pattern* is remarkably consistent, and a huge part of macro investing is working out where in the cycle you are and what comes next.
 
