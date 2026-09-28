@@ -19,3 +19,6 @@ export function headline(e) {
 		{ label: 'Unemployment', ...pct(last(e.unemployment)) },
 	];
 }
+
+/** A flat goal line (e.g. the 2% target) spanning the same dates as `points`. */
+export const goalLine = (label, value, points) => ({ label, points: [[points[0][0], value], [points.at(-1)[0], value]] });

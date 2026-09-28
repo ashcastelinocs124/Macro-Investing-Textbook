@@ -1,0 +1,88 @@
+---
+title: Central banks & monetary policy
+description: How central banks set the price of money, the tools they use, and how one committee vote reaches your loan and the whole economy.
+draft: false
+sidebar:
+  order: 1
+---
+import RateTransmissionSim from '../../../components/widgets/RateTransmissionSim.tsx';
+import Chart from '../../../components/Chart.tsx';
+import fedfunds from '../../../data/FEDFUNDS.json';
+import cpi from '../../../data/CPIAUCSL.json';
+import { yoy, since } from '../../../lib/series.js';
+
+## Why this matters
+
+In March 2022 the US Federal Reserve raised its interest rate for the first time since the pandemic began. It then kept raising it, and by July 2023 it had added 5.25 percentage points in total ([St. Louis Fed](https://www.stlouisfed.org/on-the-economy/2023/aug/gauging-fed-current-tightening-actions-historical-perspective)). A small group of people voting in a meeting room changed the price of borrowing for every mortgage, car loan and business in the country, and moved markets around the world.
+
+No other institution has that much influence over the economy day to day. So a macro investor's first question about any country is: **what is the central bank doing, and what will it do next?** This chapter explains how central banks work, so that you can read their moves.
+
+## What a central bank does
+
+A **central bank** is the institution that controls a country's money and the price of borrowing it. The US has the Federal Reserve, the euro area has the European Central Bank, Japan has the Bank of Japan, India has the Reserve Bank of India and China has the People's Bank of China. You met all five on the [country pages](/Macro-Investing-Textbook/part-1-economy/five-big-economies/united-states/).
+
+Most have the same core job: keep prices stable, so that inflation stays near a target such as 2%, and in some countries also support jobs. The Fed's two goals, maximum employment and stable prices, are called the dual mandate ([Federal Reserve](https://www.federalreserve.gov/faqs/what-economic-goals-does-federal-reserve-seek-to-achieve-through-monetary-policy.htm)).
+
+**Independence matters.** Rate cuts are popular and rate rises are not, so governments are tempted to push for low rates before an election. That is why many central banks are set up to be independent. The Fed's decisions on how to reach its goals do not need approval from the President or anyone else in the executive or legislative branches. It is still accountable: it reports to Congress twice a year ([Federal Reserve](https://www.federalreserve.gov/faqs/about_12799.htm)). Independence is a matter of degree. China's central bank, for example, sets policy "under the leadership of the State Council", as you saw on [China's page](/Macro-Investing-Textbook/part-1-economy/five-big-economies/china/).
+
+## The toolkit
+
+**1. The policy rate.** This is the main tool. The central bank sets the interest rate on short-term lending between banks, and every other rate in the economy follows it. The Fed steers the federal funds rate, the ECB the deposit facility rate, and India's RBI the repo rate. See each bank's table on the country pages.
+
+**2. The balance sheet: QE and QT.** When the policy rate is already close to zero, the bank cannot cut further. It can then do **quantitative easing** (QE): buy large amounts of government bonds and mortgage-backed securities, which pushes longer-term interest rates down. The Fed's balance sheet grew from about $4 trillion before the pandemic to nearly $9 trillion at the start of 2022 ([Richmond Fed](https://www.richmondfed.org/publications/research/econ_focus/2022/q3_federal_reserve)). The reverse is **quantitative tightening** (QT): the bank stops replacing bonds that mature, so its balance sheet shrinks.
+
+**3. Forward guidance.** This means telling the public where policy is likely to go. The Fed calls it "a tool that central banks use to tell the public about the likely future course of monetary policy" ([Federal Reserve](https://www.federalreserve.gov/faqs/what-is-forward-guidance-how-is-it-used-in-the-federal-reserve-monetary-policy.htm)). It works because markets act on what they expect. If people believe rates will stay low for years, long-term rates fall today.
+
+## How a rate change reaches your loan
+
+A rate decision does not act on the economy directly. It travels through several channels. The ECB describes them like this ([ECB](https://www.ecb.europa.eu/mopo/intro/transmission/html/index.en.html)):
+
+1. **Borrowing costs change first.** Bank lending and deposit rates move, and longer-term rates move with what people expect the bank to do next.
+2. **Spending changes.** Costlier loans make households and firms borrow and spend less. The reverse holds when rates fall. This is the [credit cycle](/Macro-Investing-Textbook/part-1-economy/03-money-banks-credit/) from Chapter 3: higher rates raise repayments, which cuts into what people can spend.
+3. **Asset prices and the currency move.** Share prices, house prices and the exchange rate all react, which changes wealth and the cost of imports.
+4. **Jobs and prices follow.** Weaker demand cools hiring and price rises, and inflation slows.
+
+The catch is the delay. The ECB says the effects come with "long, variable and uncertain time lags", which makes it hard to predict the precise effect of any move ([ECB](https://www.ecb.europa.eu/mopo/intro/transmission/html/index.en.html)). Interest rates react fast when the Fed acts, but the effect on inflation is slower and indirect ([St. Louis Fed](https://www.stlouisfed.org/publications/regional-economist/2023/may/examining-long-variable-lags-monetary-policy)). That is why central banks have to act before they see the problem in the data.
+
+## Try it
+
+The simulator below is a simplified model of that chain. It starts with a 4% policy rate and 4% inflation. Drag the slider to raise or cut the rate. The model assumes that mortgages cost 2 points more than the policy rate, that each point of rate rise lowers inflation by about 0.35 points once it has fully worked through (about eight quarters), and that it raises unemployment by about 0.2 points. Those numbers are chosen to teach the shape, not to forecast.
+
+<RateTransmissionSim client:visible />
+
+Try these:
+
+1. **Raise the rate by 4 points.** How much does inflation fall, and what does it cost in jobs?
+2. **Cut it by 3 points.** What happens to the monthly mortgage payment?
+3. **Look at the chart.** Why does inflation move gradually over two years and not at once?
+
+This is a teaching model, not a forecast, but the trade-off is real: fighting inflation with higher rates means weaker demand and, usually, more unemployment.
+
+## Real-world example: two rate-hiking episodes
+
+The chart shows the US policy rate against inflation since 1970, with two famous periods shaded.
+
+<Chart client:visible title="US: the Fed's policy rate and inflation since 1970" units="%" xLabel="Year" source="Federal Reserve and BLS via FRED (inflation is year-over-year CPI)" asOf={fedfunds.as_of}
+  note="Hover for values. Shaded: Volcker's inflation fight and the 2022–23 rate rises."
+  lines={[
+    { label: 'Federal funds rate', points: since(fedfunds.points, '1970-01-01') },
+    { label: 'CPI inflation', points: since(yoy(cpi.points), '1970-01-01') },
+  ]}
+  ranges={[
+    { from: '1979-10-01', to: '1982-12-01', label: 'Volcker' },
+    { from: '2022-03-01', to: '2023-07-31', label: '2022–23' },
+  ]} />
+
+**The first: Volcker, 1979–82.** Inflation had been high for years. In October 1979 the Fed's chair, Paul Volcker, moved the Fed to controlling the amount of bank reserves instead of steering the federal funds rate day to day. Interest rates then shot up, and the federal funds rate reached a record 20% in late 1980 ([Federal Reserve History](https://www.federalreservehistory.org/essays/anti-inflation-measures)). It worked: by October 1982 inflation had fallen to 5%. The price was a deep recession, with unemployment near 11% by the end of 1982, the highest since World War II ([Federal Reserve History](https://www.federalreservehistory.org/essays/recession-of-1981-82)).
+
+**The second: 2022–23.** After the pandemic, US inflation surged, and consumer prices were up about 9% on a year earlier in June 2022 ([FRED](https://fred.stlouisfed.org/series/CPIAUCSL)). The Fed raised the rate from near zero to 5.25–5.50% in about 16 months ([St. Louis Fed](https://www.stlouisfed.org/on-the-economy/2023/aug/gauging-fed-current-tightening-actions-historical-perspective)). Inflation came down, and the shaded band on the chart shows the same pattern of a rate rise followed by falling inflation, with the delay you saw in the simulator.
+
+For an investor, the lesson from both is the same. When a central bank starts fighting inflation, borrowing gets more expensive, spending slows, and the assets that depend on cheap credit are the ones that feel it first.
+
+## Key takeaways
+
+- A **central bank** controls the price of money in its economy. Its main goal is stable prices, and in some countries also jobs.
+- **Independence** protects it from pressure to cut rates for political reasons, but it varies from country to country.
+- The main tool is the **policy rate**. When that hits zero, banks use **QE** (buying bonds) and **forward guidance** (signalling the future path). **QT** is QE in reverse.
+- A rate change travels through **borrowing costs, spending, asset prices and jobs** before it reaches inflation, with **long and variable lags**.
+- Fighting inflation with higher rates has a cost: weaker demand and, usually, higher unemployment. Volcker paid it in 1981–82.

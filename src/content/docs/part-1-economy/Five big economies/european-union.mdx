@@ -8,7 +8,9 @@ sidebar:
 import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
 import Chart from '../../../../components/Chart.tsx';
 import big from '../../../../data/worldbank/big-economies.json';
-import { economyLines } from '../../../../lib/economies.js';
+import { economyLines, goalLine } from '../../../../lib/economies.js';
+import { yoy, since } from '../../../../lib/series.js';
+import hicp from '../../../../data/CP0000EZ19M086NEST.json';
 
 ## Why this matters
 
@@ -20,9 +22,26 @@ Taken together, the 27 countries of the European Union produced $21.2 trillion i
 
 The EU is **mixed**. Households spend about 53% of GDP ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=EU)). Inside that average, countries differ a lot: Germany is a big industrial exporter of cars and machinery, while countries like Spain and Greece lean more on services and tourism.
 
-## Who sets interest rates
+## The indicator to watch
+
+**HICP inflation.** The ECB says its reference for measuring inflation is the [HICP](/Macro-Investing-Textbook/glossary/#hicp-harmonised-index-of-consumer-prices), a consumer price index built with the same method in every EU country ([ECB](https://www.ecb.europa.eu/stats/macroeconomic_and_sectoral/hicp/html/index.en.html)). One shared method matters because the ECB has to judge prices across many different countries with a single interest rate.
+
+<Chart client:visible title="Euro area: HICP inflation vs the ECB's 2% goal" units="%" xLabel="Year" source="Eurostat via FRED (euro area of 19 countries, year-over-year change)" asOf={hicp.as_of}
+  note="Hover for values. The ECB's goal covers the whole euro area; this series keeps the 19 countries of 2015 so it stays comparable over time."
+  lines={[
+    { label: 'HICP inflation', points: since(yoy(hicp.points), '2013-01-01') },
+    goalLine('ECB goal: 2%', 2, since(yoy(hicp.points), '2013-01-01')),
+  ]} />
+
+## How the European Central Bank operates
 
 The **European Central Bank** (ECB) sets one interest rate for every country that uses the euro. That is 21 of the 27 EU members since Bulgaria joined on 1 January 2026 ([ECB](https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html)). The other six, such as Poland and Sweden, have their own central banks. The ECB aims for 2% inflation and treats undershooting as just as bad as overshooting ([ECB](https://www.ecb.europa.eu/mopo/strategy/pricestab/html/index.en.html)).
+
+| | |
+|---|---|
+| **Decision body** | The Governing Council: the six members of the Executive Board plus the governors of the national central banks of the euro countries ([ECB](https://www.ecb.europa.eu/ecb/orga/decisions/govc/html/index.en.html)) |
+| **Meetings** | Monetary policy decisions every six weeks, followed by a press conference ([ECB](https://www.ecb.europa.eu/ecb/orga/decisions/govc/html/index.en.html)) |
+| **[Policy rate](/Macro-Investing-Textbook/glossary/#policy-rate)** | The deposit facility rate: what banks earn on overnight deposits at the ECB. The Governing Council steers its policy stance through it ([ECB](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/what-is-the-deposit-facility-rate.en.html)) |
 
 The numbers on this page cover all 27 EU countries, not only the euro users.
 

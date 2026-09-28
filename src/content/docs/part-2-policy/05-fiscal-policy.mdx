@@ -1,0 +1,85 @@
+---
+title: Fiscal policy & government debt
+description: How governments use taxes and spending to steer the economy, and what makes a debt pile safe or dangerous.
+draft: false
+sidebar:
+  order: 2
+---
+import DebtSim from '../../../components/widgets/DebtSim.tsx';
+import Chart from '../../../components/Chart.tsx';
+import debt from '../../../data/GFDEGDQ188S.json';
+import deficit from '../../../data/FYFSGDA188S.json';
+import { since } from '../../../lib/series.js';
+
+## Why this matters
+
+In March 2020 the pandemic shut down the US economy almost overnight. Within weeks Congress passed the CARES Act, about $2.2 trillion of spending, tax breaks and loans, which included direct payments of $1,200 to households, extra unemployment benefits and loans to small businesses ([CRFB](https://www.crfb.org/blogs/whats-2-trillion-coronavirus-relief-package); [CRS](https://www.congress.gov/crs-product/R46729)). The federal deficit for that fiscal year came to $3.1 trillion, more than triple the year before ([CRS](https://www.congress.gov/crs-product/R46729)).
+
+That is **fiscal policy**: the government using its budget to steer the economy. Chapter 4 covered the central bank's half of policy. This chapter covers the other half, and the question it raises: who pays for all of this, and when does debt become a problem?
+
+## Taxes, spending, deficits and debt
+
+Governments take in money through taxes and spend it on things like pensions, health care, defence and interest on old debt.
+
+- A **deficit** is what the government borrows in one year, when it spends more than it collects. A **surplus** is the opposite.
+- **Debt** is the total pile built up by all past deficits, minus surpluses.
+
+The two are easy to mix up. A deficit is a flow, like water into a bath, and the debt is the water in the bath. Economists usually measure both as a **share of GDP**, which compares them with the size of the economy, the same way a bank compares a loan with your income. The US debt held by the public was 99% of GDP at the end of 2025, and the Congressional Budget Office (CBO) projects it will reach 120% by 2036 ([CBO](https://www.cbo.gov/publication/61882)).
+
+## How fiscal policy steers the economy
+
+**Automatic stabilisers.** Some of it needs no decision at all. In a recession people earn less, so they pay less tax, and more of them claim unemployment insurance and other benefits. Revenues fall and spending rises on their own, which props up demand. The CBO estimated these automatic effects increased the US deficit by 1.6% of potential GDP in 2020 ([CBO](https://www.cbo.gov/publication/60970)).
+
+**Deliberate stimulus.** When the automatic stabilisers are not enough, governments pass new spending or tax cuts, as in the CARES Act. This is faster and bigger, but it needs a vote, so it comes with a delay and a political fight.
+
+**Tightening.** In a boom, the government can do the reverse: raise taxes or cut spending to cool demand. That is politically much harder than the stimulus, which is one reason debt tends to rise over time.
+
+Fiscal policy and monetary policy work together, and sometimes against each other. In 2020 the Fed cut rates to near zero and bought bonds (see [Chapter 4](/Macro-Investing-Textbook/part-2-policy/04-central-banks/)) at the same time as the government spent trillions. Together they were much stronger than either alone.
+
+## The debt snowball: interest versus growth
+
+Can a country borrow forever? What matters is not the size of the debt but how it moves *relative to the economy*. Three things decide it ([IMF](https://www.imf.org/external/pubs/ft/tnm/2010/tnm1002.pdf)):
+
+1. **The interest rate** on the debt makes it grow. A higher rate adds more each year.
+2. **Economic growth** makes the economy bigger, so the same debt is a smaller share of it.
+3. **The deficit before interest** (called the *primary deficit*) adds new borrowing on top.
+
+When the interest rate is higher than the growth rate, debt grows on its own, even if the government stops borrowing anything new. That is the snowball. When growth beats the interest rate, the debt shrinks as a share of GDP without any budget surplus. The IMF says that persistent deficits, averaging around 5% of GDP worldwide, are the main driver of rising public debt, and that a widening gap between interest rates and growth is making it worse ([IMF](https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/execsumch1-combined.pdf)).
+
+## Try it
+
+The simulator below applies that rule. Debt starts at 100% of GDP, and every year it is multiplied by (1 + interest) ÷ (1 + growth), then the primary deficit is added on top. It is a simplified model, not a forecast.
+
+<DebtSim client:visible />
+
+Try these:
+
+1. **Set interest and growth equal, with no deficit.** What happens to the debt ratio?
+2. **Raise interest above growth by 3 points.** How long before the debt passes 150% of GDP?
+3. **Keep the interest rate high and cut the deficit.** How big a surplus do you need to stop the snowball?
+
+The lesson: a country with fast growth and low interest rates can carry a lot of debt, and one with slow growth and high interest rates cannot.
+
+## Real-world example: US debt and deficits
+
+The charts show two long-run US series. The first is federal debt as a share of GDP. The second is the deficit (negative numbers) or surplus (positive) each year.
+
+<Chart client:visible title="US: federal debt as a share of GDP since 1966" units="% of GDP" xLabel="Year" source="U.S. Treasury and BEA via FRED" asOf={debt.as_of}
+  note="Quarterly figures. Hover for values. This is total federal debt, which includes what one part of the government owes another, so it is higher than the 99% 'held by the public' figure quoted above."
+  lines={[{ label: 'Federal debt', points: since(debt.points, '1966-01-01') }]} />
+
+<Chart client:visible title="US: federal surplus or deficit as a share of GDP since 1966" units="% of GDP" xLabel="Year" source="U.S. Treasury and BEA via FRED (fiscal years)" asOf={deficit.as_of}
+  note="Yearly figures. Below zero is a deficit. Hover for values."
+  lines={[{ label: 'Surplus (+) or deficit (−)', points: since(deficit.points, '1966-01-01') }]} />
+
+Debt climbed through the 1980s and early 1990s, dipped as the decade ended (the budget was in surplus in 2000), then rose sharply after 2008 and 2020. The CBO projects a deficit of about 5.8% of GDP in 2026, against an average of 3.8% over the past 50 years ([CBO](https://www.cbo.gov/publication/61882)). The same report says interest on the debt goes from 3.3% of GDP in 2026 to 4.6% in 2036, and that rising interest costs drive much of the increase in deficits ([CBO](https://www.cbo.gov/publication/61882)). That is the snowball at work: the bigger the debt and the higher the rates, the more of each year's budget goes to interest, which adds to the next year's deficit.
+
+For an investor, this is why debt matters. Governments that borrow heavily depend on bond buyers to keep lending. If those buyers demand higher interest, the government's costs rise, and it may have to cut spending, raise taxes or lean on its central bank. Those choices move currencies, bond yields and stock markets, which is exactly where macro investors look for trades.
+
+## Key takeaways
+
+- **Fiscal policy** is the government using taxes and spending to steer the economy. A **deficit** is one year's borrowing, and **debt** is the total pile.
+- **Automatic stabilisers** cushion recessions without any new decision. **Stimulus** adds more, but needs a vote and comes with delay.
+- Whether debt is safe depends on **interest versus growth**, plus the **deficit before interest**. When interest beats growth, debt snowballs.
+- Fiscal and monetary policy work together. In 2020 they both pushed in the same direction.
+- Rising debt can push up interest costs, which is why bond markets watch government budgets closely.

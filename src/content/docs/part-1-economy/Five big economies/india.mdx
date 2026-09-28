@@ -8,7 +8,8 @@ sidebar:
 import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
 import Chart from '../../../../components/Chart.tsx';
 import big from '../../../../data/worldbank/big-economies.json';
-import { economyLines } from '../../../../lib/economies.js';
+import { economyLines, goalLine } from '../../../../lib/economies.js';
+
 
 ## Why this matters
 
@@ -20,9 +21,28 @@ India's economy grew 7.6% in 2025, the fastest of the five big economies (see th
 
 India leans toward **consumption**. Households spend about 57% of GDP ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=IN)), more than in China, Japan or the EU. Services such as software, finance and trade make up about half of the economy ([World Bank](https://data.worldbank.org/indicator/NV.SRV.TOTL.ZS?locations=IN)).
 
-## Who sets interest rates
+## The indicator to watch
 
-The **Reserve Bank of India** (RBI). Since 2016 its job has been defined by an inflation target: 4%, with an acceptable range of 2% to 6% ([PRS India](https://prsindia.org/policy/report-summaries/review-of-monetary-policy-framework-by-rbi)).
+**CPI inflation.** India's nominal anchor is 4% CPI inflation, with an acceptable range of 2% to 6% ([RBI](https://www.rbi.org.in/scripts/PublicationsView.aspx?id=17393)). [CPI](/Macro-Investing-Textbook/glossary/#cpi-consumer-price-index) is the headline measure, food included. That matters in India, where households spend about 57% of GDP, so a jump in food prices hits many families directly.
+
+<Chart client:visible title="India: consumer price inflation vs the RBI's 4% goal since 2016" units="%" xLabel="Year" source="World Bank" asOf={big.as_of}
+  note="Yearly figures. Hover for values. The RBI aims for 4%, and 2% to 6% counts as acceptable."
+  lines={[
+    { label: 'Inflation (consumer prices)', points: big.economies.IND.inflation.filter(([d]) => d >= '2016') },
+    goalLine('RBI goal: 4%', 4, big.economies.IND.inflation.filter(([d]) => d >= '2016')),
+    goalLine('Upper limit: 6%', 6, big.economies.IND.inflation.filter(([d]) => d >= '2016')),
+    goalLine('Lower limit: 2%', 2, big.economies.IND.inflation.filter(([d]) => d >= '2016')),
+  ]} />
+
+## How the Reserve Bank of India operates
+
+The **Reserve Bank of India** (RBI). Since 2016 its job has been defined by an inflation target: 4%, with an acceptable range of 2% to 6% ([PRS India](https://prsindia.org/policy/report-summaries/review-of-monetary-policy-framework-by-rbi)). The RBI Act was amended in 2016 to give this "flexible inflation targeting" a legal basis ([RBI](https://www.rbi.org.in/scripts/PublicationsView.aspx?id=17393)).
+
+| | |
+|---|---|
+| **Decision body** | The Monetary Policy Committee (MPC): six members. Three are from the RBI (the Governor as chair, the Deputy Governor for monetary policy and one more officer) and three are outside experts appointed by the government ([RBI](https://www.rbi.org.in/scripts/Annualpolicy.aspx)) |
+| **Meetings** | At least four times a year ([RBI](https://www.rbi.org.in/scripts/Annualpolicy.aspx)) |
+| **[Policy rate](/Macro-Investing-Textbook/glossary/#policy-rate)** | The [repo rate](/Macro-Investing-Textbook/glossary/#repo-rate): the rate at which the RBI lends to banks against government securities ([RBI](https://www.rbi.org.in/scripts/Annualpolicy.aspx)) |
 
 ## The numbers
 

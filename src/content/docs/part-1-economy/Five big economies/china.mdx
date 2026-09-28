@@ -9,6 +9,7 @@ import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
 import Chart from '../../../../components/Chart.tsx';
 import big from '../../../../data/worldbank/big-economies.json';
 import { economyLines } from '../../../../lib/economies.js';
+import { chinaTargets, targetLines } from '../../../../lib/china-targets.js';
 
 ## Why this matters
 
@@ -20,9 +21,57 @@ China's economy grew about 10% a year on average from 1990 to 2010 (see the char
 
 China is **production-led**. Households spend only about 40% of GDP, the lowest share of the five ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=CN)). Instead, growth has come from investment (factories, roads, apartments) and from exports. That model works while there is useful building left to do. It struggles once too much has been built.
 
-## Who sets interest rates
+## The indicator to watch
 
-The **People's Bank of China** (PBoC). By law it sets monetary policy "under the leadership of the State Council", China's cabinet ([PBoC law](https://www.registrationchina.com/articles/law/law-of-the-peoples-republic-of-china-on-the-peoples-bank-of-china/)), so it follows the government's economic goals. Each March the government sets targets for the year. For 2025 it aimed for growth of "around 5%" and inflation of "around 2%" ([Chinese government](https://english.www.gov.cn/news/202503/05/content_WS67c7ad77c6d0868f4e8f0568.html)).
+**The annual GDP target, and credit.** Each March the government sets a growth target, and for 2026 it is 4.5% to 5%, with a pledge to "strive for better in practice" ([Chinese government](https://english.www.gov.cn/2026special/2026npcandcpcc/202603/05/content_WS69a8ea12c6d00ca5f9a0987b.html)). Investors also watch *aggregate financing to the real economy*, often called total social financing. It is the PBoC's measure of all the financing the financial system gives to the real economy: loans, bonds and shares ([PBoC](https://www.pbc.gov.cn/en/3688247/3688978/3709140/5810739/index.html)). In a country where growth comes from investment, credit is the fuel.
+
+## How the People's Bank of China operates
+
+The **People's Bank of China** (PBoC). By law it sets monetary policy "under the leadership of the State Council", China's cabinet ([PBoC law](https://www.registrationchina.com/articles/law/law-of-the-peoples-republic-of-china-on-the-peoples-bank-of-china/)), so it follows the government's economic goals. That makes it the least independent of the five central banks in this section. The government's 2026 inflation target is "around 2%" ([Chinese government](https://english.www.gov.cn/2026special/2026npcandcpcc/202603/05/content_WS69a8ea12c6d00ca5f9a0987b.html)).
+
+| | |
+|---|---|
+| **[Policy rate](/Macro-Investing-Textbook/glossary/#policy-rate)** | The 7-day reverse repo rate, named the policy rate in July 2024 ([PBoC](https://wuhan.pbc.gov.cn/en/3688006/5876310/5877235/index.html)) |
+| **Rates households and firms pay** | The [loan prime rate](/Macro-Investing-Textbook/glossary/#loan-prime-rate-lpr) (LPR). A cut in the policy rate guides it down ([PBoC](https://www.pbc.gov.cn/en/3688229/3688335/3730276/3883798/5908974/index.html)) |
+| **Other tools** | The reserve requirement ratio, the share of deposits banks must hold back, and medium-term lending to banks ([BBVA Research](https://www.bbvaresearch.com/wp-content/uploads/2025/07/202507-Stocktaking-China-new-toolkit-in-its-monetary-policy-framework.pdf)) |
+
+## How the yearly agenda steers lending
+
+China plans in a fixed yearly rhythm, and the banks and markets follow it. In December the Party leadership holds the **Central Economic Work Conference** to set priorities for the coming year. The one held on 10–11 December 2025 named expanding domestic demand, innovation (including AI), and boosting consumption and investment as priorities for 2026, and said monetary policy would stay "moderately loose" ([Chinese government](https://english.www.gov.cn/news/202512/11/content_WS693a9c0dc6d00ca5f9a08098.html)). In March the government turns those priorities into numbers in its **Government Work Report**: the 2026 report set the 4.5% to 5% growth target ([Chinese government](https://english.www.gov.cn/2026special/2026npcandcpcc/202603/05/content_WS69a8ea12c6d00ca5f9a0987b.html)).
+
+The PBoC then turns the agenda into credit. Instead of only moving one rate for the whole economy, it uses **structural tools**: cheap loans to banks (called relending) on the condition that the banks lend on to favoured sectors. The PBoC said in January 2026 that it would support domestic demand, technology and small firms, and steer credit to services consumption and elderly care ([Chinese government](https://english.www.gov.cn/news/202601/06/content_WS695d0feec6d00ca5f9a08734.html)). One report says the quota for its technology relending programme was raised from 800 billion to 1.2 trillion yuan, and that a 500 billion yuan programme covers services consumption and elderly care ([Science and Technology Daily](https://www.stdaily.com/web/English/2026-01/26/content_466125.html)).
+
+**The latest update** came on 12 August 2026. The PBoC said it would keep strengthening financial support for domestic demand, technological innovation and small and micro firms. By the end of June 2026, loans to the technology, green, inclusive finance, elderly care and digital economy sectors were all growing faster than total lending ([Chinese government](https://english.www.gov.cn/news/202608/13/content_WS6a7d2a05c6d00ca5f9a0c977.html)).
+
+### What the yearly goals looked like
+
+<Chart client:visible title="China: the growth target vs actual growth, 2011–2026" units="%" xLabel="Year" source="Government Work Reports (targets); World Bank (actual growth)" asOf={big.as_of}
+  note="Ranges are plotted at their midpoint (2016: 6.5–7%, 2019: 6–6.5%, 2026: 4.5–5%). 2021's target was 'over 6%'. No target was set for 2020 because of Covid-19, so that year has only an actual. Hover for values."
+  lines={targetLines(chinaTargets, big.economies.CHN.growth)} />
+
+The target has come down step by step, from 8% in 2011 to 4.5–5% in 2026. Actual growth stayed close to the goal in most years. The big gaps came in the Covid years: growth was 2.3% in 2020 when no target was set, rebounded to 8.6% in 2021 against a goal of "over 6%", then fell to about 3.1% in 2022 against a goal of 5.5% ([World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG?locations=CN)).
+
+<details>
+<summary>Where each year's target comes from</summary>
+
+- 2011: [source](https://www.chinadaily.com.cn/china/2012-03/05/content_14755389.htm)
+- 2012: [source](https://www.chinadaily.com.cn/china/2012-03/05/content_14755389.htm)
+- 2013: [source](https://www.cnbc.com/2014/03/04/china-sets-2014-gdp-growth-target-at-75.html)
+- 2014: [source](https://www.cnbc.com/2014/03/04/china-sets-2014-gdp-growth-target-at-75.html)
+- 2015: [source](https://www.foxnews.com/world/china-sets-official-economic-growth-target-of-about-7-percent-for-2015)
+- 2016: [source](https://www.deccanherald.com/business/china-slashes-2017-gdp-target-1994029)
+- 2017: [source](https://www.deccanherald.com/business/china-slashes-2017-gdp-target-1994029)
+- 2018: [source](https://www.pressreader.com/suriname/times-of-suriname/20180306/282140701883922)
+- 2019: [source](https://english.www.gov.cn/premier/news/2019/03/05/content_281476549639196.htm)
+- 2021: [source](https://english.www.gov.cn/premier/news/202103/05/content_WS6041b3c0c6d0719374afa151.html)
+- 2022: [source](https://english.www.gov.cn/premier/news/202203/05/content_WS6222c1cdc6d09c94e48a5f67.html)
+- 2023: [source](https://gulfnews.com/business/china-sets-economic-growth-target-of-around-5-for-2023-1.1677986045144)
+- 2024: [source](https://english.www.gov.cn/news/202403/05/content_WS65e67406c6d0868f4e8e4a25.html)
+- 2025: [source](https://english.www.gov.cn/news/202503/05/content_WS67c7ad77c6d0868f4e8f0568.html)
+- 2026: [source](https://english.www.gov.cn/2026special/2026npcandcpcc/202603/05/content_WS69a8ea12c6d00ca5f9a0987b.html)
+</details>
+
+For an investor this is the lens for China: ask which sectors the current agenda favours, because they get cheaper and easier credit, while sectors outside it get less of that support.
 
 ## The numbers
 

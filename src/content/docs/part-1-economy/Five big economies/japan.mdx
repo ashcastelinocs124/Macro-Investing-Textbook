@@ -8,7 +8,8 @@ sidebar:
 import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
 import Chart from '../../../../components/Chart.tsx';
 import big from '../../../../data/worldbank/big-economies.json';
-import { economyLines } from '../../../../lib/economies.js';
+import { economyLines, goalLine } from '../../../../lib/economies.js';
+
 
 ## Why this matters
 
@@ -22,9 +23,27 @@ Japan is still a big economy, at $4.4 trillion in 2025 ([World Bank](https://dat
 
 Japan is **mixed**. Households spend about 53% of GDP ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=JP)). It is home to big exporters such as carmakers and electronics firms. Unemployment has stayed low throughout: it never went above 5.4% in this data (see the chart).
 
-## Who sets interest rates
+## The indicator to watch
+
+**Consumer price inflation (CPI) against the 2% target**, plus the **Tankan**. Since January 2013 the Bank of Japan's target has been 2% CPI inflation ([Bank of Japan](https://www.boj.or.jp/en/mopo/outline/index.htm)). The Tankan is the Bank's own quarterly survey of Japanese firms, published in March, June, September and December ([Bank of Japan](https://www.boj.or.jp/en/statistics/tk/index.htm)). It asks businesses how conditions look, which gives an early read on whether the economy can handle higher rates.
+
+<Chart client:visible title="Japan: consumer price inflation vs the BoJ's 2% goal since 2013" units="%" xLabel="Year" source="World Bank" asOf={big.as_of}
+  note="Yearly figures. Hover for values. The 2% goal was adopted in January 2013."
+  lines={[
+    { label: 'Inflation (consumer prices)', points: big.economies.JPN.inflation.filter(([d]) => d >= '2013') },
+    goalLine('BoJ goal: 2%', 2, big.economies.JPN.inflation.filter(([d]) => d >= '2013')),
+  ]} />
+
+## How the Bank of Japan operates
 
 The **Bank of Japan** (BoJ). In January 2013 it adopted a 2% inflation target, together with the government, to end years of falling prices ([Bank of Japan](https://www.boj.or.jp/en/mopo/outline/target.htm)). From 2016 it even set a negative interest rate, charging banks to hold money with it. It only raised rates above zero again in March 2024, its first hike in 17 years ([CNBC](https://www.cnbc.com/2024/03/19/bank-of-japan-boj-march-2024-policy-decision-mpm-meeting.html)).
+
+| | |
+|---|---|
+| **Decision body** | The nine-member Policy Board (the Governor, two Deputy Governors and six other members), deciding by majority vote ([Bank of Japan](https://www.boj.or.jp/en/mopo/outline/index.htm)) |
+| **Meetings** | Eight Monetary Policy Meetings a year, each lasting two days ([Bank of Japan](https://www.boj.or.jp/en/mopo/outline/index.htm)) |
+| **[Policy rate](/Macro-Investing-Textbook/glossary/#policy-rate)** | The uncollateralized overnight call rate, the rate at which banks lend to each other overnight ([Bank of Japan](https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250617a.htm)) |
+| **Other tools** | Buying Japanese government bonds. The Bank is gradually reducing the size of these purchases ([Bank of Japan](https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250617a.htm)) |
 
 ## The numbers
 

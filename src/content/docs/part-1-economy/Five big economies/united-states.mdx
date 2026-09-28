@@ -8,7 +8,10 @@ sidebar:
 import EconomyStats from '../../../../components/widgets/EconomyStats.tsx';
 import Chart from '../../../../components/Chart.tsx';
 import big from '../../../../data/worldbank/big-economies.json';
-import { economyLines } from '../../../../lib/economies.js';
+import { economyLines, goalLine } from '../../../../lib/economies.js';
+import { yoy, since } from '../../../../lib/series.js';
+import pce from '../../../../data/PCEPI.json';
+import corePce from '../../../../data/PCEPILFE.json';
 
 ## Why this matters
 
@@ -22,9 +25,29 @@ This page and the next four look at the five biggest economies the same way: wha
 
 The US is **consumer-led**. Household spending makes up about 68% of GDP, the highest share of the five ([World Bank](https://data.worldbank.org/indicator/NE.CON.PRVT.ZS?locations=US)). That's why US retail sales, jobs and wages matter so much: when American households feel confident and employed, they spend, and the whole economy grows.
 
-## Who sets interest rates
+## The indicator to watch
 
-The **Federal Reserve** (the Fed). Congress gave it two goals, known as the dual mandate: maximum employment and stable prices ([Federal Reserve](https://www.federalreserve.gov/faqs/what-economic-goals-does-federal-reserve-seek-to-achieve-through-monetary-policy.htm)). It defines stable prices as 2% inflation, measured with [PCE](/Macro-Investing-Textbook/glossary/#pce-personal-consumption-expenditures-price-index) ([Federal Reserve](https://www.federalreserve.gov/faqs/economy_14400.htm)).
+**Core PCE inflation**, together with jobs data. The Fed's 2% target is defined with [PCE](/Macro-Investing-Textbook/glossary/#pce-personal-consumption-expenditures-price-index) ([Federal Reserve](https://www.federalreserve.gov/faqs/economy_14400.htm)). Officials look closely at the [core](/Macro-Investing-Textbook/glossary/#core-inflation) version, which leaves out food and energy because those prices swing so much. Core has historically been a better guide to where total inflation is heading ([Federal Reserve](https://www.federalreserve.gov/pubs/feds/2011/201156/)). The other half of the mandate is tracked with the [unemployment rate](/Macro-Investing-Textbook/glossary/#unemployment-rate).
+
+<Chart client:visible title="US: PCE inflation vs the Fed's 2% goal" units="%" xLabel="Year" source="Bureau of Economic Analysis via FRED (year-over-year change)" asOf={corePce.as_of}
+  note="Hover for values. The 2% goal is measured with total PCE; core PCE leaves out food and energy."
+  lines={[
+    { label: 'PCE (the goal is set on this)', points: since(yoy(pce.points), '2013-01-01') },
+    { label: 'Core PCE', points: since(yoy(corePce.points), '2013-01-01') },
+    goalLine('Fed goal: 2%', 2, since(yoy(pce.points), '2013-01-01')),
+  ]} />
+
+## How the Federal Reserve operates
+
+The **Federal Reserve** (the Fed) is the US central bank. Congress gave it two goals, known as the dual mandate: maximum employment and stable prices ([Federal Reserve](https://www.federalreserve.gov/faqs/what-economic-goals-does-federal-reserve-seek-to-achieve-through-monetary-policy.htm)).
+
+| | |
+|---|---|
+| **Decision body** | The Federal Open Market Committee (FOMC): 12 voting members, meeting eight times a year ([Federal Reserve](https://www.federalreserve.gov/monetarypolicy/fomc.htm)) |
+| **[Policy rate](/Macro-Investing-Textbook/glossary/#policy-rate)** | The federal funds rate: the rate banks charge each other for overnight loans. The FOMC sets a target for it ([Federal Reserve](https://www.federalreserve.gov/monetarypolicy/fomc.htm)) |
+| **Other tools** | Interest paid on banks' reserves, overnight reverse repos, the discount window and buying or selling securities ([Federal Reserve](https://www.federalreserve.gov/monetarypolicy/policytools.htm)) |
+
+In short: the FOMC votes on the target for the federal funds rate, and the Fed uses its other tools to push the market rate toward it.
 
 ## The numbers
 
