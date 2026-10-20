@@ -1,0 +1,43 @@
+---
+title: People's Bank of China
+description: "China's central bank: how it is built, who decides, the tools it uses, and how the loan prime rate works."
+draft: false
+sidebar:
+  order: 5
+---
+import Chart from '../../../../components/Chart.tsx';
+import rates from '../../../../data/policy-rates/china.json';
+import { stepLine } from '../../../../lib/policy-rates.js';
+
+## What it is
+
+The **People's Bank of China** (PBoC) was established on 1 December 1948 in Shijiazhuang, Hebei Province, by merging three earlier banks. The renminbi went into circulation at the same time ([PBoC](https://www.pbc.gov.cn/en/3688066/3688089/index.html)). Its functions include setting and carrying out monetary policy, issuing the renminbi, regulating the interbank, bond, foreign exchange and gold markets, and preventing systemic financial risk ([PBoC](https://www.pbc.gov.cn/en/3688066/3688080/index.html)). For how the government's yearly agenda steers lending, see the [China page](/Macro-Investing-Textbook/part-1-economy/five-big-economies/china/).
+
+## Who decides
+
+By law the PBoC sets monetary policy "under the leadership of the State Council", China's cabinet ([PBoC law](https://www.registrationchina.com/articles/law/law-of-the-peoples-republic-of-china-on-the-peoples-bank-of-china/)). The law also provides for a **Monetary Policy Committee**, whose responsibilities, composition and working procedures are set by the State Council. It plays an important role in making and adjusting policy ([PBoC](https://www.pbc.gov.cn/english/130733/2025080815071319086/index.html)). Compared with the Fed or the ECB, this is a less independent setup.
+
+## The tools
+
+| Tool | What it does |
+|---|---|
+| **7-day reverse repo rate** | The policy rate. The PBoC designated it as the policy rate in July 2024 ([PBoC](https://wuhan.pbc.gov.cn/en/3688006/5876310/5877235/index.html)). |
+| **Loan prime rate (LPR)** | The benchmark lending rate, published monthly. It is based on the rates 20 quoting banks give their best customers, under a mechanism reformed in August 2019 ([PBoC](https://www.pbc.gov.cn/english/130721/2025080815070342754/index.html)). A cut in the policy rate guides it down ([PBoC](https://www.pbc.gov.cn/en/3688229/3688335/3730276/3883798/5908974/index.html)). |
+| **Reserve requirement ratio (RRR)** | The share of deposits banks must hold back. In May 2025 it was cut by 0.5 percentage points for most institutions ([PBoC](https://www.pbc.gov.cn/en/3688229/3688353/3688362/5846652/index.html)). |
+| **Medium-term lending facility (MLF)** | Medium-term loans to banks. Its rate was cut from 2.3% to 2% in September 2024 ([PBoC](https://www.pbc.gov.cn/en/3688229/3688353/3688362/2025080817514243079/index.html)). |
+| **Central bank lending** | Lending to banks with rates set by loan term. In May 2025 the rates were cut by 0.25 percentage points, to 1.5% for one year ([PBoC](https://www.pbc.gov.cn/en/3688229/3688353/3688362/5846652/index.html)). |
+| **Structural tools** | Cheap loans tied to lending for favoured sectors, described on the [China page](/Macro-Investing-Textbook/part-1-economy/five-big-economies/china/). |
+
+## Its rate over time
+
+<Chart client:visible title="China: the PBoC's policy rate and the 1-year loan prime rate since December 2023" units="%" xLabel="Year" source="People's Bank of China (announcements and monetary policy reports)" asOf="2025-12-22"
+  note="Each step is a change. Hover for values. Data run to the 22 December 2025 LPR announcement."
+  lines={Object.entries(rates.series).map(([label, pts]) => ({ label, points: stepLine(pts) }))} />
+
+In 2024 the PBoC cut the policy rate twice, by 10 basis points in July and 20 in September ([PBoC](https://www.pbc.gov.cn/en/3688229/3688353/3688362/2025080817514246071/index.html)). The one-year LPR was 3.35% after the July change ([PBoC](https://www.pbc.gov.cn/en/3688229/3688353/3688362/2025080817514246071/index.html)), and in May 2025 it fell to 3.0% ([PBoC](https://www.pbc.gov.cn/en/3688229/3688353/3688362/5846652/index.html)). It was still 3.0% on 22 December 2025 ([PBoC](https://www.pbc.gov.cn/en/3688229/3688335/3730276/3883798/2025122515153095570/index.html)).
+
+## Key takeaways
+
+- The PBoC follows the **State Council's leadership** and has a Monetary Policy Committee whose rules the State Council sets.
+- Its **policy rate** is the **7-day reverse repo rate** (since July 2024), and it guides the **loan prime rate**, which is what borrowers actually pay.
+- It also uses the **reserve requirement ratio**, medium-term lending, central bank lending and structural tools.

@@ -1,0 +1,45 @@
+---
+title: Reserve Bank of India
+description: "India's central bank: how it is built, how its six-member committee votes, and every tool it uses."
+draft: false
+sidebar:
+  order: 4
+---
+import Chart from '../../../../components/Chart.tsx';
+import repo from '../../../../data/policy-rates/india.json';
+import { stepLine } from '../../../../lib/policy-rates.js';
+
+## What it is
+
+The **Reserve Bank of India** (RBI) was established on 1 April 1935 under the Reserve Bank of India Act, 1934. Its central office was first in Kolkata and moved permanently to Mumbai in 1937 ([RBI](https://rbi.org.in/Scripts/AboutUsDisplay.aspx)). Since a 2016 change to that Act, monetary policy has a legal inflation-targeting framework, and the target is 4% with an acceptable range of 2% to 6% ([RBI](https://www.rbi.org.in/scripts/PublicationsView.aspx?id=17393)). For the goal chart, see the [India page](/Macro-Investing-Textbook/part-1-economy/five-big-economies/india/).
+
+## Who decides
+
+- **The Monetary Policy Committee (MPC)** has six members. Three are from the RBI: the Governor as chair, the Deputy Governor in charge of monetary policy, and one other officer. Three are outside experts appointed by the government ([RBI](https://www.rbi.org.in/scripts/Annualpolicy.aspx)).
+- It must meet at least four times a year ([RBI](https://www.rbi.org.in/scripts/Annualpolicy.aspx)). For example, its 58th meeting ran from 3 to 5 December 2025 ([RBI](https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61749)).
+
+## The tools
+
+| Tool | What it does |
+|---|---|
+| **Repo rate** | The policy rate. It is the rate at which the RBI lends to banks against government securities, through the liquidity adjustment facility (LAF) ([RBI](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752)). |
+| **Standing deposit facility** | The rate at which the RBI takes overnight deposits from banks without collateral. It sits 25 basis points below the repo rate ([RBI](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752)). |
+| **Marginal standing facility** | An overnight penal borrowing rate, 25 basis points above the repo rate ([RBI](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752)). |
+| **Reverse repo rate** | The rate at which the RBI absorbs cash from banks against government securities ([RBI](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752)). |
+| **Cash reserve ratio (CRR)** | The share of their deposits that banks must keep with the RBI ([RBI](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752)). |
+| **Statutory liquidity ratio (SLR)** | The minimum share of assets banks must hold, usually in government securities ([RBI](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752)). |
+| **Open market operations** | The RBI buys or sells government securities outright to add or remove cash for the longer term ([RBI](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752)). |
+
+## Its rate over time
+
+<Chart client:visible title="India: the RBI's repo rate since March 2020" units="%" xLabel="Year" source="Reserve Bank of India (Monetary Policy Committee statements)" asOf="2025-12-05"
+  note="Each step is a decision. Hover for values. Dates for May, August and December 2022 sit at the start of the month."
+  lines={[{ label: 'Repo rate', points: stepLine(repo.points) }]} />
+
+Two runs stand out. In 2020 the committee cut the rate by 115 basis points during March to May ([RBI](https://rbi.org.in/scripts/AnnualReportPublications.aspx?Id=1316)), and in 2022 it raised it by a cumulative 250 basis points ([RBI](https://www.rbi.org.in/scripts/AnnualReportPublications.aspx?Id=1374)). On 5 December 2025 it cut the rate by 25 basis points to 5.25% ([RBI](https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=61749)). The steps are from the RBI's decision statements, listed on its [monetary policy page](https://www.rbi.org.in/scripts/annualpolicy.aspx).
+
+## Key takeaways
+
+- The RBI has a **legal inflation target** of 4% (2% to 6%).
+- A **six-member committee**, three from the RBI and three outsiders, sets the **repo rate** at least four times a year.
+- Its toolkit has **rate tools** (repo, standing deposit facility, marginal standing facility) and **balance-sheet tools** (CRR, SLR, open market operations).

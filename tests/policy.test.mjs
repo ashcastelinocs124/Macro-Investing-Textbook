@@ -21,3 +21,24 @@ test('debt shrinks when growth beats interest, snowballs when interest beats gro
 	assert.equal(verdict(debtPath({ rate: 0.08, growth: 0.01, primary: 0.03 })), 'Snowballing');
 	assert.equal(debtPath({ rate: 0.04, growth: 0.04, primary: 0 }).at(-1)[1], 100); // stable when r = g and no deficit
 });
+
+import { readFileSync } from 'node:fs';
+import { stepLine } from '../src/lib/policy-rates.js';
+
+test('stepLine holds each rate until the next change', () => {
+	assert.deepEqual(stepLine([['2020-01-01', 5], ['2020-03-01', 4]]), [['2020-01-01', 5], ['2020-03-01', 5], ['2020-03-01', 4]]);
+});
+
+for (const f of ['india', 'china']) {
+	test(`policy-rates/${f}.json is ordered, numeric and sourced`, () => {
+		const d = JSON.parse(readFileSync(new URL(`../src/data/policy-rates/${f}.json`, import.meta.url), 'utf8'));
+		assert.ok(d.source && d.index.startsWith('https://'));
+		for (const pts of d.series ? Object.values(d.series) : [d.points]) {
+			pts.forEach(([date, v], i) => {
+				assert.match(date, /^\d{4}-\d{2}-\d{2}$/);
+				assert.ok(Number.isFinite(v));
+				if (i) assert.ok(date >= pts[i - 1][0]);
+			});
+		}
+	});
+}

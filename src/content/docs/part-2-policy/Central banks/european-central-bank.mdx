@@ -1,0 +1,44 @@
+---
+title: European Central Bank
+description: "The central bank of the euro area: how it is built, who votes, and every tool it uses."
+draft: false
+sidebar:
+  order: 2
+---
+import Chart from '../../../../components/Chart.tsx';
+import dfr from '../../../../data/ECBDFR.json';
+
+## What it is
+
+The **European Central Bank** (ECB) sets monetary policy for the countries that use the euro. Its statute created the ECB and the wider European System of Central Banks from 1 June 1998, and since 1 January 1999 the ECB has been responsible for the euro area's monetary policy ([ECB](https://www.ecb.europa.eu/pub/pdf/other/gendoc98en.pdf)).
+
+The **Eurosystem** is the ECB plus the national central banks of the euro countries ([ECB](https://www.ecb.europa.eu/ecb/orga/escb/html/index.en.html)). There are 21 euro countries since Bulgaria joined on 1 January 2026 ([ECB](https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html)). It aims for 2% inflation and treats undershooting as just as bad as overshooting ([ECB](https://www.ecb.europa.eu/mopo/strategy/pricestab/html/index.en.html)). For its inflation measure, see the [European Union page](/Macro-Investing-Textbook/part-1-economy/five-big-economies/european-union/).
+
+## Who decides
+
+- **The Governing Council** formulates monetary policy. It consists of the six members of the Executive Board plus the governors of the national central banks of the euro countries. It usually meets twice a month, and takes monetary policy decisions every six weeks, followed by a press conference ([ECB](https://www.ecb.europa.eu/ecb/orga/decisions/govc/html/index.en.html)).
+- **Rotating votes.** Because the euro area has grown, national governors take turns holding voting rights, a system in place since Lithuania joined in January 2015 ([ECB](https://www.ecb.europa.eu/ecb/orga/decisions/govc/html/index.en.html)).
+- **What it decides.** The Council adopts the guidelines and takes the decisions needed for the ECB's tasks, including banking supervision decisions made under a non-objection procedure ([ECB](https://www.ecb.europa.eu/ecb/orga/decisions/govc/html/index.en.html)).
+
+## The tools
+
+| Tool | What it does |
+|---|---|
+| **Deposit facility rate** | The main steering rate. It is what banks earn on overnight deposits at the ECB, and the Governing Council steers its policy stance through it ([ECB](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/what-is-the-deposit-facility-rate.en.html)). |
+| **Main refinancing operations** | The rate at which banks can borrow from the ECB for one week. Since 18 September 2024 it is 15 basis points above the deposit facility rate ([ECB](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/what-is-the-deposit-facility-rate.en.html)). |
+| **Marginal lending facility** | Overnight borrowing at a higher rate ([ECB](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/what-is-the-deposit-facility-rate.en.html)). |
+| **Other open market operations** | Longer-term refinancing operations, fine-tuning operations and structural operations ([ECB](https://www.ecb.europa.eu/pub/pdf/scpops/ecb.op304~7557c991fb.en.pdf)). |
+| **Minimum reserves** | Banks must hold minimum reserves with their national central bank ([ECB](https://www.ecb.europa.eu/pub/pdf/scpops/ecb.op304~7557c991fb.en.pdf)). |
+| **Asset purchases** | Used when there is little room left to cut rates ([ECB](https://www.ecb.europa.eu/services/glossary/html/act6e.en.html)). |
+
+## Its rate over time
+
+<Chart client:visible title="Euro area: the ECB's deposit facility rate since 1999" units="%" xLabel="Year" source="European Central Bank via FRED (monthly average)" asOf={dfr.as_of}
+  note="Hover for values. The rate went below zero, meaning banks paid to leave money at the ECB."
+  lines={[{ label: 'Deposit facility rate', points: dfr.points }]} />
+
+## Key takeaways
+
+- The ECB runs one monetary policy for **21 countries**, and its Governing Council mixes the six-member Executive Board with the national central bank governors.
+- It decides **every six weeks** and steers policy through the **deposit facility rate**.
+- Other tools: the main refinancing rate, the marginal lending facility, longer-term operations, minimum reserves and asset purchases.

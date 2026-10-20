@@ -1,0 +1,23 @@
+{
+	"title": "PBoC policy rate and loan prime rate",
+	"units": "%",
+	"source": "People's Bank of China, policy announcements and monetary policy reports",
+	"note": "Each point is the rate after a change. Data run to the 22 December 2025 LPR announcement. The 7-day reverse repo rate became the policy rate in July 2024.",
+	"index": "https://www.pbc.gov.cn/en/3688229/index.html",
+	"series": {
+		"7-day reverse repo rate (policy rate)": [
+			["2023-12-01", 1.8],
+			["2024-07-22", 1.7],
+			["2024-09-27", 1.5],
+			["2025-05-08", 1.4],
+			["2025-12-22", 1.4]
+		],
+		"1-year loan prime rate": [
+			["2023-12-01", 3.45],
+			["2024-07-22", 3.35],
+			["2024-10-21", 3.1],
+			["2025-05-20", 3.0],
+			["2025-12-22", 3.0]
+		]
+	}
+}

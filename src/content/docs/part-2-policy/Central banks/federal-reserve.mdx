@@ -1,0 +1,54 @@
+---
+title: Federal Reserve
+description: "The US central bank: how it is built, who votes on rates, and every tool it uses."
+draft: false
+sidebar:
+  order: 1
+---
+import Chart from '../../../../components/Chart.tsx';
+import fedfunds from '../../../../data/FEDFUNDS.json';
+import { since } from '../../../../lib/series.js';
+
+## What it is
+
+The **Federal Reserve** (the Fed) is the central bank of the United States. Congress created it with the Federal Reserve Act of 1913, and it was built as a central Board with a network of regional Reserve Banks. The 12 Reserve Banks opened for business on 16 November 1914 ([Federal Reserve History](https://www.federalreservehistory.org/essays/federal-reserve-banks)). The Fed's own history is told in [an overview](https://www.federalreservehistory.org/essays/federal-reserve-history).
+
+The system has three parts: the Board of Governors, the Federal Open Market Committee (FOMC) and the 12 Reserve Banks ([Federal Reserve History](https://www.federalreservehistory.org/essays/fed-structure)). Its goals are maximum employment and stable prices, the dual mandate ([Federal Reserve](https://www.federalreserve.gov/faqs/what-economic-goals-does-federal-reserve-seek-to-achieve-through-monetary-policy.htm)). For the goal chart and the indicator it watches, see the [United States page](/Macro-Investing-Textbook/part-1-economy/five-big-economies/united-states/).
+
+## Who decides
+
+- **The Board of Governors** has seven members, each serving a staggered 14-year term. The President nominates them and the Senate confirms them. The chair and vice chair serve four-year terms ([Federal Reserve History](https://www.federalreservehistory.org/essays/board-of-governors)).
+- **The FOMC** sets the policy rate. It has 12 voting members: the seven governors, the New York Fed president and four other Reserve Bank presidents who rotate. It meets eight times a year ([Federal Reserve](https://www.federalreserve.gov/monetarypolicy/fomc.htm)).
+- **Independence.** The Fed's decisions do not need approval from the President or anyone else in the executive or legislative branches. It is still accountable: the Chair testifies to Congress, and the Board sends a Monetary Policy Report twice a year ([Federal Reserve](https://www.federalreserve.gov/faqs/about_12799.htm)).
+
+## The tools
+
+| Tool | What it does |
+|---|---|
+| **Federal funds rate target** | The main tool. The FOMC sets a target for the rate banks charge each other for overnight loans ([Federal Reserve](https://www.federalreserve.gov/monetarypolicy/fomc.htm)). |
+| **Interest on reserve balances** | The Fed pays banks interest on the cash they keep with it. In March 2020 it set this rate at 0.10%, down from 1.10% ([Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/monetary20200315a1.htm)). |
+| **Overnight reverse repos** | The Fed borrows cash overnight from eligible firms against Treasury securities it holds ([Federal Reserve](https://www.federalreserve.gov/monetarypolicy/policytools.htm)). |
+| **Open market operations and the balance sheet** | The Fed buys and sells securities. Buying large amounts is quantitative easing (QE), and letting holdings run off is quantitative tightening (QT). The balance sheet went from about $4 trillion to nearly $9 trillion between 2020 and early 2022 ([Richmond Fed](https://www.richmondfed.org/publications/research/econ_focus/2022/q3_federal_reserve)). |
+| **Discount window** | Short-term loans to banks at the discount rate ([Federal Reserve](https://www.federalreserve.gov/monetarypolicy/policytools.htm)). |
+| **Reserve requirements** | Reduced to zero percent from 26 March 2020 ([Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/monetary20200315b.htm)). |
+| **Forward guidance** | Telling the public the likely future course of policy ([Federal Reserve](https://www.federalreserve.gov/faqs/what-is-forward-guidance-how-is-it-used-in-the-federal-reserve-monetary-policy.htm)). |
+
+Chapter 4 explains [how these tools reach the economy](/Macro-Investing-Textbook/part-2-policy/04-central-banks/).
+
+## Its rate over time
+
+<Chart client:visible title="US: the Fed's policy rate since 2000" units="%" xLabel="Year" source="Federal Reserve via FRED (monthly effective federal funds rate)" asOf={fedfunds.as_of}
+  note="Hover for values. Shaded: rates cut to near zero in March 2020, and the rate rises that began in March 2022."
+  lines={[{ label: 'Federal funds rate', points: since(fedfunds.points, '2000-01-01') }]}
+  ranges={[
+    { from: '2020-03-15', to: '2022-03-16', label: 'Near zero' },
+    { from: '2022-03-16', to: '2023-07-26', label: 'Rate rises' },
+  ]} />
+
+The Fed raised its target range by 5.25 percentage points between March 2022 and July 2023 ([St. Louis Fed](https://www.stlouisfed.org/on-the-economy/2023/aug/gauging-fed-current-tightening-actions-historical-perspective)).
+
+## Key takeaways
+
+- The Fed has **two goals**, jobs and stable prices, and is independent in how it pursues them.
+- The **FOMC** (12 voters, eight meetings a year) sets the policy rate. The Board of Governors has seven members.
+- Its tools: the **federal funds rate**, interest on reserves, reverse repos, **QE and QT**, the discount window and **forward guidance**. Reserve requirements are now zero.
