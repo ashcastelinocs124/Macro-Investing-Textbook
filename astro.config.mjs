@@ -12,9 +12,10 @@ export default defineConfig({
 			title: 'Global Macro Cookbook',
 			description: 'A free, interactive textbook on how the global economy moves markets.',
 			customCss: ['@fontsource/lato/400.css', '@fontsource/lato/400-italic.css', '@fontsource/lato/700.css', './src/styles/custom.css'],
-			plugins: [starlightLinksValidator()],
+			// The landing hero's "#parts" anchor points at a section in Landing.astro, which the validator can't see.
+			plugins: [starlightLinksValidator({ exclude: ({ link }) => link === '#parts' })],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/ashcastelinocs124/Macro-Investing-Textbook' }],
-			components: { SocialIcons: './src/components/SocialIcons.astro' },
+			components: { SocialIcons: './src/components/SocialIcons.astro', Hero: './src/components/LandingHero.astro' },
 			sidebar: [
 				{ label: 'Start here', items: [{ autogenerate: { directory: 'start-here' } }] },
 				{ label: 'Part I · How the economy works', items: [{ autogenerate: { directory: 'part-1-economy' } }] },

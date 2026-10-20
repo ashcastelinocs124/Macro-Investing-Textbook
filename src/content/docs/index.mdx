@@ -3,29 +3,16 @@ title: Global Macro Cookbook
 description: A free, interactive textbook on how the global economy moves markets.
 template: splash
 hero:
-  tagline: How interest rates, inflation, currencies and central banks move every market on earth. Learn it from zero, with real-data charts and hands-on simulations.
+  title: Learn how the global economy moves markets.
+  tagline: Interest rates, inflation, currencies and central banks, explained from zero. Charts use real data, and most chapters have a model you can play with.
   actions:
-    - text: Start here
+    - text: Start reading
       link: /Macro-Investing-Textbook/start-here/what-is-an-investment/
-      icon: right-arrow
-    - text: Glossary
-      link: /Macro-Investing-Textbook/glossary/
-      variant: minimal
+    - text: Browse the chapters
+      link: '#parts'
+      variant: secondary
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import Landing from '../../components/Landing.astro';
 
-## What's inside
-
-<CardGrid>
-	<Card title="Start here">What an investment is, and the different kinds of investors who move markets.</Card>
-	<Card title="Part I · How the economy works">Growth, inflation, the business cycle, money and credit.</Card>
-	<Card title="Part II · Policy makers">Central banks, interest rates, government spending and debt.</Card>
-	<Card title="Part III · The asset classes">Bonds, currencies, commodities and stocks through a macro lens.</Card>
-	<Card title="Part IV · The global system">Trade, capital flows, emerging markets and famous crises.</Card>
-	<Card title="Part V · Doing macro">Regimes, building a trade thesis, sizing and risk, case studies.</Card>
-</CardGrid>
-
-## Who this is for
-
-Anyone curious about how the big picture moves markets. You don't need a finance background: every term is explained the first time it appears, and there's very little math.
+<Landing />

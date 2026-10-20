@@ -1,0 +1,45 @@
+---
+// Override of Starlight's Hero. Only the landing page has `hero` frontmatter, so this is the landing hero.
+// Look ported from deep-ml.com.
+import { Image } from 'astro:assets';
+import HeroRateDemo from './HeroRateDemo.tsx';
+import skyline from '../assets/landing/nyc-night.jpg';
+import { transmit } from '../lib/monetary.js';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/700.css';
+import '../styles/landing.css';
+
+const { data } = Astro.locals.starlightRoute.entry;
+const { title = data.title, tagline, actions = [] } = data.hero || {};
+const oneHike = transmit(1);
+const hikeCost = Math.round(oneHike.payment - oneHike.paymentBefore);
+---
+
+<div class="landing-hero">
+	<div class="landing-backdrop" aria-hidden="true">
+		<Image src={skyline} alt="" widths={[960, 1920]} sizes="100vw" loading="eager" fetchpriority="high" />
+	</div>
+	<div class="landing-hero-grid">
+		<div>
+			<h1 id="_top" data-page-title set:html={title} />
+			{tagline && <p class="landing-lede" set:html={tagline} />}
+			<div class="landing-ctas">
+				{actions.map(({ text, link, variant }) => (
+					<a class:list={['landing-btn', variant === 'primary' ? 'primary' : 'secondary']} href={link}>{text}</a>
+				))}
+			</div>
+			<p class="landing-label landing-micro">free · no account · FRED data refreshed weekly</p>
+		</div>
+		<div>
+			<HeroRateDemo client:load />
+			<p class="landing-label landing-chip">drag the slider · the same model as chapter 4</p>
+			<p class="landing-label landing-chip">
+				a 1-point rise adds ${hikeCost} a month · <a href="/Macro-Investing-Textbook/part-2-policy/04-central-banks/">central banks →</a>
+			</p>
+		</div>
+	</div>
+	<p class="landing-credit">
+		Photo: <a href="https://commons.wikimedia.org/wiki/File:Lower_Manhattan_night_skyline_20261003_%E2%80%93_1.jpg">Lower Manhattan at night</a> by VynedJ, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+	</p>
+</div>

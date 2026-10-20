@@ -1,0 +1,238 @@
+---
+// Landing page body below the hero (stats, sources, parts, models, closing link). Styles: src/styles/landing.css.
+import { getCollection, getEntry } from 'astro:content';
+import { bookCounts, glossaryTermCount, glossaryEntry } from '../lib/landing.js';
+import { growthPath } from '../lib/growth.js';
+import { fmtWhen } from '../lib/format.js';
+import { timelineCharts } from '../lib/timeline-charts.js';
+import series from '../../scripts/series.json';
+import topEconomies from '../data/worldbank/top-economies.json';
+import fedfunds from '../data/FEDFUNDS.json';
+import ecb from '../data/ECBDFR.json';
+import boj from '../data/IRSTCI01JPM156N.json';
+import rbi from '../data/policy-rates/india.json';
+import pboc from '../data/policy-rates/china.json';
+import gdp from '../data/GDPC1.json';
+import cpi from '../data/CPIAUCSL.json';
+import unrate from '../data/UNRATE.json';
+import usrec from '../data/USREC.json';
+import GrowthCalculator from './widgets/GrowthCalculator.tsx';
+import MacroTradesTimeline from './widgets/MacroTradesTimeline.tsx';
+import EconomyExplorer from './widgets/EconomyExplorer.tsx';
+import CreditCycleSim from './widgets/CreditCycleSim.tsx';
+import RateTransmissionSim from './widgets/RateTransmissionSim.tsx';
+import DebtSim from './widgets/DebtSim.tsx';
+
+const base = '/Macro-Investing-Textbook/';
+const docs = await getCollection('docs', ({ data }) => !data.draft);
+const description = (id: string) => docs.find((d) => d.id === id)?.data.description;
+const glossary = (await getEntry('docs', 'glossary'))?.body ?? '';
+const { chapters, deepDives } = bookCounts(docs.map((d) => d.id));
+
+const models = [
+	{ key: 'growth', name: 'compound growth', note: 'Pick an amount and a return, then watch thirty years of compounding.', where: 'start here', href: 'start-here/what-is-an-investment/' },
+	{ key: 'timeline', name: 'macro trades timeline', note: 'Famous macro trades, each with the real data behind it.', where: 'chapter 1', href: 'part-1-economy/01-what-is-macro/' },
+	{ key: 'explorer', name: 'economy explorer', note: 'Growth, inflation and jobs on one chart, with recessions shaded.', where: 'chapter 2', href: 'part-1-economy/02-growth-inflation-cycle/' },
+	{ key: 'credit', name: 'credit cycle', note: 'Borrow more each year and see why credit booms end in busts.', where: 'chapter 3', href: 'part-1-economy/03-money-banks-credit/' },
+	{ key: 'rates', name: 'rate transmission', note: 'Raise the rate. Mortgages react at once, inflation two years later.', where: 'chapter 4', href: 'part-2-policy/04-central-banks/' },
+	{ key: 'debt', name: 'government debt', note: 'Change growth, rates and the deficit, and watch the debt pile.', where: 'chapter 5', href: 'part-2-policy/05-fiscal-policy/' },
+];
+
+const stats = [
+	[chapters, 'chapters live'],
+	[deepDives, 'country & central bank pages'],
+	[series.length, 'FRED data series'],
+	[models.length, 'models to play with'],
+	[glossaryTermCount(glossary), 'glossary terms'],
+	['$0', 'forever'],
+];
+
+const sources = ['FRED · St. Louis Fed', 'World Bank', 'Federal Reserve', 'European Central Bank', 'Bank of Japan', 'Reserve Bank of India', "People's Bank of China"];
+
+const grown = growthPath(10_000, 7, 30).at(-1)![1];
+const money = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
+
+const top5 = [...topEconomies.rows].sort((a, b) => b.gdp_usd - a.gdp_usd).slice(0, 5);
+const asOf = (points: [string, number][]) => fmtWhen(new Date(points.at(-1)![0]), undefined);
+const rates = [
+	['Fed', fedfunds.points],
+	['ECB', ecb.points],
+	['BoJ', boj.points],
+	['RBI', rbi.points],
+	['PBoC', pboc.series['7-day reverse repo rate (policy rate)']],
+] as [string, [string, number][]][];
+
+const soon = [
+	['04', 'The asset classes', 'part-3-assets'],
+	['05', 'The global system', 'part-4-global'],
+	['06', 'Doing macro', 'part-5-practice'],
+];
+const toc = ['Start here', 'How the economy works', 'Policy makers', 'Asset classes', 'The global system', 'Doing macro', 'Glossary'];
+const tocIds = ['part-start', 'part-economy', 'part-policy', 'part-soon', 'part-soon', 'part-soon', 'part-glossary'];
+---
+
+<div class="landing not-content">
+	<section class="landing-stats" aria-labelledby="stats-h">
+		<h2 id="stats-h" class="landing-h2">Real data. Plain words. No finance degree needed.</h2>
+		<div class="landing-stats-row">
+			{stats.map(([n, label]) => <div><b>{n}</b><span class="landing-label">{label}</span></div>)}
+		</div>
+	</section>
+
+	<section class="landing-sources" aria-labelledby="sources-h">
+		<h2 id="sources-h" class="landing-label">the data comes from</h2>
+		<ul>{sources.map((s) => <li>{s}</li>)}</ul>
+	</section>
+
+	<section id="parts" aria-labelledby="parts-h">
+		<div class="landing-overline landing-label"><span>01 — 07</span><span>everything in the book</span></div>
+		<h2 id="parts-h" class="landing-h2">Seven ways in. All of them free.</h2>
+		<nav class="landing-toc" aria-label="Parts of the book">
+			{toc.map((t, i) => <a class="landing-label" href={`#${tocIds[i]}`}>{t}</a>)}
+		</nav>
+
+		<article id="part-start" class="landing-part">
+			<div>
+				<p class="landing-label landing-num"><span>01 / 07</span><span>Start here</span></p>
+				<h3>What an investment is, and who moves markets.</h3>
+				<p>{description('start-here/what-is-an-investment')}</p>
+				<a class="landing-open" href={`${base}start-here/what-is-an-investment/`}>open start here →</a>
+			</div>
+			<div class="landing-card landing-preview">
+				<p class="landing-label">growth calculator · simplified model</p>
+				<ul class="landing-results">
+					<li><span>$10,000 at 7% a year</span><b>30 years</b></li>
+					<li><span>Ends up as</span><b>{money(grown)}</b></li>
+					<li><span>Of which growth</span><b><em>{money(grown - 10_000)}</em></b></li>
+				</ul>
+			</div>
+		</article>
+
+		<article id="part-economy" class="landing-part flip">
+			<div>
+				<p class="landing-label landing-num"><span>02 / 07</span><span>Part I · How the economy works</span></p>
+				<h3>Growth, inflation, the cycle, and credit.</h3>
+				<p>What global macro is, how to read GDP, inflation and unemployment, the business cycle, and why credit booms end in busts. Then the five biggest economies, one page each.</p>
+				<a class="landing-open" href={`${base}part-1-economy/`}>open part I →</a>
+			</div>
+			<div class="landing-card landing-preview">
+				<p class="landing-label">largest economies, {topEconomies.as_of}</p>
+				<ul class="landing-bars">
+					{top5.map((r) => (
+						<li>
+							<span>{r.country}</span>
+							<i style={`width:${(r.gdp_usd / top5[0].gdp_usd) * 100}%`} aria-hidden="true" />
+							<b>${(r.gdp_usd / 1e12).toFixed(1)}T</b>
+						</li>
+					))}
+				</ul>
+				<p class="landing-asof">Data as of {topEconomies.as_of} · Source: World Bank</p>
+			</div>
+		</article>
+
+		<article id="part-policy" class="landing-part">
+			<div>
+				<p class="landing-label landing-num"><span>03 / 07</span><span>Part II · Policy makers</span></p>
+				<h3>Who sets the price of money, and how it reaches you.</h3>
+				<p>Central banks, their tools and their votes, then taxes, spending and debt. Includes a page for each of the five big central banks.</p>
+				<a class="landing-open" href={`${base}part-2-policy/`}>open part II →</a>
+			</div>
+			<div class="landing-card landing-preview">
+				<p class="landing-label">policy rates, latest value</p>
+				<ul class="landing-rates">
+					{rates.map(([bank, points]) => (
+						<li><b>{points.at(-1)![1].toFixed(2)}%</b><span class="landing-label">{bank} · {asOf(points)}</span></li>
+					))}
+				</ul>
+				<p class="landing-asof">Sources: FRED (Fed, ECB, BoJ), Reserve Bank of India, People's Bank of China</p>
+			</div>
+		</article>
+
+		<div id="part-soon" class="landing-soon">
+			{soon.map(([n, title, id]) => (
+				<a href={`${base}${id}/`}>
+					<span class="landing-label landing-num"><span>{n} / 07</span><span>coming soon</span></span>
+					<h3>{title}</h3>
+					<p>{description(id)}</p>
+				</a>
+			))}
+		</div>
+
+		<article id="part-glossary" class="landing-part">
+			<div>
+				<p class="landing-label landing-num"><span>07 / 07</span><span>Glossary</span></p>
+				<h3>Every term, explained once.</h3>
+				<a class="landing-open" href={`${base}glossary/`}>open the glossary →</a>
+			</div>
+			<div class="landing-card landing-preview">
+				<p class="landing-label">example entry</p>
+				<p class="landing-term"><b>Basis point</b>: {glossaryEntry(glossary, 'Basis point')}</p>
+			</div>
+		</article>
+	</section>
+
+	<section class="landing-spot" aria-labelledby="spot-h">
+		<h2 id="spot-h" class="landing-h2">What you'll actually play with</h2>
+		<p class="landing-spot-lede">Every model runs in your browser. Change an input and watch the economy respond.</p>
+		<landing-tabs class="landing-spot-grid">
+			<div role="tablist" aria-label="Models" aria-orientation="vertical" class="landing-tabs">
+				{models.map((m, i) => (
+					<button type="button" role="tab" id={`tab-${m.key}`} aria-controls={`panel-${m.key}`} aria-selected={String(i === 0)} tabindex={i === 0 ? 0 : -1}>
+						<small>{String(i + 1).padStart(2, '0')}</small><span>{m.name}</span>
+					</button>
+				))}
+			</div>
+			<div>
+				{models.map((m, i) => (
+					<div role="tabpanel" id={`panel-${m.key}`} aria-labelledby={`tab-${m.key}`} hidden={i !== 0} class="landing-card landing-fig">
+						<p class="landing-label landing-num"><span>fig. {String(i + 1).padStart(2, '0')}</span><b>{m.name}</b></p>
+						{m.key === 'growth' && <GrowthCalculator client:visible />}
+						{m.key === 'timeline' && <MacroTradesTimeline client:visible charts={timelineCharts} />}
+						{m.key === 'explorer' && <EconomyExplorer client:visible gdp={gdp} cpi={cpi} unrate={unrate} usrec={usrec} />}
+						{m.key === 'credit' && <CreditCycleSim client:visible />}
+						{m.key === 'rates' && <RateTransmissionSim client:visible />}
+						{m.key === 'debt' && <DebtSim client:visible />}
+						<div class="landing-fig-foot">
+							<span>{m.note}</span>
+							<a class="landing-pill" href={`${base}${m.href}`}><i aria-hidden="true" />open {m.where}</a>
+						</div>
+					</div>
+				))}
+			</div>
+		</landing-tabs>
+	</section>
+
+	<section class="landing-closing" aria-label="Start reading">
+		<a href={`${base}start-here/what-is-an-investment/`}>Start reading.</a>
+		<p>Free. No account needed.</p>
+	</section>
+</div>
+
+<script>
+	// Accessible tabs (WAI-ARIA tabs pattern): click or arrow keys switch panels; hidden panels' islands hydrate when shown.
+	class LandingTabs extends HTMLElement {
+		connectedCallback() {
+			const tabs = [...this.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+			const select = (tab: HTMLButtonElement, focus = false) => {
+				for (const t of tabs) {
+					const on = t === tab;
+					t.setAttribute('aria-selected', String(on));
+					t.tabIndex = on ? 0 : -1;
+					document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
+				}
+				if (focus) tab.focus();
+			};
+			tabs.forEach((tab, i) => {
+				tab.addEventListener('click', () => select(tab));
+				tab.addEventListener('keydown', (e) => {
+					const step = ({ ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 } as Record<string, number>)[e.key];
+					const to = e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : step ? (i + step + tabs.length) % tabs.length : -1;
+					if (to < 0) return;
+					e.preventDefault();
+					select(tabs[to], true);
+				});
+			});
+		}
+	}
+	customElements.define('landing-tabs', LandingTabs);
+</script>
