@@ -12,6 +12,7 @@ import ecb from '../data/ECBDFR.json';
 import boj from '../data/IRSTCI01JPM156N.json';
 import rbi from '../data/policy-rates/india.json';
 import pboc from '../data/policy-rates/china.json';
+import boe from '../data/policy-rates/uk.json';
 import gdp from '../data/GDPC1.json';
 import cpi from '../data/CPIAUCSL.json';
 import unrate from '../data/UNRATE.json';
@@ -47,7 +48,7 @@ const stats = [
 	['$0', 'forever'],
 ];
 
-const sources = ['FRED · St. Louis Fed', 'World Bank', 'Federal Reserve', 'European Central Bank', 'Bank of Japan', 'Reserve Bank of India', "People's Bank of China"];
+const sources = ['FRED · St. Louis Fed', 'World Bank', 'Federal Reserve', 'European Central Bank', 'Bank of Japan', 'Bank of England', 'Reserve Bank of India', "People's Bank of China"];
 
 const grown = growthPath(10_000, 7, 30).at(-1)![1];
 const money = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
@@ -58,6 +59,7 @@ const rates = [
 	['Fed', fedfunds.points],
 	['ECB', ecb.points],
 	['BoJ', boj.points],
+	['BoE', boe.points],
 	['RBI', rbi.points],
 	['PBoC', pboc.series['7-day reverse repo rate (policy rate)']],
 ] as [string, [string, number][]][];
@@ -134,7 +136,7 @@ const tocIds = ['part-start', 'part-economy', 'part-policy', 'part-soon', 'part-
 			<div>
 				<p class="landing-label landing-num"><span>03 / 07</span><span>Part II · Policy makers</span></p>
 				<h3>Who sets the price of money, and how it reaches you.</h3>
-				<p>Central banks, their tools and their votes, then taxes, spending and debt. Includes a page for each of the five big central banks.</p>
+				<p>Central banks, their tools and their votes, then taxes, spending and debt. Includes a page for each of six big central banks: the Fed, the ECB, the Bank of Japan, the Bank of England, the RBI and the PBoC.</p>
 				<a class="landing-open" href={`${base}part-2-policy/`}>open part II →</a>
 			</div>
 			<div class="landing-card landing-preview">
@@ -144,7 +146,7 @@ const tocIds = ['part-start', 'part-economy', 'part-policy', 'part-soon', 'part-
 						<li><b>{points.at(-1)![1].toFixed(2)}%</b><span class="landing-label">{bank} · {asOf(points)}</span></li>
 					))}
 				</ul>
-				<p class="landing-asof">Sources: FRED (Fed, ECB, BoJ), Reserve Bank of India, People's Bank of China</p>
+				<p class="landing-asof">Sources: FRED (Fed, ECB, BoJ), Bank of England, Reserve Bank of India, People's Bank of China</p>
 			</div>
 		</article>
 

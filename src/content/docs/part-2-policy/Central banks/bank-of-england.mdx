@@ -1,0 +1,84 @@
+---
+title: Bank of England
+description: "The UK's central bank: how it is built, who votes on Bank Rate, how its board works, and the tools it uses."
+draft: false
+sidebar:
+  order: 6
+---
+import Chart from '../../../../components/Chart.tsx';
+import bankRate from '../../../../data/policy-rates/uk.json';
+import { stepLine } from '../../../../lib/policy-rates.js';
+
+## What it is
+
+The **Bank of England** is the central bank of the United Kingdom. It was founded on 27 July 1694 as a private bank that acted as banker to the Government, and it was nationalised in 1946 ([Bank of England](https://www.bankofengland.co.uk/about/history)).
+
+In May 1997 the Chancellor of the Exchequer gave the Bank operational independence to set interest rates, aiming at an inflation target chosen by the Government ([Bank of England](https://www.bankofengland.co.uk/-/media/boe/files/quarterly-bulletin/1997/changes-at-the-boe.pdf)). The Bank of England Act 1998 made this law from 1 June 1998 ([Bank of England](https://www.bankofengland.co.uk/quarterly-bulletin/1998/q2/the-bank-of-england-act)). Today the Government's target is 2% inflation ([Bank of England](https://www.bankofengland.co.uk/monetary-policy)).
+
+**Who leads it.** Andrew Bailey has been Governor since 16 March 2020 ([Bank of England](https://www.bankofengland.co.uk/about/people/andrew-bailey/biography)). Governors serve eight-year terms ([Bank of England](https://www.bankofengland.co.uk/about/people/court-of-directors)).
+
+## Who decides
+
+Two bodies matter. The **Monetary Policy Committee** (MPC) sets interest rates. The **Court of Directors** is the Bank's board and runs the organisation, but it does not vote on rates.
+
+### The Monetary Policy Committee
+
+The MPC has nine members: five from inside the Bank and four from outside ([Bank of England Act 1998, section 13](https://www.legislation.gov.uk/ukpga/1998/11/section/13)).
+
+| Seat | Who (November 2026) | Chosen by |
+|---|---|---|
+| Governor | Andrew Bailey | The Crown, for 8 years |
+| Deputy Governor, Monetary Policy | Clare Lombardelli | The Crown, for 5 years |
+| Deputy Governor, Financial Stability | Sarah Breeden | The Crown, for 5 years |
+| Deputy Governor, Markets and Banking | Sir Dave Ramsden | The Crown, for 5 years |
+| Chief Economist | Huw Pill | The Governor, after consulting the Chancellor |
+| External member | Dr Swati Dhingra | The Chancellor |
+| External member | Megan Greene | The Chancellor |
+| External member | Catherine L Mann | The Chancellor |
+| External member | Professor Alan Taylor | The Chancellor |
+
+Sources: members from the [Bank of England](https://www.bankofengland.co.uk/about/people/monetary-policy-committee); who appoints from the [Bank of England Act 1998, section 13](https://www.legislation.gov.uk/ukpga/1998/11/section/13); Governor and Deputy Governor terms from the [Bank of England, Court of Directors](https://www.bankofengland.co.uk/about/people/court-of-directors).
+
+- **External members** bring outside views. The Chancellor appoints them, and each may serve at most two three-year terms ([Bank of England](https://www.bankofengland.co.uk/news/2025/november/megan-greene-reappointed-as-external-member-of-the-mpc)).
+- **A Treasury observer.** A representative from HM Treasury attends the meetings and can discuss policy, but cannot vote ([Bank of England](https://www.bankofengland.co.uk/about/people/monetary-policy-committee)).
+
+### How the MPC votes
+
+- **One person, one vote, every meeting.** There is no rotation: all nine members vote at each of the eight decisions a year. The Governor proposes the policy he thinks a majority will support, the members vote, and the majority wins. If the vote is tied, the Governor casts the deciding vote ([Bank of England](https://www.bankofengland.co.uk/monetary-policy)).
+- **What is permanent and what is temporary.** In the Fed's sense every seat is permanent, because all nine members vote at every meeting. The difference is how long people stay: the Governor serves eight years and the Deputy Governors five ([Bank of England](https://www.bankofengland.co.uk/about/people/court-of-directors)), while external members serve at most six ([Bank of England](https://www.bankofengland.co.uk/news/2025/november/megan-greene-reappointed-as-external-member-of-the-mpc)).
+- **Votes are published by name.** In August 2025 the first vote split three ways. Four members wanted a ¼-point cut to 4%, four wanted to hold at 4.25%, and Alan Taylor wanted a ½-point cut. To get a majority, the Governor held a second vote between the ¼-point cut and a hold. Taylor backed the ¼-point cut, and Bank Rate fell to 4% by 5 votes to 4 ([Bank of England](https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2025/august-2025)).
+
+### The Court of Directors
+
+- **The Bank's board.** Court "acts as a unitary board, setting the organisation's strategy and budget", and makes key decisions on resources and appointments. It meets at least seven times a year ([Bank of England](https://www.bankofengland.co.uk/about/people/court-of-directors)).
+- **Members.** It has five executive members from the Bank (the Governor and four Deputy Governors, including the one for Prudential Regulation) and up to nine non-executive members. The Crown appoints all of them. Non-executive members serve up to four years ([Bank of England](https://www.bankofengland.co.uk/about/people/court-of-directors)).
+- **Chair.** A non-executive member chairs Court, chosen by the Chancellor. In November 2026 the Chair is David Roberts ([Bank of England](https://www.bankofengland.co.uk/about/people/court-of-directors)).
+
+## The tools
+
+| Tool | What it does |
+|---|---|
+| **Bank Rate** | The main tool: the interest rate the Bank pays on overnight deposits from eligible firms ([Bank of England](https://www.bankofengland.co.uk/monetary-policy)). |
+| **Quantitative easing (QE)** | Buying bonds to push down long-term interest rates. The Bank first used QE in March 2009 and bought £895 billion of bonds in total: £875 billion of government debt and £20 billion of corporate debt ([Bank of England](https://www.bankofengland.co.uk/monetary-policy/quantitative-easing)). |
+| **Quantitative tightening (QT)** | Reversing QE, which the MPC decided to begin in February 2022. The Bank can let bonds mature without replacing them, sell them to investors, or both ([Bank of England](https://www.bankofengland.co.uk/monetary-policy/quantitative-easing)). |
+
+Chapter 4 explains [how these tools reach the economy](/Macro-Investing-Textbook/part-2-policy/04-central-banks/).
+
+## Its rate over time
+
+<Chart client:visible title="UK: Bank Rate since 1997" units="%" xLabel="Year" source="Bank of England (official Bank Rate, database series IUDBEDR)" asOf={bankRate.points.at(-1)[0]}
+  note="Hover for values. Shaded: Bank Rate at 0.5% or lower, and the run of rises that followed."
+  lines={[{ label: 'Bank Rate', points: stepLine(bankRate.points) }]}
+  ranges={[
+    { from: '2009-03-05', to: '2021-12-16', label: '0.5% or lower' },
+    { from: '2021-12-16', to: '2023-08-03', label: 'Rate rises' },
+  ]} />
+
+Bank Rate stayed at 0.5% or lower from March 2009 to December 2021. The MPC then raised it 14 times in a row, from 0.1% to 5.25% in August 2023 ([Bank of England](https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp)).
+
+## Key takeaways
+
+- The Bank of England has set UK interest rates **independently since 1997**, aiming at a **2% inflation target** set by the Government.
+- Its **MPC** has **nine voters**: the Governor, three Deputy Governors and the Chief Economist from inside the Bank, plus **four external members** chosen by the Chancellor. All nine vote at every meeting, and the Governor breaks ties.
+- The **Court of Directors** is the Bank's board. It sets strategy and the budget, not interest rates.
+- Its tools: **Bank Rate**, **QE** and **QT**.

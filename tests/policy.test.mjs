@@ -29,7 +29,7 @@ test('stepLine holds each rate until the next change', () => {
 	assert.deepEqual(stepLine([['2020-01-01', 5], ['2020-03-01', 4]]), [['2020-01-01', 5], ['2020-03-01', 5], ['2020-03-01', 4]]);
 });
 
-for (const f of ['india', 'china']) {
+for (const f of ['india', 'china', 'uk']) {
 	test(`policy-rates/${f}.json is ordered, numeric and sourced`, () => {
 		const d = JSON.parse(readFileSync(new URL(`../src/data/policy-rates/${f}.json`, import.meta.url), 'utf8'));
 		assert.ok(d.source && d.index.startsWith('https://'));
