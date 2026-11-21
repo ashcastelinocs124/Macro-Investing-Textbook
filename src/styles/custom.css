@@ -74,6 +74,23 @@ h1#_top { font-weight: 700; }
 
 /* Sidebar: plain links, current page in accent (no highlight pill) */
 .sidebar-content .group-label .large { font-weight: 500; color: var(--sl-color-white); }
+/* Size steps down with depth: part > sub-section > sub-sub-section, and each group's pages sit below its label.
+   Starlight gives every group label the same .large size, so depth is read from nested <details>. */
+.sidebar-content .group-label .large { font-size: 1.125rem; }
+.sidebar-content details details .group-label .large { font-size: 1rem; }
+.sidebar-content details details details .group-label .large { font-size: 0.9375rem; }
+.sidebar-content details a { font-size: 0.9375rem; }
+.sidebar-content details details a { font-size: 0.90625rem; }
+.sidebar-content details details details a { font-size: 0.875rem; }
+@media (min-width: 50rem) {
+	.sidebar-content .group-label .large,
+	.sidebar-content .top-level > li > a.large { font-size: 1.0625rem; }
+	.sidebar-content details details .group-label .large { font-size: 0.9375rem; }
+	.sidebar-content details details details .group-label .large { font-size: 0.875rem; }
+	.sidebar-content details a { font-size: 0.875rem; }
+	.sidebar-content details details a { font-size: 0.84375rem; }
+	.sidebar-content details details details a { font-size: 0.8125rem; }
+}
 .sidebar-content a { color: var(--macro-sidebar-text); font-weight: 500; }
 .sidebar-content a[aria-current='page'],
 .sidebar-content a[aria-current='page']:hover,

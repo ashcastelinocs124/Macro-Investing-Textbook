@@ -19,7 +19,22 @@ export default defineConfig({
 			sidebar: [
 				{ label: 'Start here', items: [{ autogenerate: { directory: 'start-here' } }] },
 				{ label: 'Part I · How the economy works', items: [{ autogenerate: { directory: 'part-1-economy' } }] },
-				{ label: 'Part II · Policy makers', items: [{ autogenerate: { directory: 'part-2-policy' } }] },
+				{
+					label: 'Part II · Policy makers',
+					// Listed by hand so the bank pages nest under chapter 4; their URLs stay /part-2-policy/central-banks/….
+					// autogenerate matches the folder path on disk (with the space), not the URL slug.
+					items: [
+						'part-2-policy',
+						{
+							label: 'Central banks & monetary policy',
+							items: [
+								{ label: 'Overview', slug: 'part-2-policy/04-central-banks' },
+								{ label: 'Central banks', items: [{ autogenerate: { directory: 'part-2-policy/Central banks' } }] },
+							],
+						},
+						'part-2-policy/05-fiscal-policy',
+					],
+				},
 				{ label: 'Part III · The asset classes', items: [{ autogenerate: { directory: 'part-3-assets' } }] },
 				{ label: 'Part IV · The global system', items: [{ autogenerate: { directory: 'part-4-global' } }] },
 				{ label: 'Part V · Doing macro', items: [{ autogenerate: { directory: 'part-5-practice' } }] },
